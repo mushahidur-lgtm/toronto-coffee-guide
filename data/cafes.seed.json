@@ -25,7 +25,9 @@
     ],
     "website_url": "https://pilotcoffeeroasters.com",
     "featured": true,
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ9xZ7SX_M1IkRH8c4VQkh_gQ",
+    "googleMapsUri": "https://maps.google.com/?cid=359761344204424991&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Pilot Coffee Roasters — Yorkville",
@@ -46,7 +48,9 @@
       "roaster"
     ],
     "website_url": "https://pilotcoffeeroasters.com",
-    "source": "https://ritual.co/blog/20-must-try-coffee-shops-in-toronto-your-2023-ritual-guide"
+    "source": "https://ritual.co/blog/20-must-try-coffee-shops-in-toronto-your-2023-ritual-guide",
+    "placeId": "ChIJR1rwo1c1K4gRgxdSndSNb0Y",
+    "googleMapsUri": "https://maps.google.com/?cid=5075431249381824387&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Pilot Coffee Roasters — Blue Jays Way",
@@ -67,7 +71,9 @@
       "roaster"
     ],
     "website_url": "https://pilotcoffeeroasters.com",
-    "source": "https://ritual.co/blog/20-must-try-coffee-shops-in-toronto-your-2023-ritual-guide"
+    "source": "https://ritual.co/blog/20-must-try-coffee-shops-in-toronto-your-2023-ritual-guide",
+    "placeId": "ChIJ7zPkpSQ1K4gRB4N3-T7fnnE",
+    "googleMapsUri": "https://maps.google.com/?cid=8187226634172465927&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Dineen Coffee Co.",
@@ -96,7 +102,9 @@
     ],
     "website_url": "https://dineencoffee.com",
     "featured": true,
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJB1814DLL1IkRhj-K_tYwSio",
+    "googleMapsUri": "https://maps.google.com/?cid=3047301797821169542&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Sam James Coffee Bar — Harbord",
@@ -118,7 +126,9 @@
       "espresso bar"
     ],
     "website_url": "https://samjamescoffeebar.com",
-    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/"
+    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/",
+    "placeId": "ChIJBWlgk_I0K4gR3y4oDw_gzpM",
+    "googleMapsUri": "https://maps.google.com/?cid=10650696524061224671&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Sam James Coffee Bar — PATH",
@@ -140,7 +150,9 @@
       "path"
     ],
     "website_url": "https://samjamescoffeebar.com",
-    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/"
+    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/",
+    "placeId": "ChIJ3Zd0_ow0K4gRyIWwvMCD6k8",
+    "googleMapsUri": "https://maps.google.com/?cid=5758559937369245128&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Boxcar Social — Summerhill",
@@ -164,7 +176,9 @@
       "wine bar"
     ],
     "website_url": "https://boxcarsocial.ca",
-    "source": "https://tastetoronto.com/guides/where-to-find-the-best-matcha-lattes-in-toronto"
+    "source": "https://tastetoronto.com/guides/where-to-find-the-best-matcha-lattes-in-toronto",
+    "placeId": "ChIJFcciOyYzK4gRMWQlvzFBCcI",
+    "googleMapsUri": "https://maps.google.com/?cid=13981778200064517169&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Neo Coffee Bar — Frederick",
@@ -194,7 +208,9 @@
     ],
     "website_url": "https://neocoffeebar.com",
     "featured": true,
-    "source": "https://www.th3rdwave.coffee/neo-coffee-bar/"
+    "source": "https://www.th3rdwave.coffee/neo-coffee-bar/",
+    "placeId": "ChIJm58KgjDL1IkRaEwUb3FXeCY",
+    "googleMapsUri": "https://maps.google.com/?cid=2772061715353062504&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Neo Coffee Bar — Bay x College",
@@ -220,7 +236,9 @@
     ],
     "tags": [],
     "website_url": "https://neocoffeebar.com",
-    "source": "https://www.hungry416.com/?p=5974"
+    "source": "https://www.hungry416.com/?p=5974",
+    "placeId": "ChIJY7qlf8o1K4gR9A35PHYzbNE",
+    "googleMapsUri": "https://maps.google.com/?cid=15090493034333801972&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Jimmy's Coffee — Portland",
@@ -242,7 +260,9 @@
     ],
     "tags": [],
     "website_url": "https://jimmyscoffee.ca",
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJbStjd8I1K4gRzG3TNnJPh8w",
+    "googleMapsUri": "https://maps.google.com/?cid=14737835657557929420&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Jimmy's Coffee — Baldwin",
@@ -266,7 +286,9 @@
       "patio"
     ],
     "website_url": "https://jimmyscoffee.ca",
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJqfDrP8I0K4gRlDpLyZFhMRI",
+    "googleMapsUri": "https://maps.google.com/?cid=1310936245316827796&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Jimmy's Coffee — Lake Shore",
@@ -287,7 +309,9 @@
     ],
     "tags": [],
     "website_url": "https://jimmyscoffee.ca",
-    "source": "Toronto cafe guides (web research, Nov 2026)"
+    "source": "Toronto cafe guides (web research, Nov 2026)",
+    "placeId": "ChIJ7XamvaE3K4gRHvaRGNSfO10",
+    "googleMapsUri": "https://maps.google.com/?cid=6718139002447328798&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "FIKA Cafe",
@@ -315,7 +339,9 @@
     "tags": [
       "fika"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJs09aUcI0K4gR6phtG366G4g",
+    "googleMapsUri": "https://maps.google.com/?cid=9807637664318200042&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Balzac's Coffee Roasters — Distillery",
@@ -404,7 +430,9 @@
       "quiet",
       "the library specialty coffee"
     ],
-    "source": "https://cafesintoronto.pages.dev/blog/top-10-toronto-coffee-shops-west-end"
+    "source": "https://cafesintoronto.pages.dev/blog/top-10-toronto-coffee-shops-west-end",
+    "placeId": "ChIJCU1G3lU1K4gR8PO7sj2uAEM",
+    "googleMapsUri": "https://maps.google.com/?cid=4828050380556071920&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Fahrenheit Coffee",
@@ -427,7 +455,9 @@
     "tags": [
       "roaster"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ4bJ3djvL1IkRWav6-FyyDds",
+    "googleMapsUri": "https://maps.google.com/?cid=15784468381387369305&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "De Mello Coffee — Yorkville",
@@ -470,7 +500,9 @@
       "roaster",
       "small batch"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ1XseUvk0K4gRXITxS2nG9GU",
+    "googleMapsUri": "https://maps.google.com/?cid=7346715047696106588&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Moonbean Coffee Company",
@@ -504,7 +536,9 @@
     ],
     "website_url": "https://moonbeancoffee.com",
     "featured": true,
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ5SbjSsI0K4gRxhgtLRkalKk",
+    "googleMapsUri": "https://maps.google.com/?cid=12219420384397433030&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Quantum Coffee",
@@ -528,7 +562,9 @@
       "roaster",
       "work friendly"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJcWRzY9k0K4gRHAdLskwgPUQ",
+    "googleMapsUri": "https://maps.google.com/?cid=4917121881939314460&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Rooster Coffee House — Broadview",
@@ -552,7 +588,9 @@
     "tags": [
       "park view"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJW6Qpo2bL1IkRwOQK_ztXNYk",
+    "googleMapsUri": "https://maps.google.com/?cid=9886904472155382976&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Te Aro",
@@ -575,7 +613,9 @@
     "tags": [
       "roaster"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJVXgL-XbL1IkRR9L8XllaFPI",
+    "googleMapsUri": "https://maps.google.com/?cid=17443666596604990023&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Tandem Coffee",
@@ -594,7 +634,9 @@
       "Specialty Coffee"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ-_Wr6T7L1IkRLN98GmqIp_0",
+    "googleMapsUri": "https://maps.google.com/?cid=18277727601998749484&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Odin Cafe + Bar",
@@ -617,7 +659,9 @@
     "tags": [
       "bar"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJI_eUsmrL1IkRb_kp1oIZdtQ",
+    "googleMapsUri": "https://maps.google.com/?cid=15309452033022097775&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "White Squirrel Coffee Shop",
@@ -638,7 +682,9 @@
     "tags": [
       "park"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJOTCRGeM0K4gRpFPpUFa_vN4",
+    "googleMapsUri": "https://maps.google.com/?cid=16049913549487166372&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Rooms Coffee",
@@ -658,7 +704,9 @@
     "tags": [
       "work friendly"
     ],
-    "source": "https://cafesintoronto.pages.dev/blog/top-10-toronto-coffee-shops-west-end"
+    "source": "https://cafesintoronto.pages.dev/blog/top-10-toronto-coffee-shops-west-end",
+    "placeId": "ChIJzz4J8-I1K4gRZG_yYbKL9iM",
+    "googleMapsUri": "https://maps.google.com/?cid=2591412233862016868&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "The Matcha Tokyo",
@@ -681,7 +729,9 @@
     "tags": [
       "green tea"
     ],
-    "source": "https://canadas100best.com/stories/matcha-tokyo-toronto-ossington-debut/"
+    "source": "https://canadas100best.com/stories/matcha-tokyo-toronto-ossington-debut/",
+    "placeId": "ChIJI07DGgA1K4gRkSIMiNjWUW8",
+    "googleMapsUri": "https://maps.google.com/?cid=8021428636807340689&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Ezra's Pound",
@@ -700,7 +750,9 @@
       "Neighbourhood Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJBeL91J40K4gRk6FqGQF49l4",
+    "googleMapsUri": "https://maps.google.com/?cid=6842788629952766355&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Manic Coffee",
@@ -718,7 +770,9 @@
       "Specialty Coffee"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJa2Nk3es0K4gRVgvlDTGfUig",
+    "googleMapsUri": "https://maps.google.com/?cid=2905559742642719574&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Cafe Pamenar",
@@ -739,7 +793,9 @@
     "tags": [
       "bar"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ2zl04sE0K4gR-44Du4C98TM",
+    "googleMapsUri": "https://maps.google.com/?cid=3742981125912628987&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Wanda's Pie in the Sky",
@@ -764,7 +820,9 @@
     "tags": [
       "pie"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJjfNM_ME0K4gRV_saEJ6TX_Y",
+    "googleMapsUri": "https://maps.google.com/?cid=17753070563202104151&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Café Diplomatico",
@@ -792,7 +850,9 @@
       "espresso bar"
     ],
     "featured": true,
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJgSasJu40K4gR5XBFeP58Sk0",
+    "googleMapsUri": "https://maps.google.com/?cid=5569401321578393829&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Sicilian Sidewalk Café",
@@ -818,7 +878,9 @@
       "gelato",
       "patio"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJzfcjIvE0K4gRA3hvwdwRqpQ",
+    "googleMapsUri": "https://maps.google.com/?cid=10712394303489931267&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Golden Wheat Bakery",
@@ -845,7 +907,9 @@
     "tags": [
       "custard tarts"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJvSsRFKo2K4gRRJhvEo8ZDvE",
+    "googleMapsUri": "https://maps.google.com/?cid=17369848915094902852&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Nova Era Bakery",
@@ -896,7 +960,9 @@
     "tags": [
       "weekend brunch"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJtalcbnHL1IkReL2u8o-z60k",
+    "googleMapsUri": "https://maps.google.com/?cid=5326548415128976760&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "The Federal",
@@ -918,7 +984,9 @@
       "Brunch Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJUe0Qu1Y0K4gRecBpLo7uU30",
+    "googleMapsUri": "https://maps.google.com/?cid=9030823972239425657&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Saving Grace",
@@ -939,7 +1007,9 @@
       "Brunch Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJQTNua-U0K4gRbpvCyW4X6ZA",
+    "googleMapsUri": "https://maps.google.com/?cid=10441902975634021230&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Nadège Patisserie",
@@ -966,7 +1036,9 @@
     "tags": [
       "patisserie"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJJ2P9eQo1K4gRakAcWuHjtsw",
+    "googleMapsUri": "https://maps.google.com/?cid=14751228186517586026&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Sud Forno — Queen West",
@@ -992,7 +1064,9 @@
     "tags": [
       "espresso bar"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJY6UV5eM0K4gRJHBBZ-cXYro",
+    "googleMapsUri": "https://maps.google.com/?cid=13430323321409466404&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Forno Cultura",
@@ -1015,7 +1089,9 @@
       "Bakery & Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ1dL5s940K4gR97_ZLtTsbwk",
+    "googleMapsUri": "https://maps.google.com/?cid=680022464819478519&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Little Pebbles",
@@ -1040,7 +1116,9 @@
     "tags": [
       "green tea"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJbbzx0sM0K4gRAFRUCzmfFaI",
+    "googleMapsUri": "https://maps.google.com/?cid=11679416276007277568&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "915 Dupont",
@@ -1063,7 +1141,9 @@
       "kissaten",
       "listening bar"
     ],
-    "source": "https://canadas100best.com/list/2026/915-dupont-2026/"
+    "source": "https://canadas100best.com/list/2026/915-dupont-2026/",
+    "placeId": "ChIJr4c-AUg1K4gRsS6ovqbxa9s",
+    "googleMapsUri": "https://maps.google.com/?cid=15810996615279816369&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Tsuchi Cafe",
@@ -1089,7 +1169,9 @@
     "tags": [
       "plant based"
     ],
-    "source": "https://www.hungry416.com/?p=5974"
+    "source": "https://www.hungry416.com/?p=5974",
+    "placeId": "ChIJpQjCnFQ1K4gRyPCmr_vIzI0",
+    "googleMapsUri": "https://maps.google.com/?cid=10217762637906112712&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Ohiru Cafe",
@@ -1110,7 +1192,9 @@
       "Brunch Cafe"
     ],
     "tags": [],
-    "source": "https://www.hungry416.com/?p=5974"
+    "source": "https://www.hungry416.com/?p=5974",
+    "placeId": "ChIJ3wT57Zc1K4gR-suFVwzfHl0",
+    "googleMapsUri": "https://maps.google.com/?cid=6710045738929605626&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Film Cafe",
@@ -1135,7 +1219,9 @@
       "live music",
       "comedy"
     ],
-    "source": "https://www.hungry416.com/?p=5974"
+    "source": "https://www.hungry416.com/?p=5974",
+    "placeId": "ChIJ__8jD8I0K4gRi_2Tc1Ltx8M",
+    "googleMapsUri": "https://maps.google.com/?cid=14107505296143547787&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Fuwa Fuwa Dessert Cafe",
@@ -1181,7 +1267,9 @@
     "tags": [
       "pancakes"
     ],
-    "source": "https://www.hungry416.com/?p=5974"
+    "source": "https://www.hungry416.com/?p=5974",
+    "placeId": "ChIJ65ZEar4zK4gRtMBra-x8-Uw",
+    "googleMapsUri": "https://maps.google.com/?cid=5546601770939826356&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Lait Night",
@@ -1202,7 +1290,9 @@
       "Japanese Cafe"
     ],
     "tags": [],
-    "source": "https://www.hungry416.com/?p=5974"
+    "source": "https://www.hungry416.com/?p=5974",
+    "placeId": "ChIJw26CNU81K4gRYW3fc1AS8QI",
+    "googleMapsUri": "https://maps.google.com/?cid=211970794213829985&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Cafe Wanoka",
@@ -1227,7 +1317,9 @@
       "Japanese Cafe"
     ],
     "tags": [],
-    "source": "https://www.hungry416.com/?p=5974"
+    "source": "https://www.hungry416.com/?p=5974",
+    "placeId": "ChIJB1nRXcXR1IkR_RBHZyKuS8E",
+    "googleMapsUri": "https://maps.google.com/?cid=13928417735358222589&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Soul Cafe",
@@ -1275,7 +1367,9 @@
     "tags": [
       "ethically sourced"
     ],
-    "source": "https://www.hungry416.com/?p=6805"
+    "source": "https://www.hungry416.com/?p=6805",
+    "placeId": "ChIJLT8M2BotK4gRl5pgzFdYPVI",
+    "googleMapsUri": "https://maps.google.com/?cid=5925989818803722903&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Cafe Daily",
@@ -1299,7 +1393,9 @@
     "tags": [
       "bingsu"
     ],
-    "source": "https://www.hungry416.com/?p=6805"
+    "source": "https://www.hungry416.com/?p=6805",
+    "placeId": "ChIJm9w7Og0tK4gRdV5npZ7zdHk",
+    "googleMapsUri": "https://maps.google.com/?cid=8751887838593113717&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "The Cups",
@@ -1324,7 +1420,9 @@
     "tags": [
       "bingsu"
     ],
-    "source": "https://www.hungry416.com/?p=6805"
+    "source": "https://www.hungry416.com/?p=6805",
+    "placeId": "ChIJ03QCRcItK4gRrdlxDZY-FH4",
+    "googleMapsUri": "https://maps.google.com/?cid=9084955162504714669&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Dear & Fro",
@@ -1368,7 +1466,9 @@
       "korean toast",
       "street food"
     ],
-    "source": "https://www.hungry416.com/?p=6805"
+    "source": "https://www.hungry416.com/?p=6805",
+    "placeId": "ChIJsbccM5I0K4gRPWa_Wk9Dptg",
+    "googleMapsUri": "https://maps.google.com/?cid=15611239166430373437&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Hodo Kwaja",
@@ -1392,7 +1492,9 @@
     "tags": [
       "bingsu"
     ],
-    "source": "https://www.hungry416.com/?p=6805"
+    "source": "https://www.hungry416.com/?p=6805",
+    "placeId": "ChIJi40QoI00K4gRAO-Lip7jUTc",
+    "googleMapsUri": "https://maps.google.com/?cid=3986217415268364032&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Dessert Fox",
@@ -1416,7 +1518,9 @@
     "tags": [
       "croffle"
     ],
-    "source": "https://www.hungry416.com/?p=6805"
+    "source": "https://www.hungry416.com/?p=6805",
+    "placeId": "ChIJFV7ft6k1K4gRRX2bNXEwSKY",
+    "googleMapsUri": "https://maps.google.com/?cid=11981880071408024901&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "HANBINGO",
@@ -1440,7 +1544,9 @@
       "bingsu",
       "한빙고"
     ],
-    "source": "https://www.hungry416.com/?p=6805"
+    "source": "https://www.hungry416.com/?p=6805",
+    "placeId": "ChIJWwRlnus1K4gRsOVr9Vb7A14",
+    "googleMapsUri": "https://maps.google.com/?cid=6774534615398606256&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Snowday Bingsu & Dessert Cafe",
@@ -1465,7 +1571,9 @@
     "tags": [
       "bingsu"
     ],
-    "source": "https://www.hungry416.com/?p=6805"
+    "source": "https://www.hungry416.com/?p=6805",
+    "placeId": "ChIJLaOvXgDL1IkR85WMfeG78NQ",
+    "googleMapsUri": "https://maps.google.com/?cid=15343970507599681011&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Hẻm Social",
@@ -1487,7 +1595,9 @@
       "ca phe sua da",
       "condensed milk"
     ],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJYc7WcG41K4gR3hZe40l7sn0",
+    "googleMapsUri": "https://maps.google.com/?cid=9057437357872912094&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Coffee Dak Lak",
@@ -1533,7 +1643,9 @@
       "salt coffee",
       "boba"
     ],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJ-SrnJmo1K4gRKdMX3CEKFL8",
+    "googleMapsUri": "https://maps.google.com/?cid=13768641101321196329&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Rustle & Still",
@@ -1560,7 +1672,9 @@
       "pandan"
     ],
     "featured": true,
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJaeZIb5I0K4gRqR8RPLjW1qo",
+    "googleMapsUri": "https://maps.google.com/?cid=12310262718233911209&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "The Oats Kafé",
@@ -1603,7 +1717,9 @@
     "tags": [
       "salt coffee"
     ],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJSXMrE3rL1IkRmFqjTyEZHu4",
+    "googleMapsUri": "https://maps.google.com/?cid=17158179261188889240&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "+84 Café",
@@ -1626,7 +1742,9 @@
     "tags": [
       "plus 84"
     ],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJf7XN87k1K4gRwFWjhC22cpQ",
+    "googleMapsUri": "https://maps.google.com/?cid=10696812371573429696&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "LÀ LÁ Bakeshop",
@@ -1653,7 +1771,9 @@
     "tags": [
       "pandan"
     ],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJAbfgpmA1K4gRqhKEMIlwIIw",
+    "googleMapsUri": "https://maps.google.com/?cid=10097194099091444394&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Cộng Cà Phê — Annex",
@@ -1721,7 +1841,9 @@
       "egg coffee",
       "restaurant"
     ],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJI1kf3zc1K4gR6p-abgSPy1o",
+    "googleMapsUri": "https://maps.google.com/?cid=6542480132884045802&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Banh Haus",
@@ -1742,7 +1864,9 @@
       "Vietnamese Cafe"
     ],
     "tags": [],
-    "source": "https://torontolife.com/food/whats-on-the-takeout-menu-at-banh-haus-chinatowns-new-spot-for-banh-mi-vermicelli-bowls-and-vietnamese-iced-coffee/"
+    "source": "https://torontolife.com/food/whats-on-the-takeout-menu-at-banh-haus-chinatowns-new-spot-for-banh-mi-vermicelli-bowls-and-vietnamese-iced-coffee/",
+    "placeId": "ChIJM65pO501K4gRSwHdmPY50Dg",
+    "googleMapsUri": "https://maps.google.com/?cid=4093835792569139531&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Phin Cafe Bar",
@@ -1763,7 +1887,9 @@
     "tags": [
       "sky city"
     ],
-    "source": "https://www.blogto.com/cafes/phin-cafe-bar-toronto/"
+    "source": "https://www.blogto.com/cafes/phin-cafe-bar-toronto/",
+    "placeId": "ChIJq8veoW3R1IkRdDeJccqUU6s",
+    "googleMapsUri": "https://maps.google.com/?cid=12345374600761784180&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Bonjour Brioche",
@@ -1790,7 +1916,9 @@
     "tags": [
       "viennoiserie"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJUzlKAXLL1IkRfGp9c4r_kf4",
+    "googleMapsUri": "https://maps.google.com/?cid=18343723727364909692&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Mercury Espresso Bar",
@@ -1812,7 +1940,9 @@
     "tags": [
       "espresso bar"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ4eSkSXHL1IkRDdB5DYh2XeM",
+    "googleMapsUri": "https://maps.google.com/?cid=16383381346157449229&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Jet Fuel Coffee",
@@ -1856,7 +1986,9 @@
       "Bakery & Cafe"
     ],
     "tags": [],
-    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/"
+    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/",
+    "placeId": "ChIJv1iSxz3L1IkRFMzOYoukdzQ",
+    "googleMapsUri": "https://maps.google.com/?cid=3780671330765949972&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Arvo Coffee",
@@ -1873,7 +2005,9 @@
       "Specialty Coffee"
     ],
     "tags": [],
-    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/"
+    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/",
+    "placeId": "ChIJ3V3aUDzL1IkRbK27mwK2nTA",
+    "googleMapsUri": "https://maps.google.com/?cid=3503156207483071852&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "SOMA Chocolatemaker — Distillery",
@@ -1898,7 +2032,9 @@
       "bean to bar"
     ],
     "website_url": "https://www.somachocolate.com",
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJv1iSxz3L1IkRDzangkRZEvI",
+    "googleMapsUri": "https://maps.google.com/?cid=17443102457543996943&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Athens Pastries",
@@ -1923,7 +2059,9 @@
       "Traditional Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJYzwq85zM1IkRR1mjlstddVg",
+    "googleMapsUri": "https://maps.google.com/?cid=6374103976599836999&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Serano Bakery",
@@ -1947,7 +2085,9 @@
       "Traditional Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJt-luTYXM1IkR-TDKF-n_Ikc",
+    "googleMapsUri": "https://maps.google.com/?cid=5125940702492635385&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Red Rocket Coffee — Danforth",
@@ -1990,7 +2130,9 @@
     "tags": [
       "roaster"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ3zch0qvO1IkRrPCfMuR6osg",
+    "googleMapsUri": "https://maps.google.com/?cid=14457252874333188268&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Crema Coffee Co. — Junction",
@@ -2010,7 +2152,9 @@
       "Neighbourhood Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJJ2kzup82K4gRCj9tGIr_YUE",
+    "googleMapsUri": "https://maps.google.com/?cid=4711327653786631946&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Cherry Bomb",
@@ -2031,7 +2175,9 @@
       "Neighbourhood Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJt6US5bU1K4gRWGXXp0EMAqY",
+    "googleMapsUri": "https://maps.google.com/?cid=11962137036377777496&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Mabel's Bakery — Roncesvalles",
@@ -2052,7 +2198,9 @@
       "Bakery & Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJL9TypTU0K4gR4RncVYB4IbA",
+    "googleMapsUri": "https://maps.google.com/?cid=12691557717498403297&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Terminal 3 Roasters",
@@ -2074,7 +2222,9 @@
       "roaster",
       "single origin"
     ],
-    "source": "https://th3rdwave.coffee/terminal-3-roasters"
+    "source": "https://th3rdwave.coffee/terminal-3-roasters",
+    "placeId": "ChIJKf7TnNpJK4gRdpa0LWkslx0",
+    "googleMapsUri": "https://maps.google.com/?cid=2132221778833217142&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Yellow Cup Café",
@@ -2096,7 +2246,9 @@
     "tags": [
       "crepes"
     ],
-    "source": "Toronto cafe guides (web research, Nov 2026)"
+    "source": "Toronto cafe guides (web research, Nov 2026)",
+    "placeId": "ChIJe7As3PM3K4gRBXmQ7UrUNU0",
+    "googleMapsUri": "https://maps.google.com/?cid=5563586332964452613&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "The Sydney Grind",
@@ -2121,7 +2273,9 @@
     "tags": [
       "aussie"
     ],
-    "source": "Toronto cafe guides (web research, Nov 2026)"
+    "source": "Toronto cafe guides (web research, Nov 2026)",
+    "placeId": "ChIJJYxJ_mlJK4gRcnwHcF5HcOw",
+    "googleMapsUri": "https://maps.google.com/?cid=17037195861274623090&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Aesēt Coffee Co.",
@@ -2140,7 +2294,9 @@
     "tags": [
       "aeset"
     ],
-    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide",
+    "placeId": "ChIJqbk-0vI1K4gRrnx7KSxC8K0",
+    "googleMapsUri": "https://maps.google.com/?cid=12533590520414043310&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Coco Espresso Bar",
@@ -2159,7 +2315,9 @@
     "tags": [
       "late night"
     ],
-    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide",
+    "placeId": "ChIJJzHjhK80K4gRAi9bdAV0wdI",
+    "googleMapsUri": "https://maps.google.com/?cid=15186546985245814530&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Goldstruck Coffee",
@@ -2181,7 +2339,9 @@
     "tags": [
       "hidden gem"
     ],
-    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide",
+    "placeId": "ChIJn7oBaKU0K4gRvIe8gHjQigs",
+    "googleMapsUri": "https://maps.google.com/?cid=831706297177769916&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Jacked Up Coffee",
@@ -2198,7 +2358,9 @@
       "Specialty Coffee"
     ],
     "tags": [],
-    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide",
+    "placeId": "ChIJD91B4KQ0K4gRoaKRl3XAEOo",
+    "googleMapsUri": "https://maps.google.com/?cid=16866192215789118113&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Amadeus Patisserie",
@@ -2224,7 +2386,9 @@
     "tags": [
       "patisserie"
     ],
-    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide",
+    "placeId": "ChIJtRm5ewA1K4gRtr0XwpeRovs",
+    "googleMapsUri": "https://maps.google.com/?cid=18132215130729463222&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Virtu Café",
@@ -2243,7 +2407,9 @@
     "tags": [
       "quiet"
     ],
-    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide",
+    "placeId": "ChIJiahGnHrL1IkRNI5pyBRGW_g",
+    "googleMapsUri": "https://maps.google.com/?cid=17895974599362448948&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Pain Perdu",
@@ -2268,7 +2434,9 @@
       "Brunch Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJD9Scj380K4gRYgNqfl5rzrg",
+    "googleMapsUri": "https://maps.google.com/?cid=13316699201773110114&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Blackbird Baking Co.",
@@ -2290,7 +2458,9 @@
     "tags": [
       "sourdough"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJ1SlYMMI0K4gR-1WFuJQc2rc",
+    "googleMapsUri": "https://maps.google.com/?cid=13247932678940218875&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Tsujiri",
@@ -2318,7 +2488,9 @@
       "green tea",
       "kyoto"
     ],
-    "source": "https://blogto.com/eat_drink/2022/02/tsujiri-toronto-locations"
+    "source": "https://blogto.com/eat_drink/2022/02/tsujiri-toronto-locations",
+    "placeId": "ChIJiUsd5ss0K4gRZi8epUfvW7M",
+    "googleMapsUri": "https://maps.google.com/?cid=12924186646661705574&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "The Brick Room",
@@ -2338,7 +2510,9 @@
     "tags": [
       "green tea"
     ],
-    "source": "https://blogto.com/cafes/the-brick-room-toronto"
+    "source": "https://blogto.com/cafes/the-brick-room-toronto",
+    "placeId": "ChIJj_V6Fk7L1IkRRHnqaMeYj3E",
+    "googleMapsUri": "https://maps.google.com/?cid=8182927030181591364&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Matcha Matcha — Church St",
@@ -2360,7 +2534,9 @@
     "tags": [
       "green tea"
     ],
-    "source": "https://www.blogto.com/eat_drink/2025/10/matcha-matcha-dundas-toronto/"
+    "source": "https://www.blogto.com/eat_drink/2025/10/matcha-matcha-dundas-toronto/",
+    "placeId": "ChIJO4Y0YI7L1IkRaZ0Nndyhf7A",
+    "googleMapsUri": "https://maps.google.com/?cid=12718061841617362281&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Matcha Matcha — Dundas",
@@ -2382,6 +2558,8 @@
     "tags": [
       "green tea"
     ],
-    "source": "https://www.blogto.com/eat_drink/2025/10/matcha-matcha-dundas-toronto/"
+    "source": "https://www.blogto.com/eat_drink/2025/10/matcha-matcha-dundas-toronto/",
+    "placeId": "ChIJeZUuank1K4gRK2IF-58ptmA",
+    "googleMapsUri": "https://maps.google.com/?cid=6968803240490394155&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   }
 ]

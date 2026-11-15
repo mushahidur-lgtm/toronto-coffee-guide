@@ -1,26 +1,44 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getCafeViews } from "@/lib/data";
-import { applyFilters, EMPTY_FILTERS, indexCafe, type SortKey } from "@/lib/search";
+import { applyFilters, EMPTY_FILTERS, indexCafe, isSortKey } from "@/lib/search";
 
 export const revalidate = 3600;
+
+const MAX_QUERY = 200;
+const MAX_LIST_ITEMS = 20;
+const MAX_ITEM_LENGTH = 60;
+const MAX_LIMIT = 200;
 
 /**
  * GET /api/cafes?q=matcha&n=Chinatown,Downtown&type=Korean%20Cafe&sort=az&limit=24&offset=0
  * JSON search endpoint using the same engine as the UI.
+ *
+ * Input is bounded: q ≤ 200 characters, n/type ≤ 20 items (each ≤ 60 characters), limit 1–200,
+ * and sort must be one of relevance | az | za | neighbourhood (anything else → relevance).
  */
 export async function GET(req: NextRequest) {
   const p = req.nextUrl.searchParams;
-  const list = (k: string) => (p.get(k) ?? "").split(",").map((s) => s.trim()).filter(Boolean);
-  const limit = Math.min(Number(p.get("limit")) || 24, 200);
-  const offset = Math.max(Number(p.get("offset")) || 0, 0);
+  const list = (k: string) =>
+    (p.get(k) ?? "")
+      .split(",")
+      .map((s) => s.trim().slice(0, MAX_ITEM_LENGTH))
+      .filter(Boolean)
+      .slice(0, MAX_LIST_ITEMS);
+  const int = (k: string, fallback: number) => {
+    const n = Math.floor(Number(p.get(k)));
+    return Number.isFinite(n) ? n : fallback;
+  };
+  const limit = Math.min(Math.max(int("limit", 24), 1), MAX_LIMIT);
+  const offset = Math.max(int("offset", 0), 0);
+  const sort = p.get("sort");
 
   const cafes = await getCafeViews();
   const hits = applyFilters(cafes.map(indexCafe), {
     ...EMPTY_FILTERS,
-    query: p.get("q") ?? "",
+    query: (p.get("q") ?? "").slice(0, MAX_QUERY),
     neighbourhoods: list("n"),
     types: list("type"),
-    sort: (p.get("sort") as SortKey) || "relevance",
+    sort: isSortKey(sort) ? sort : "relevance",
   });
 
   return NextResponse.json({

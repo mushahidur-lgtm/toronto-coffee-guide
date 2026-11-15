@@ -207,7 +207,9 @@ export function searchIndex<T extends Cafe>(index: IndexedCafe<T>[], query: stri
   return hits;
 }
 
-export type SortKey = "relevance" | "az" | "za" | "neighbourhood";
+export const SORT_KEYS = ["relevance", "az", "za", "neighbourhood"] as const;
+export type SortKey = (typeof SORT_KEYS)[number];
+export const isSortKey = (v: unknown): v is SortKey => typeof v === "string" && (SORT_KEYS as readonly string[]).includes(v);
 
 export interface Filters {
   query: string;

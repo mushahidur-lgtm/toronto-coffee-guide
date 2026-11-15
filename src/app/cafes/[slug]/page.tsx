@@ -111,7 +111,7 @@ export default async function CafePage({ params }: Params) {
         photo={cafe.photo}
         placeId={cafe.google_place_id}
         name={cafe.name}
-        width={1600}
+        width={1200}
         className="aspect-[16/9] sm:aspect-[21/9]"
         priority
       />

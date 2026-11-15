@@ -7,6 +7,7 @@ import {
   PLACE_ID_RE,
   PlacesError,
 } from "@/lib/google-places";
+import { checkRateLimit, clientIp, snapPhotoWidth } from "@/lib/rate-limit";
 
 /**
  * Live Google Places photos, never cached or stored (Google Maps Platform terms).
@@ -18,7 +19,10 @@ import {
  *   GET /api/place-photo?placeId=ChIJ…&photo=places/ChIJ…/photos/…[&w=800]
  *     → the image bytes, streamed from Google.
  *
- * Errors: 400 bad input · 404 unknown cafe / no such place · 429 quota reached · 503 no API key · 502 Google error.
+ * `w` is snapped to 400, 800 or 1200. Requests are rate limited per IP (see lib/rate-limit.ts).
+ *
+ * Errors: 400 bad input · 404 unknown cafe / no such place · 429 rate_limited (ours, with Retry-After) or
+ * quota (Google's) · 503 no API key · 502 Google error.
  * Every response carries Cache-Control: no-store.
  */
 export const dynamic = "force-dynamic";
@@ -32,9 +36,18 @@ export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams;
   const placeId = params.get("placeId") ?? "";
   const photo = params.get("photo");
-  const w = Math.min(Math.max(Number(params.get("w")) || 800, 100), 1600);
+  const w = snapPhotoWidth(params.get("w")); // 400 / 800 / 1200 only
 
   if (!PLACE_ID_RE.test(placeId)) return json({ error: "invalid_place_id" }, 400);
+
+  // Per-IP limit before anything that can reach Google (no-op unless Upstash env vars are set).
+  const rl = await checkRateLimit(clientIp(req.headers));
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: "rate_limited" },
+      { status: 429, headers: { ...NO_STORE, "Retry-After": String(rl.retryAfterSeconds) } },
+    );
+  }
 
   // Only serve places that belong to a listed cafe, so the route can't be used to spend our quota on anything else.
   const cafes = await getAllCafes();

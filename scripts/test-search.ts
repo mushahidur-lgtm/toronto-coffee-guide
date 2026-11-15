@@ -9,7 +9,7 @@ import { applyFilters, EMPTY_FILTERS, indexCafe, type Filters } from "../src/lib
 const cafes = (seed as Record<string, unknown>[]).map(normalizeCafe);
 const index = cafes.map(indexCafe);
 
-const cases: { q: string; f?: Partial<Filters>; min: number; mustInclude?: string[]; mustExclude?: string[] }[] = [
+const cases: { q: string; f?: Partial<Filters>; min: number; mustInclude?: string[]; mustExclude?: string[]; first?: string }[] = [
   { q: "Matcha", min: 8, mustInclude: ["Neo Coffee Bar — Frederick", "Tsujiri", "Rustle & Still"] },
   { q: "matc", min: 8, mustInclude: ["Tsujiri"] },
   { q: "Vietnamese", min: 12, mustInclude: ["Cộng Cà Phê — Annex", "Banh Haus", "+84 Café"] },
@@ -33,6 +33,9 @@ const cases: { q: string; f?: Partial<Filters>; min: number; mustInclude?: strin
   { q: "bingsu", min: 5 },
   { q: "matcha kensington", min: 1, mustInclude: ["Little Pebbles"] },
   { q: "PILOT", min: 3 },
+  // 1–2 letter words match whole words only ("de" must not match "dessert").
+  { q: "de mello", min: 1, first: "De Mello Coffee — Bloor East" },
+  { q: "bloor east", min: 1, first: "De Mello Coffee — Bloor East" },
   { q: "zzzz nothing", min: 0 },
   { q: "", f: { neighbourhoods: ["Kensington Market", "Chinatown"], types: ["Vietnamese Cafe"] }, min: 3, mustExclude: ["Rustle & Still"] },
   { q: "matcha", f: { neighbourhoods: ["Downtown"], types: ["Japanese Cafe"] }, min: 3 },
@@ -46,6 +49,7 @@ for (const c of cases) {
   const problems: string[] = [];
   if (names.length < c.min) problems.push(`expected ≥${c.min}, got ${names.length}`);
   if (c.min === 0 && names.length) problems.push(`expected none, got ${names.length}`);
+  if (c.first && names[0] !== c.first) problems.push(`expected "${c.first}" first, got "${names[0]}"`);
   for (const n of c.mustInclude ?? []) if (!names.includes(n)) problems.push(`missing "${n}"`);
   for (const n of c.mustExclude ?? []) if (names.includes(n)) problems.push(`should not include "${n}"`);
   const label = `${JSON.stringify(c.q)}${c.f ? " + " + JSON.stringify(c.f) : ""}`;

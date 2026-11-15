@@ -181,8 +181,10 @@ export function searchIndex<T extends Cafe>(index: IndexedCafe<T>[], query: stri
       for (const { t, w } of g.terms) {
         let s = 0;
         let hl: string | null = null;
+        // 1–2 letter words ("de", "co") only match whole words, or "de" would match "dessert".
+        const wholeWordOnly = t.length < 3;
         for (const f of fields) {
-          if (!f.text.includes(` ${t}`)) continue;
+          if (!f.text.includes(wholeWordOnly ? ` ${t} ` : ` ${t}`)) continue;
           const exact = f.text.includes(` ${t} `) ? 1 : 0.7;
           s += f.weight * exact;
           if (!hl && (f.key === "drink" || f.key === "food" || f.key === "tag" || f.key === "cuisine")) hl = f.raw;

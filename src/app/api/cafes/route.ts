@@ -26,7 +26,9 @@ export async function GET(req: NextRequest) {
       .filter(Boolean)
       .slice(0, MAX_LIST_ITEMS);
   const int = (k: string, fallback: number) => {
-    const n = Math.floor(Number(p.get(k)));
+    const raw = p.get(k);
+    if (raw === null || raw.trim() === "") return fallback; // missing ≠ 0
+    const n = Math.floor(Number(raw));
     return Number.isFinite(n) ? n : fallback;
   };
   const limit = Math.min(Math.max(int("limit", 24), 1), MAX_LIMIT);

@@ -12,6 +12,7 @@
  */
 import type { Cafe } from "./types";
 import { getNeighbourhood, matchesNeighbourhoodFilter } from "./neighbourhoods";
+import { isOpenNow } from "./hours";
 
 export function normalize(s: string): string {
   return s
@@ -216,12 +217,17 @@ export interface Filters {
   neighbourhoods: string[];
   types: string[];
   sort: SortKey;
+  /** Only cafes whose listed hours say they're open right now (Toronto time). Unknown hours are excluded. */
+  openNow: boolean;
 }
 
-export const EMPTY_FILTERS: Filters = { query: "", neighbourhoods: [], types: [], sort: "relevance" };
+export const EMPTY_FILTERS: Filters = { query: "", neighbourhoods: [], types: [], sort: "relevance", openNow: false };
 
-export function applyFilters<T extends Cafe>(index: IndexedCafe<T>[], f: Filters): SearchHit<T>[] {
+export function applyFilters<T extends Cafe>(index: IndexedCafe<T>[], f: Filters, now: Date = new Date()): SearchHit<T>[] {
   let hits = searchIndex(index, f.query);
+  if (f.openNow) {
+    hits = hits.filter((h) => isOpenNow(h.cafe.opening_hours, now) === true);
+  }
   if (f.neighbourhoods.length) {
     hits = hits.filter((h) => f.neighbourhoods.some((n) => matchesNeighbourhoodFilter(h.cafe.neighbourhood, n)));
   }

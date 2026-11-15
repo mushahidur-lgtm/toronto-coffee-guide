@@ -1,7 +1,7 @@
 "use client";
 
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown, Search, SlidersHorizontal, X } from "lucide-react";
+import { ChevronDown, Clock, Search, SlidersHorizontal, X } from "lucide-react";
 import type { CafeView } from "@/lib/types";
 import { CAFE_TYPES } from "@/lib/types";
 import { FILTER_NEIGHBOURHOODS } from "@/lib/neighbourhoods";
@@ -36,6 +36,7 @@ function readUrl(): Partial<Filters> {
     neighbourhoods: list("n"),
     types: list("type"),
     sort: SORTS.some((s) => s.value === sort) ? sort! : "relevance",
+    openNow: p.get("open") === "1",
   };
 }
 
@@ -45,6 +46,7 @@ function writeUrl(f: Filters) {
   if (f.neighbourhoods.length) p.set("n", f.neighbourhoods.join(","));
   if (f.types.length) p.set("type", f.types.join(","));
   if (f.sort !== "relevance") p.set("sort", f.sort);
+  if (f.openNow) p.set("open", "1");
   const qs = p.toString();
   const url = `${window.location.pathname}${qs ? `?${qs}` : ""}`;
   if (url !== `${window.location.pathname}${window.location.search}`) window.history.replaceState(null, "", url);
@@ -69,9 +71,18 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
     if (ready) writeUrl(filters);
   }, [filters, ready]);
 
+  // "Open now" is evaluated against this clock, refreshed every minute while the filter is on.
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    if (!filters.openNow) return;
+    setNow(new Date());
+    const t = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(t);
+  }, [filters.openNow]);
+
   const deferred = useDeferredValue(filters);
   const stale = deferred !== filters;
-  const hits = useMemo(() => applyFilters(index, deferred), [index, deferred]);
+  const hits = useMemo(() => applyFilters(index, deferred, now), [index, deferred, now]);
 
   const update = (patch: Partial<Filters>) => {
     setFilters((f) => ({ ...f, ...patch }));
@@ -85,7 +96,8 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
     setVisible(PAGE);
   };
 
-  const activeFilterCount = filters.neighbourhoods.length + filters.types.length;
+  const activeFilterCount = filters.neighbourhoods.length + filters.types.length + (filters.openNow ? 1 : 0);
+  const clearAll = { query: "", neighbourhoods: [], types: [], openNow: false };
   const idle = !filters.query.trim() && activeFilterCount === 0;
   const shown = hits.slice(0, visible);
 
@@ -212,6 +224,15 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
             <FilterMenu label="Cafe type" count={filters.types.length}>
               <CheckList options={[...CAFE_TYPES]} selected={filters.types} onToggle={(v) => toggle("types", v)} name="type" />
             </FilterMenu>
+            <button
+              type="button"
+              aria-pressed={filters.openNow}
+              onClick={() => update({ openNow: !filters.openNow })}
+              className={`inline-flex items-center gap-1.5 border px-3 py-2 hover:border-ink-2 ${filters.openNow ? "border-ink bg-ink text-paper hover:border-ink" : "border-line"}`}
+            >
+              <Clock size={14} strokeWidth={1.5} aria-hidden />
+              Open now
+            </button>
           </div>
 
           <div className="ml-auto flex items-center gap-2">
@@ -243,6 +264,19 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
               <legend className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-muted">Cafe type</legend>
               <CheckList options={[...CAFE_TYPES]} selected={filters.types} onToggle={(v) => toggle("types", v)} name="m-type" columns />
             </fieldset>
+            <fieldset>
+              <legend className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-muted">Hours</legend>
+              <label htmlFor="m-open-now" className="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm">
+                <input
+                  id="m-open-now"
+                  type="checkbox"
+                  checked={filters.openNow}
+                  onChange={() => update({ openNow: !filters.openNow })}
+                  className="h-4 w-4 accent-[#161616]"
+                />
+                Open now
+              </label>
+            </fieldset>
             <button type="button" onClick={() => setMobileFilters(false)} className="bg-ink py-3 text-sm text-paper">
               Show {hits.length} {hits.length === 1 ? "cafe" : "cafes"}
             </button>
@@ -259,19 +293,25 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
             {filters.types.map((t) => (
               <Chip key={t} label={t} onRemove={() => toggle("types", t)} />
             ))}
-            <button
-              type="button"
-              onClick={() => update({ query: "", neighbourhoods: [], types: [] })}
-              className="link-quiet ml-1 text-muted hover:text-ink"
-            >
+            {filters.openNow && <Chip label="Open now" onRemove={() => update({ openNow: false })} />}
+            <button type="button" onClick={() => update(clearAll)} className="link-quiet ml-1 text-muted hover:text-ink">
               Clear all
             </button>
+            {filters.openNow && (
+              <span className="basis-full text-xs text-muted">Toronto time. Cafes without listed hours aren&rsquo;t included.</span>
+            )}
           </div>
         )}
 
         <div aria-busy={stale} className={`transition-opacity ${stale ? "opacity-50" : ""}`}>
           {hits.length === 0 ? (
-            <EmptyState query={filters.query} hasFilters={activeFilterCount > 0} onPick={runQuickSearch} onReset={() => update({ query: "", neighbourhoods: [], types: [] })} />
+            <EmptyState
+              query={filters.query}
+              hasFilters={activeFilterCount > 0}
+              openNow={filters.openNow}
+              onPick={runQuickSearch}
+              onReset={() => update(clearAll)}
+            />
           ) : (
             <>
               <ul className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
@@ -357,12 +397,29 @@ function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
   );
 }
 
-function EmptyState({ query, hasFilters, onPick, onReset }: { query: string; hasFilters: boolean; onPick: (q: string) => void; onReset: () => void }) {
+function EmptyState({
+  query,
+  hasFilters,
+  openNow,
+  onPick,
+  onReset,
+}: {
+  query: string;
+  hasFilters: boolean;
+  openNow: boolean;
+  onPick: (q: string) => void;
+  onReset: () => void;
+}) {
   return (
     <div className="mx-auto max-w-xl py-20 text-center">
       <p className="text-lg font-medium">
         {query.trim() ? <>No cafes match &ldquo;{query.trim()}&rdquo;{hasFilters ? " with these filters" : ""}.</> : "No cafes match these filters yet."}
       </p>
+      {openNow && (
+        <p className="mt-2 text-muted">
+          &ldquo;Open now&rdquo; only includes cafes with listed hours that are open at this moment in Toronto.
+        </p>
+      )}
       <p className="mt-2 text-muted">
         Try a broader term, check the spelling, or remove a filter. You can search by drink, food, cuisine or neighbourhood.
       </p>

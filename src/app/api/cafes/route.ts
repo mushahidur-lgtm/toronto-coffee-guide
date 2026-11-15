@@ -15,6 +15,7 @@ const MAX_LIMIT = 200;
  *
  * Input is bounded: q ≤ 200 characters, n/type ≤ 20 items (each ≤ 60 characters), limit 1–200,
  * and sort must be one of relevance | az | za | neighbourhood (anything else → relevance).
+ * open=1 keeps only cafes whose listed hours say they are open now (Toronto time).
  */
 export async function GET(req: NextRequest) {
   const p = req.nextUrl.searchParams;
@@ -39,6 +40,7 @@ export async function GET(req: NextRequest) {
     neighbourhoods: list("n"),
     types: list("type"),
     sort: isSortKey(sort) ? sort : "relevance",
+    openNow: p.get("open") === "1",
   });
 
   return NextResponse.json({

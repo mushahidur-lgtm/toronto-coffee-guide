@@ -12,7 +12,8 @@
     "db:seed": "tsx scripts/seed-supabase.ts",
     "places:sync": "tsx scripts/sync-google-places.ts",
     "places:ids": "node scripts/populate-place-ids.js",
-    "places:closed": "node scripts/list-closed-places.js"
+    "places:closed": "node scripts/list-closed-places.js",
+    "test:hours": "tsx scripts/test-hours.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.119.0",

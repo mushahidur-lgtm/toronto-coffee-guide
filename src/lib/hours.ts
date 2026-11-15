@@ -50,6 +50,12 @@ export function formatMonthYear(isoDate: string): string {
   return new Intl.DateTimeFormat("en-CA", { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${isoDate}T00:00:00Z`));
 }
 
+/** Today's hours text in Toronto ("7:00 AM – 6:00 PM", "Closed"), or null when unknown. */
+export function todayHoursText(lines: string[] | null | undefined, now = new Date()): string | null {
+  const today = todayName(now);
+  return parseHours(lines).find((d) => d.day === today)?.hours ?? null;
+}
+
 /** Current weekday name in Toronto. */
 export function todayName(now = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", { weekday: "long", timeZone: "America/Toronto" }).format(now);

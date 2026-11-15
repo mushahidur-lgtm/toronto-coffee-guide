@@ -225,6 +225,17 @@ export interface Filters {
 
 export const EMPTY_FILTERS: Filters = { query: "", neighbourhoods: [], types: [], sort: "relevance", openNow: false };
 
+/** Filters → URL params (inverse of filtersFromParams). Default values are left out. */
+export function filtersToParams(f: Filters): URLSearchParams {
+  const p = new URLSearchParams();
+  if (f.query.trim()) p.set("q", f.query.trim());
+  if (f.neighbourhoods.length) p.set("n", f.neighbourhoods.join(","));
+  if (f.types.length) p.set("type", f.types.join(","));
+  if (f.sort !== "relevance") p.set("sort", f.sort);
+  if (f.openNow) p.set("open", "1");
+  return p;
+}
+
 /**
  * Filters from URL search params (?q=matcha&n=Chinatown,Downtown&type=Korean%20Cafe&sort=az&open=1).
  * Shared by the server-rendered /cafes page (works without JavaScript) and the client explorer.

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, MapPin } from "lucide-react";
 import { getCafeBySlug, getCafeViews } from "@/lib/data";
 import { CafePhoto } from "@/components/CafePhoto";
 import { CafeCard } from "@/components/CafeCard";
@@ -172,6 +172,11 @@ export default async function CafePage({ params }: Params) {
                 >
                   Get directions <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />
                 </a>
+              </li>
+              <li>
+                <Link href={`/map?cafe=${encodeURIComponent(cafe.slug)}`} className="link-quiet inline-flex items-center gap-1">
+                  <MapPin size={14} strokeWidth={1.5} aria-hidden /> View on map
+                </Link>
               </li>
               {cafe.instagram_url && !(isInstagramUrl(cafe.website_url) && cafe.website_url === cafe.instagram_url) && (
                 <li>

@@ -7,8 +7,10 @@ const isVercelPreview = process.env.VERCEL_ENV === "preview";
 /**
  * Content-Security-Policy listing only what the site actually loads:
  * - Next.js inline bootstrap scripts ('unsafe-inline': pages are statically generated, so no per-request nonce)
- * - Google Maps JavaScript API on /map (maps.googleapis.com / maps.gstatic.com, Roboto from Google Fonts,
- *   map tiles and icons from *.googleapis.com / *.gstatic.com / *.google.com / *.ggpht.com, workers from blob:)
+ * - Google Maps JavaScript API on /map, loaded by @googlemaps/js-api-loader (scripts from maps.googleapis.com /
+ *   *.googleapis.com / *.gstatic.com, Roboto from fonts.googleapis.com + fonts.gstatic.com, vector tiles and
+ *   icons from *.googleapis.com / *.gstatic.com / *.google.com / *.ggpht.com, data:/blob: images and fetches,
+ *   blob: workers for Advanced Markers / vector rendering)
  * - Leaflet + OpenStreetMap tiles on /map when no Google browser key is set
  * - Cafe photos come from our own /api/place-photo (same origin); Google photo hosts are listed for Maps JS.
  * Editorial image_url values on other hosts must be added to img-src (or put in /public).
@@ -22,6 +24,8 @@ const csp = [
     ...(isDev ? ["'unsafe-eval'"] : []),
     "https://maps.googleapis.com",
     "https://maps.gstatic.com",
+    "https://*.googleapis.com",
+    "https://*.gstatic.com",
     ...(isVercelPreview ? ["https://vercel.live"] : []),
   ],
   ["style-src", "'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
@@ -48,6 +52,8 @@ const csp = [
     "https://*.googleapis.com",
     "https://*.gstatic.com",
     "https://*.google.com",
+    "data:",
+    "blob:",
     ...(isDev ? ["ws:", "wss:"] : []),
     ...(isVercelPreview ? ["https://vercel.live", "wss://ws-us3.pusher.com"] : []),
   ],

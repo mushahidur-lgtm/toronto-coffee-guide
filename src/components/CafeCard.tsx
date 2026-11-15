@@ -2,12 +2,15 @@ import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import type { CafeView } from "@/lib/types";
 import { CafePhoto } from "./CafePhoto";
+import { formatDistance } from "@/lib/geo";
 import { Hours } from "./Hours";
 import { displayUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
 
 interface Props {
   cafe: CafeView;
   highlights?: string[];
+  /** Distance from the visitor, when sorting by "Near me". */
+  distanceKm?: number;
   priority?: boolean;
 }
 
@@ -15,7 +18,7 @@ const MAIN_TYPES = new Set([
   "Specialty Coffee", "Matcha Cafe", "Vietnamese Cafe", "Japanese Cafe", "Korean Cafe", "Bakery & Cafe", "Brunch Cafe", "Dessert Cafe",
 ]);
 
-export function CafeCard({ cafe, highlights = [], priority }: Props) {
+export function CafeCard({ cafe, highlights = [], priority, distanceKm }: Props) {
   const specialties = Array.from(new Set([...cafe.specialty_drinks, ...cafe.food_offerings])).slice(0, 5);
   const mainTypes = cafe.cafe_categories.filter((c) => MAIN_TYPES.has(c));
   const types = [
@@ -37,7 +40,10 @@ export function CafeCard({ cafe, highlights = [], priority }: Props) {
       />
 
       <div className="flex flex-1 flex-col pt-4">
-        <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">{cafe.neighbourhood}</p>
+        <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
+          {cafe.neighbourhood}
+          {distanceKm != null && <span className="normal-case tracking-normal"> · {formatDistance(distanceKm)} away</span>}
+        </p>
         <h3 className="mt-1.5 text-lg font-semibold leading-snug tracking-tight">
           <Link href={`/cafes/${cafe.slug}`} className="hover:underline hover:underline-offset-4">
             {cafe.name}

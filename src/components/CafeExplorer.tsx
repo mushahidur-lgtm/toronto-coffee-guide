@@ -7,6 +7,7 @@ import { CAFE_TYPES } from "@/lib/types";
 import { FILTER_NEIGHBOURHOODS } from "@/lib/neighbourhoods";
 import { applyFilters, EMPTY_FILTERS, indexCafe, type Filters, type SortKey } from "@/lib/search";
 import { QUICK_SEARCHES } from "@/lib/site";
+import { cafeLocation, distanceKm, type LatLng } from "@/lib/geo";
 import { CafeCard } from "./CafeCard";
 
 const PAGE = 12;
@@ -17,6 +18,10 @@ const SORTS: { value: SortKey; label: string }[] = [
   { value: "za", label: "Alphabetical (Z–A)" },
   { value: "neighbourhood", label: "Neighbourhood" },
 ];
+/** Client-only sort: needs the visitor's location, so it's never put in the URL or asked for up front. */
+const NEAR_ME = "distance";
+
+type GeoState = "idle" | "locating" | "ready" | "denied" | "unavailable";
 
 interface Props {
   cafes: CafeView[];
@@ -80,9 +85,59 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
     return () => clearInterval(t);
   }, [filters.openNow]);
 
+  // "Near me": location is requested only when the visitor picks this sort, and never leaves the browser.
+  const [nearMe, setNearMe] = useState(false);
+  const [origin, setOrigin] = useState<LatLng | null>(null);
+  const [geo, setGeo] = useState<GeoState>("idle");
+
+  const chooseSort = (value: string) => {
+    if (value !== NEAR_ME) {
+      setNearMe(false);
+      update({ sort: value as SortKey });
+      return;
+    }
+    if (origin) {
+      setNearMe(true);
+      setVisible(PAGE);
+      return;
+    }
+    if (typeof navigator === "undefined" || !navigator.geolocation) {
+      setGeo("unavailable");
+      return;
+    }
+    setGeo("locating");
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setOrigin({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setGeo("ready");
+        setNearMe(true);
+        setVisible(PAGE);
+      },
+      (err) => setGeo(err.code === err.PERMISSION_DENIED ? "denied" : "unavailable"),
+      { enableHighAccuracy: false, timeout: 10_000, maximumAge: 5 * 60_000 },
+    );
+  };
+
   const deferred = useDeferredValue(filters);
   const stale = deferred !== filters;
-  const hits = useMemo(() => applyFilters(index, deferred, now), [index, deferred, now]);
+  const filtered = useMemo(() => applyFilters(index, deferred, now), [index, deferred, now]);
+  const { hits, distances, unlocated } = useMemo(() => {
+    const distances = new Map<string, number>();
+    if (!nearMe || !origin) return { hits: filtered, distances, unlocated: 0 };
+    for (const h of filtered) {
+      const loc = cafeLocation(h.cafe);
+      if (loc) distances.set(h.cafe.id, distanceKm(origin, loc));
+    }
+    const sorted = [...filtered].sort((a, b) => {
+      const da = distances.get(a.cafe.id);
+      const db = distances.get(b.cafe.id);
+      if (da == null && db == null) return a.cafe.name.localeCompare(b.cafe.name, "en-CA");
+      if (da == null) return 1; // cafes without a known location go last
+      if (db == null) return -1;
+      return da - db;
+    });
+    return { hits: sorted, distances, unlocated: filtered.length - distances.size };
+  }, [filtered, nearMe, origin]);
 
   const update = (patch: Partial<Filters>) => {
     setFilters((f) => ({ ...f, ...patch }));
@@ -241,18 +296,34 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
             </label>
             <select
               id="sort"
-              value={filters.sort}
-              onChange={(e) => update({ sort: e.target.value as SortKey })}
-              className="border border-line bg-paper px-2 py-2 outline-none hover:border-ink-2 focus:border-ink"
+              value={nearMe ? NEAR_ME : filters.sort}
+              onChange={(e) => chooseSort(e.target.value)}
+              disabled={geo === "locating"}
+              className="border border-line bg-paper px-2 py-2 outline-none hover:border-ink-2 focus:border-ink disabled:opacity-60"
             >
               {SORTS.map((s) => (
                 <option key={s.value} value={s.value}>
                   {s.label}
                 </option>
               ))}
+              <option value={NEAR_ME}>Near me</option>
             </select>
           </div>
         </div>
+
+        {geo !== "idle" && (geo !== "ready" || nearMe) && (
+          <p className="border-b border-line py-2.5 text-sm text-muted" role="status">
+            {geo === "locating" && "Finding your location…"}
+            {geo === "denied" && "Location access was declined, so the order hasn't changed. To sort by distance, allow location for this site in your browser."}
+            {geo === "unavailable" && "We couldn't get your location, so the order hasn't changed. Try again in a moment."}
+            {geo === "ready" && nearMe && (
+              <>
+                Sorted by distance from you. Your location stays in your browser.
+                {unlocated > 0 && ` ${unlocated} ${unlocated === 1 ? "cafe" : "cafes"} without a known location ${unlocated === 1 ? "is" : "are"} listed last.`}
+              </>
+            )}
+          </p>
+        )}
 
         {mobileFilters && (
           <div id="mobile-filters" className="grid gap-6 border-b border-line py-5 md:hidden">
@@ -317,7 +388,12 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
               <ul className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
                 {shown.map((h, i) => (
                   <li key={h.cafe.id}>
-                    <CafeCard cafe={h.cafe} highlights={filters.query ? h.highlights : []} priority={idle && featured.length === 0 && i < 3} />
+                    <CafeCard
+                      cafe={h.cafe}
+                      highlights={filters.query ? h.highlights : []}
+                      priority={idle && featured.length === 0 && i < 3}
+                      distanceKm={nearMe ? distances.get(h.cafe.id) : undefined}
+                    />
                   </li>
                 ))}
               </ul>

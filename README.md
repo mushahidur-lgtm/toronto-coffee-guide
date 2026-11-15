@@ -22,7 +22,9 @@ With no environment variables, the site runs entirely from `data/cafes.seed.json
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run test:search` | Runs the spec's search examples and combined filters against the seed data (27 cases) |
 | `npm run db:seed` | Upserts the seed file into Supabase (matched on `slug`) |
-| `npm run places:sync` | Matches cafes to Google Place IDs and flags permanently closed businesses |
+| `npm run places:sync` | Matches cafes to Google Place IDs, flags permanently closed businesses and stamps `last_verified` |
+| `npm run places:closed` | Read-only report of cafes Google lists as closed (permanently closed ones are hidden on the site) |
+| `npm run test:hours` | Tests the opening-hours parser and the "Open now" filter |
 
 ---
 
@@ -81,7 +83,10 @@ How it behaves:
 
 The synonym table lives at the top of `src/lib/search.ts`. Extend it as the dataset grows.
 
-**Filters** (neighbourhood multi-select, where "Downtown" means the whole region and "Other" means anything not listed; cafe type multi-select) combine with the search and with each other. **Sort:** best match, A–Z, Z–A, neighbourhood. The state lives in the URL (`/cafes?q=matcha&n=Downtown&type=Japanese%20Cafe`), so searches can be shared.
+**Filters** (neighbourhood multi-select, where "Downtown" means the whole region and "Other" means anything not listed; cafe type multi-select; **Open now**) combine with the search and with each other. **Sort:** best match, A–Z, Z–A, neighbourhood, **Near me**. The state lives in the URL (`/cafes?q=matcha&n=Downtown&type=Japanese%20Cafe&open=1`), so searches can be shared, and `/cafes` renders that URL on the server, so search links and the search form work without JavaScript.
+
+- **Open now** parses each cafe's hours (Google's weekday format, including split shifts and hours past midnight) against the current time in Toronto. Cafes with unknown hours are left out while it's on.
+- **Near me** asks for the visitor's location only when they pick it, sorts by distance using the cafe's editorial coordinates or its live Google location, and lists cafes without a location last. The location stays in the browser and is never put in the URL. If permission is denied, the order doesn't change.
 
 **Scaling:** with a few hundred cafes, searching in the browser is instant (the whole dataset is about 60 KB). Past roughly 1,000 cafes, switch `CafeExplorer` to call `/api/cafes` or the Postgres `search_cafes(q)` function in `supabase/schema.sql`, which uses a weighted `tsvector` (A–D weights mirroring the table above), prefix matching and trigram name matching.
 
@@ -91,7 +96,11 @@ The synonym table lives at the top of `src/lib/search.ts`. Extend it as the data
 
 `supabase/schema.sql` creates `public.cafes`:
 
-`id, name, slug, description, address, neighbourhood, latitude, longitude, website_url, google_maps_url, google_place_id, phone, instagram_url, image_url, image_credit, specialty_drinks[], food_offerings[], cuisine_types[], cafe_categories[], tags[], opening_hours[], featured, verification_status, source, created_at, updated_at`, plus a generated `search_vector`.
+`id, name, slug, description, address, neighbourhood, latitude, longitude, website_url, google_maps_url, google_place_id, phone, instagram_url, image_url, image_credit, specialty_drinks[], food_offerings[], cuisine_types[], cafe_categories[], tags[], opening_hours[], featured, verification_status, last_verified, source, created_at, updated_at`, plus a generated `search_vector`.
+
+`last_verified` (a date) is set by `npm run places:sync` when Google confirms a business status, or by hand when you check a listing yourself. Cafe pages then show "Last verified November 2026". For an existing database, the end of `schema.sql` has an `ALTER TABLE … ADD COLUMN IF NOT EXISTS` you can run again safely.
+
+Every count on the site (home, neighbourhoods, About, sitemap) comes from the same list, which hides cafes Google reports as permanently closed. Run `npm run places:closed` to see which ones those are.
 
 Arrays plus GIN indexes keep categories and specialties flexible without join tables. `opening_hours` uses Google's weekday format (`"Monday: 8:00 AM – 6:00 PM"`).
 
@@ -181,7 +190,15 @@ Only `name` and `neighbourhood` are required. `slug`, `id`, timestamps and the G
 
 ## Deployment (Vercel)
 
-Import the repo into Vercel, add the environment variables from `.env.example`, and deploy. Set `NEXT_PUBLIC_SITE_URL` to the production URL for canonical links, the sitemap and structured data.
+Import the repo into Vercel, add the environment variables from `.env.example`, and deploy. Set `NEXT_PUBLIC_SITE_URL` to the production URL (your custom domain, if you have one) for canonical links, the sitemap, Open Graph images and structured data. Without it the site falls back to Vercel's production domain (`VERCEL_PROJECT_PRODUCTION_URL`), then to localhost.
+
+## Security
+
+- **Photo route:** `/api/place-photo` only serves place IDs from the cafe list, snaps `w` to 400, 800 or 1200, and is rate limited per IP through Upstash Redis (120/min and 2000/day by default; set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`). Without Redis there is no rate limit, so set it up before launch.
+- **Headers:** `next.config.ts` sends a Content-Security-Policy plus `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` and `Permissions-Policy` (geolocation is allowed for this site only). The CSP allows Google Maps and OpenStreetMap for `/map`. If you add an editorial `image_url` hosted somewhere new, add that host to `img-src`, or put the image in `/public`.
+- **Untrusted data:** JSON-LD is escaped with `serializeJsonLd()`. Map popup HTML escapes names and URL-encodes slugs. `normalizeCafe` accepts only http(s) URLs (plus site-relative image paths) and re-slugifies every slug.
+- **`/api/cafes`:** `q` is capped at 200 characters, `n` and `type` at 20 items, `limit` at 1–200, and `sort` must be a known value.
+- **Google Cloud:** set a daily quota cap and a budget alert on Places API (New). Restrict the server key to Places API (New), and restrict `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` by HTTP referrer to your domains.
 
 ## Accessibility & performance
 

@@ -4,6 +4,7 @@ import { getCafeViews } from "@/lib/data";
 import { CafeExplorer } from "@/components/CafeExplorer";
 import { NeighbourhoodGrid } from "@/components/NeighbourhoodGrid";
 import { SITE } from "@/lib/site";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 export const revalidate = 3600;
 
@@ -29,7 +30,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <section className="pb-10 pt-16 sm:pt-24 lg:pt-28">
           <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted">Toronto, Ontario · {cafes.length} cafes</p>

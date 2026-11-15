@@ -17,14 +17,37 @@ const arr = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is str
 const str = (v: unknown): string | null => (typeof v === "string" && v.trim() ? v.trim() : null);
 const num = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
 
+/**
+ * Only absolute http(s) URLs. Rejects javascript:, data:, protocol-relative and malformed values,
+ * so nothing unsafe can end up in an href or src.
+ */
+export function httpUrl(v: unknown): string | null {
+  const s = str(v);
+  if (!s) return null;
+  try {
+    const u = new URL(s);
+    return u.protocol === "http:" || u.protocol === "https:" ? u.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Images may also be site-relative ("/cafes/foo.jpg" from /public); "//host" is rejected. */
+function imageUrl(v: unknown): string | null {
+  const s = str(v);
+  if (s && /^\/(?!\/)[A-Za-z0-9._~\-/%]+$/.test(s)) return s;
+  return httpUrl(s);
+}
+
 /** Accepts a seed entry or a database row and fills every field with a safe default. */
 export function normalizeCafe(raw: Record<string, unknown>): Cafe {
   const name = String(raw.name ?? "").trim();
-  const slug = str(raw.slug) ?? slugify(name);
+  // Always re-slugify (DB slugs included) so a slug can only ever be [a-z0-9-].
+  const slug = slugify(str(raw.slug) ?? name) || slugify(name) || "cafe";
   const address = str(raw.address);
   // Seed file uses camelCase `placeId` / `googleMapsUri`; database rows use snake_case.
   const placeId = str(raw.placeId) ?? str(raw.google_place_id);
-  const mapsUri = str(raw.googleMapsUri) ?? str(raw.google_maps_url);
+  const mapsUri = httpUrl(raw.googleMapsUri) ?? httpUrl(raw.google_maps_url);
   const now = "2026-11-15T00:00:00.000Z";
   const hours = arr(raw.opening_hours);
   return {
@@ -36,12 +59,12 @@ export function normalizeCafe(raw: Record<string, unknown>): Cafe {
     neighbourhood: str(raw.neighbourhood) ?? "Toronto",
     latitude: num(raw.latitude),
     longitude: num(raw.longitude),
-    website_url: str(raw.website_url),
+    website_url: httpUrl(raw.website_url),
     google_maps_url: mapsUri ?? googleMapsSearchUrl(name, address, placeId),
     google_place_id: placeId,
     phone: str(raw.phone),
-    instagram_url: str(raw.instagram_url),
-    image_url: str(raw.image_url),
+    instagram_url: httpUrl(raw.instagram_url),
+    image_url: imageUrl(raw.image_url),
     image_credit: str(raw.image_credit),
     specialty_drinks: arr(raw.specialty_drinks),
     food_offerings: arr(raw.food_offerings),

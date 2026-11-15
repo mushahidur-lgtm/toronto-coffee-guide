@@ -10,6 +10,7 @@ import { displayUrl, googleMapsDirectionsUrl, instagramHandle, isInstagramUrl } 
 import { neighbourhoodSlug } from "@/lib/neighbourhoods";
 import { parseHours, todayName } from "@/lib/hours";
 import { SITE } from "@/lib/site";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 export const revalidate = 3600;
 
@@ -82,7 +83,7 @@ export default async function CafePage({ params }: Params) {
 
   return (
     <article className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
       <nav aria-label="Breadcrumb" className="pt-8 text-sm">
         <Link href="/cafes" className="inline-flex items-center gap-1.5 text-muted hover:text-ink">
           <ArrowLeft size={14} strokeWidth={1.5} aria-hidden /> All cafes

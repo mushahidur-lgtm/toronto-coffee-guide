@@ -28,9 +28,9 @@ function hoodPopup(name: string, list: MapCafe[]) {
   return `<div style="font:13px/1.45 var(--font-inter),system-ui;min-width:180px">
     <strong style="font-size:14px">${esc(name)}</strong>
     <ul style="margin:6px 0 8px;padding:0;list-style:none">${list
-      .map((c) => `<li><a href="/cafes/${c.slug}" style="color:#161616">${esc(c.name)}</a></li>`)
+      .map((c) => `<li><a href="/cafes/${encodeURIComponent(c.slug)}" style="color:#161616">${esc(c.name)}</a></li>`)
       .join("")}</ul>
-    ${slug ? `<a href="/neighbourhoods/${slug}" style="color:#6b6b6b">View neighbourhood →</a>` : ""}
+    ${slug ? `<a href="/neighbourhoods/${encodeURIComponent(slug)}" style="color:#6b6b6b">View neighbourhood →</a>` : ""}
   </div>`;
 }
 
@@ -57,7 +57,7 @@ export function MapView({ cafes }: { cafes: MapCafe[] }) {
       const exact = cafes.filter((c) => c.editorial_location);
       for (const c of exact) {
         L.circleMarker([c.editorial_location!.lat, c.editorial_location!.lng], { radius: 6, color: "#161616", weight: 1, fillColor: "#161616", fillOpacity: 0.9 })
-          .bindPopup(`<a href="/cafes/${c.slug}" style="color:#161616;font-weight:600">${esc(c.name)}</a>`)
+          .bindPopup(`<a href="/cafes/${encodeURIComponent(c.slug)}" style="color:#161616;font-weight:600">${esc(c.name)}</a>`)
           .addTo(map);
       }
       // Cafes without editorial coordinates are shown at neighbourhood level.
@@ -100,7 +100,7 @@ export function MapView({ cafes }: { cafes: MapCafe[] }) {
             if (!pos) continue;
             const marker = new g.Marker({ position: pos, map, title: c.name });
             marker.addListener("click", () => {
-              info.setContent(`<a href="/cafes/${c.slug}" style="color:#161616;font-weight:600">${esc(c.name)}</a><br/><span style="color:#6b6b6b">${esc(c.neighbourhood)}</span>`);
+              info.setContent(`<a href="/cafes/${encodeURIComponent(c.slug)}" style="color:#161616;font-weight:600">${esc(c.name)}</a><br/><span style="color:#6b6b6b">${esc(c.neighbourhood)}</span>`);
               info.open({ map, anchor: marker });
             });
           }

@@ -3,7 +3,7 @@ import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import seed from "@data/cafes.seed.json";
 import type { Cafe, CafeView, LivePlace } from "./types";
-import { normalizeCafe } from "./normalize-cafe";
+import { httpUrl, normalizeCafe } from "./normalize-cafe";
 import { getPlaceDetails, placesEnabled } from "./google-places";
 import { googleMapsSearchUrl } from "./maps";
 
@@ -54,9 +54,9 @@ export function toView(cafe: Cafe, live: LivePlace | null): CafeView {
     verification_status:
       live?.businessStatus === "CLOSED_PERMANENTLY" ? "closed" : live?.businessStatus === "OPERATIONAL" ? "verified" : cafe.verification_status,
     address,
-    website_url: cafe.website_url ?? live?.website ?? null,
+    website_url: cafe.website_url ?? httpUrl(live?.website),
     phone: cafe.phone ?? live?.phone ?? null,
-    google_maps_url: live?.mapsUrl ?? cafe.google_maps_url ?? googleMapsSearchUrl(cafe.name, address, cafe.google_place_id),
+    google_maps_url: httpUrl(live?.mapsUrl) ?? cafe.google_maps_url ?? googleMapsSearchUrl(cafe.name, address, cafe.google_place_id),
     opening_hours: hours ?? null,
     hours_source: live?.hours?.length ? "google" : cafe.opening_hours ? "editorial" : null,
     photo: editorialPhoto,

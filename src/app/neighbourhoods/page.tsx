@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllCafes } from "@/lib/data";
+import { getCafeViews } from "@/lib/data";
 import { NeighbourhoodGrid } from "@/components/NeighbourhoodGrid";
 
 export const revalidate = 3600;
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NeighbourhoodsPage() {
-  const cafes = await getAllCafes();
+  const cafes = await getCafeViews();
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
       <header className="pb-12 pt-14 sm:pt-20">

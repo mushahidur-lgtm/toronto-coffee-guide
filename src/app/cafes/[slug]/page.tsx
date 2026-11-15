@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { getAllCafes, getCafeBySlug, getCafeViews } from "@/lib/data";
+import { getCafeBySlug, getCafeViews } from "@/lib/data";
 import { CafePhoto } from "@/components/CafePhoto";
 import { CafeCard } from "@/components/CafeCard";
 import { Hours } from "@/components/Hours";
@@ -14,14 +14,14 @@ import { SITE } from "@/lib/site";
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  return (await getAllCafes()).map((c) => ({ slug: c.slug }));
+  return (await getCafeViews()).map((c) => ({ slug: c.slug }));
 }
 
 type Params = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const cafe = (await getAllCafes()).find((c) => c.slug === slug);
+  const cafe = (await getCafeViews()).find((c) => c.slug === slug);
   if (!cafe) return { title: "Cafe not found" };
   const desc = cafe.description ?? `${cafe.name}, a cafe in ${cafe.neighbourhood}, Toronto.`;
   return {

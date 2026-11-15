@@ -88,7 +88,23 @@ async function enrich(cafes: Cafe[]): Promise<CafeView[]> {
   return views.filter((v) => v.verification_status !== "closed");
 }
 
-export const getCafeViews = cache(async (): Promise<CafeView[]> => enrich(await getAllCafes()));
+let closedLogged = false;
+
+/**
+ * THE list of cafes the site shows. Every page, count, map and sitemap uses this, so numbers always agree.
+ * It drops cafes marked closed in the data and cafes Google reports as CLOSED_PERMANENTLY.
+ */
+export const getCafeViews = cache(async (): Promise<CafeView[]> => {
+  const all = await getAllCafes();
+  const views = await enrich(all);
+  if (!closedLogged && views.length < all.length) {
+    closedLogged = true;
+    const shown = new Set(views.map((v) => v.id));
+    const hidden = all.filter((c) => !shown.has(c.id)).map((c) => c.name);
+    console.info(`[data] Hiding ${hidden.length} cafe(s) Google reports as permanently closed: ${hidden.join("; ")}`);
+  }
+  return views;
+});
 
 export const getCafeBySlug = cache(async (slug: string): Promise<CafeView | null> => {
   const cafe = (await getAllCafes()).find((c) => c.slug === slug);

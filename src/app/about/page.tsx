@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllCafes } from "@/lib/data";
+import { getCafeViews } from "@/lib/data";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const cafes = await getAllCafes();
+  const cafes = await getCafeViews();
   const hoods = new Set(cafes.map((c) => c.neighbourhood)).size;
 
   return (

@@ -11,7 +11,8 @@
     "test:search": "tsx scripts/test-search.ts",
     "db:seed": "tsx scripts/seed-supabase.ts",
     "places:sync": "tsx scripts/sync-google-places.ts",
-    "places:ids": "node scripts/populate-place-ids.js"
+    "places:ids": "node scripts/populate-place-ids.js",
+    "places:closed": "node scripts/list-closed-places.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.119.0",

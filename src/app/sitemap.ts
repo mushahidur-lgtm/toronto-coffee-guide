@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getAllCafes } from "@/lib/data";
+import { getCafeViews } from "@/lib/data";
 import { NEIGHBOURHOODS } from "@/lib/neighbourhoods";
 import { SITE } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const cafes = await getAllCafes();
+  const cafes = await getCafeViews();
   const used = new Set(cafes.map((c) => c.neighbourhood));
   return [
     { url: SITE.url, changeFrequency: "weekly", priority: 1 },

@@ -19,9 +19,9 @@ export interface PhotoAttribution {
   uri?: string | null;
 }
 
+/** An editorial (own/licensed) photo. Google photos are never stored; they load live via /api/place-photo. */
 export interface CafePhoto {
-  /** "google" = a Places photo resource name (places/…/photos/…); "url" = a licensed direct URL. */
-  kind: "google" | "url";
+  kind: "url";
   ref: string;
   attributions: PhotoAttribution[];
 }
@@ -99,11 +99,11 @@ export interface LivePlace {
   latitude: number | null;
   longitude: number | null;
   businessStatus: string | null;
-  photo: CafePhoto | null;
 }
 
 /** What the UI renders: the stored cafe merged with any live Google data. */
 export interface CafeView extends Cafe {
+  /** Editorial photo only. When null and google_place_id is set, the UI loads a live Google photo. */
   photo: CafePhoto | null;
   /** Where the hours came from, for attribution. */
   hours_source: "google" | "editorial" | null;

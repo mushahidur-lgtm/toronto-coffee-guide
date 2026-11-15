@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import type { CafeView } from "@/lib/types";
-import { CafePhoto, PhotoCredit } from "./CafePhoto";
+import { CafePhoto } from "./CafePhoto";
 import { Hours } from "./Hours";
 import { displayUrl } from "@/lib/maps";
 
@@ -27,10 +27,14 @@ export function CafeCard({ cafe, highlights = [], priority }: Props) {
 
   return (
     <article className="flex h-full flex-col">
-      <Link href={`/cafes/${cafe.slug}`} tabIndex={-1} aria-hidden className="block">
-        <CafePhoto photo={cafe.photo} name={cafe.name} width={640} priority={priority} showAttribution={false} />
-      </Link>
-      <PhotoCredit photo={cafe.photo} />
+      <CafePhoto
+        photo={cafe.photo}
+        placeId={cafe.google_place_id}
+        name={cafe.name}
+        width={800}
+        priority={priority}
+        href={`/cafes/${cafe.slug}`}
+      />
 
       <div className="flex flex-1 flex-col pt-4">
         <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">{cafe.neighbourhood}</p>

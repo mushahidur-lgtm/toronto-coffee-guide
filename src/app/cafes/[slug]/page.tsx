@@ -107,7 +107,14 @@ export default async function CafePage({ params }: Params) {
         )}
       </header>
 
-      <CafePhoto photo={cafe.photo} name={cafe.name} width={1600} className="aspect-[16/9] sm:aspect-[21/9]" priority />
+      <CafePhoto
+        photo={cafe.photo}
+        placeId={cafe.google_place_id}
+        name={cafe.name}
+        width={1600}
+        className="aspect-[16/9] sm:aspect-[21/9]"
+        priority
+      />
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-20">
         <div>
@@ -184,7 +191,7 @@ export default async function CafePage({ params }: Params) {
             {cafe.verification_status === "verified"
               ? "Business status confirmed with Google Maps."
               : "Details are editorial and haven't been confirmed against Google Maps yet."}{" "}
-            {cafe.google_data && "Address, hours and photo from Google Maps. "}Information can change, so check with the cafe before visiting.
+            {cafe.google_data && "Address and hours from Google Maps. "}Information can change, so check with the cafe before visiting.
           </p>
         </aside>
       </div>

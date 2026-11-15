@@ -59,7 +59,7 @@ export function toView(cafe: Cafe, live: LivePlace | null): CafeView {
     google_maps_url: live?.mapsUrl ?? cafe.google_maps_url ?? googleMapsSearchUrl(cafe.name, address, cafe.google_place_id),
     opening_hours: hours ?? null,
     hours_source: live?.hours?.length ? "google" : cafe.opening_hours ? "editorial" : null,
-    photo: editorialPhoto ?? live?.photo ?? null,
+    photo: editorialPhoto,
     google_data: !!live,
     google_location: live?.latitude != null && live.longitude != null ? { lat: live.latitude, lng: live.longitude } : null,
   };

@@ -50,7 +50,7 @@ src/app/
   cafes/[slug]/               Cafe detail page (+ schema.org CafeOrCoffeeShop JSON-LD)
   neighbourhoods/, map/, about/
   api/cafes                   JSON search API: ?q=&n=&type=&sort=&limit=&offset=
-  api/places/photo            Server-side Places photo resolver (API key never reaches the browser)
+  api/place-photo             Live Google photo + attribution, streamed with no-store (key stays server-side)
   sitemap.ts, robots.ts
 ```
 
@@ -145,7 +145,14 @@ Only `name` and `neighbourhood` are required. `slug`, `id`, timestamps and the G
    - stores **only** `google_place_id` and a `verification_status` (`verified` if `OPERATIONAL`, `closed` if `CLOSED_PERMANENTLY`).
    - writes to Supabase if configured, otherwise back into `data/cafes.seed.json`.
 3. At request time, `src/lib/data.ts` fetches Place Details for each cafe (address, hours, phone, website, Google Maps URL, coordinates, business status, photos) with a field mask, and caches them for `PLACES_REVALIDATE_SECONDS` (default 3600).
-4. Photos go through `/api/places/photo`, which resolves the photo name with `skipHttpRedirect=true` and redirects to Google's short-lived URI. The image is never stored or re-hosted, and the API key never reaches the browser. Author attributions plus "Google Maps" are shown beside every photo, and pages say when hours come from Google Maps.
+4. **Photos load live and are never cached.** A cafe card asks `/api/place-photo?placeId=…` for a photo only when it scrolls near the viewport (IntersectionObserver); above-the-fold images load straight away. The route:
+   - only serves place IDs that belong to a listed cafe, so nobody else can spend your quota through it;
+   - calls Place Details with the field mask `photos,googleMapsUri` and returns `{ photo: { imageUrl, authorName, authorUri }, googleMapsUri }`;
+   - streams the image bytes from Google's `…/media` endpoint when `imageUrl` is requested;
+   - sends `Cache-Control: no-store` (plus `CDN-Cache-Control` and `Vercel-CDN-Cache-Control`) on every response and uses `cache: "no-store"` on every Google call, so nothing is stored on the CDN or disk;
+   - returns 429 when Google's quota is reached, 404 for unknown places and 503 without a key. The card then shows the neutral placeholder.
+
+   Every Google photo has "Photo by [author]" (linked to the author's profile) and "Google Maps" (linked to the place) underneath it. An editorial `image_url` always takes priority over Google.
 5. Optional: set `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` (HTTP-referrer restricted, Maps JavaScript API only) so `/map` shows exact pins on a Google map.
 
 **Compliance notes**
@@ -155,7 +162,7 @@ Only `name` and `neighbourhood` are required. `slug`, `id`, timestamps and the G
 - No scraping: all data comes from the official API or editorial research.
 - Directions and place links use the documented Google Maps URLs format (`/maps/search/?api=1…`, `/maps/dir/?api=1…`).
 
-**Cost:** one Place Details call per cafe per revalidation window, plus one photo call per displayed photo per hour. For 100 cafes that's about 2,400 detail calls a day at a 1-hour window. Raise `PLACES_REVALIDATE_SECONDS` to lower it.
+**Cost:** one Place Details call per cafe per revalidation window, plus two photo calls (Place Details + media) each time a visitor scrolls a card into view. Photos are deliberately uncached, so every view costs a request. For 100 cafes that's about 2,400 detail calls a day at a 1-hour window. Raise `PLACES_REVALIDATE_SECONDS` to lower it.
 
 ---
 
@@ -178,4 +185,4 @@ Import the repo into Vercel, add the environment variables from `.env.example`, 
 
 ## Accessibility & performance
 
-Semantic landmarks, a skip link, visible focus rings, keyboard-operable filters (native `<details>`, checkboxes and select; Esc closes popovers), `aria-live` result counts, AA-contrast greys, and reduced-motion support. Pages are statically generated with hourly ISR. Images are lazy-loaded with explicit dimensions, and Google photos are requested at the size actually displayed (640px for cards, 1600px for the hero).
+Semantic landmarks, a skip link, visible focus rings, keyboard-operable filters (native `<details>`, checkboxes and select; Esc closes popovers), `aria-live` result counts, AA-contrast greys, and reduced-motion support. Pages are statically generated with hourly ISR. Images are lazy-loaded with explicit dimensions, and Google photos are only requested once a card nears the viewport, at the size displayed (800px for cards, 1600px for the hero).

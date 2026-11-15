@@ -142,6 +142,23 @@ Only `name` and `neighbourhood` are required. `slug`, `id`, timestamps and the G
 
 **Data rules:** never invent hours, menus, addresses or websites. Leave unknown fields `null` or `[]`, and the UI shows "Not available". Only use `image_url` for a photo you have the rights to that shows *that* cafe, never a stock photo.
 
+### Adding your own photo
+
+Use this for a cafe with no Google match or no photos on Google Maps. An own photo always takes priority over Google's.
+
+1. Save a landscape JPG, about 1600px wide and under ~300 KB, as `public/images/cafes/<slug>.jpg`. The slug is the last part of the cafe's URL, e.g. `/cafes/cong-ca-phe-yonge-street` → `public/images/cafes/cong-ca-phe-yonge-street.jpg`.
+2. Add two fields to that cafe in `data/cafes.seed.json`:
+   ```json
+   "image_url": "/images/cafes/cong-ca-phe-yonge-street.jpg",
+   "image_credit": "Your Name"
+   ```
+   `image_credit` appears as "Photo: Your Name" under the image. With Supabase, set the same two columns on the row.
+3. Commit the image and the JSON change, then push. Vercel redeploys automatically.
+
+`image_url` may also be a full `https://` link, but the Content-Security-Policy only allows images from this site and Google's hosts. Images hosted anywhere else need their host added to `img-src` in `next.config.ts`, so keeping them in `public/images/cafes/` is simplest.
+
+Don't add a photo for a cafe that's permanently closed. Mark it `"verification_status": "closed"` instead, and the site hides it.
+
 ---
 
 ## Google Maps Platform

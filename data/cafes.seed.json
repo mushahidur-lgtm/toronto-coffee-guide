@@ -367,7 +367,9 @@
       "heritage building"
     ],
     "website_url": "https://balzacs.com",
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJr22uVRdTV0ARhqf3bW-O-QU",
+    "googleMapsUri": "https://maps.google.com/?cid=430531848628053894&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Balzac's Coffee Roasters — Liberty Village",
@@ -391,7 +393,9 @@
       "roaster"
     ],
     "website_url": "https://balzacs.com",
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJnwcN_wM1K4gRbg7EqrPEFb4",
+    "googleMapsUri": "https://maps.google.com/?cid=13697070117660397166&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Found Coffee",
@@ -408,7 +412,9 @@
       "Specialty Coffee"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJRRcM18E0K4gRKwRR6ALuPX4",
+    "googleMapsUri": "https://maps.google.com/?cid=9096688518613238827&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Library Coffee",
@@ -479,7 +485,9 @@
       "roaster",
       "takeaway"
     ],
-    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide",
+    "placeId": "ChIJQ29ouJzL1IkRXwvMR3mPdmc",
+    "googleMapsUri": "https://maps.google.com/?cid=7455303984216804191&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "I Deal Coffee",
@@ -935,7 +943,9 @@
     "tags": [
       "custard tarts"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJk7HfGPk0K4gRJcaasHv4ZmU",
+    "googleMapsUri": "https://maps.google.com/?cid=7306800655582807589&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Lady Marmalade",
@@ -1244,7 +1254,9 @@
     "tags": [
       "pancakes"
     ],
-    "source": "https://www.hungry416.com/?p=5974"
+    "source": "https://www.hungry416.com/?p=5974",
+    "placeId": "ChIJYbb2qJY0K4gRGh-go4maKfc",
+    "googleMapsUri": "https://maps.google.com/?cid=17809936117359714074&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Fluffy Fluffy Dessert Cafe",
@@ -1694,7 +1706,10 @@
       "Vietnamese Cafe"
     ],
     "tags": [],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJienrjYk1K4gRXmAVX1ukGmE",
+    "googleMapsUri": "https://maps.google.com/?cid=6997085683417702494&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "verification_status": "closed"
   },
   {
     "name": "Playground Cafe",
@@ -1795,7 +1810,9 @@
     "tags": [
       "cong caphe"
     ],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJn7bR3bs1K4gRSt1UoCylt9I",
+    "googleMapsUri": "https://maps.google.com/?cid=15183786279789976906&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Cộng Cà Phê — Yonge Street",
@@ -1817,7 +1834,9 @@
     "tags": [
       "cong caphe"
     ],
-    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
+    "placeId": "ChIJ-Yyr4Wo1K4gRDlOmdD2KGgQ",
+    "googleMapsUri": "https://maps.google.com/?cid=295700722100884238&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Dzô Viet Eatery",
@@ -1964,7 +1983,9 @@
     "tags": [
       "espresso bar"
     ],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJd1M8b0XL1IkR0ngt5tX6a14",
+    "googleMapsUri": "https://maps.google.com/?cid=6803807458669983954&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "Brick Street Bakery",
@@ -2106,7 +2127,9 @@
       "Neighbourhood Cafe"
     ],
     "tags": [],
-    "source": "editorial"
+    "source": "editorial",
+    "placeId": "ChIJa3XuNgDN1IkRMGFYhma9rjI",
+    "googleMapsUri": "https://maps.google.com/?cid=3652064595882303792&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
     "name": "The Remarkable Bean",

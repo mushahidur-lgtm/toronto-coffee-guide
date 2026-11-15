@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getCafeViews } from "@/lib/data";
 import { CafeExplorer } from "@/components/CafeExplorer";
@@ -5,6 +6,10 @@ import { NeighbourhoodGrid } from "@/components/NeighbourhoodGrid";
 import { SITE } from "@/lib/site";
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default async function HomePage() {
   const cafes = await getCafeViews();

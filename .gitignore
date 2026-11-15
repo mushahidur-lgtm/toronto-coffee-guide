@@ -7,3 +7,6 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+
+# Output of scripts/populate-place-ids.js (contains Google results for manual review)
+data/place-id-review.json

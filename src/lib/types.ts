@@ -26,6 +26,35 @@ export interface CafePhoto {
   attributions: PhotoAttribution[];
 }
 
+/**
+ * One entry of data/cafes.seed.json as written by hand / by scripts.
+ * Only `name` and `neighbourhood` are required; normalizeCafe() fills the rest.
+ */
+export interface SeedCafe {
+  name: string;
+  neighbourhood: string;
+  address?: string | null;
+  description?: string | null;
+  specialty_drinks?: string[];
+  food_offerings?: string[];
+  cuisine_types?: string[];
+  cafe_categories?: string[];
+  tags?: string[];
+  website_url?: string | null;
+  instagram_url?: string | null;
+  phone?: string | null;
+  image_url?: string | null;
+  image_credit?: string | null;
+  opening_hours?: string[] | null;
+  featured?: boolean;
+  source?: string | null;
+  verification_status?: VerificationStatus;
+  /** Google Places (New) place ID, set by scripts/populate-place-ids.js. Maps to Cafe.google_place_id. */
+  placeId?: string;
+  /** Google Maps link for the place, set by scripts/populate-place-ids.js. Maps to Cafe.google_maps_url. */
+  googleMapsUri?: string;
+}
+
 /** A row of the `cafes` table (or one entry of data/cafes.seed.json). */
 export interface Cafe {
   id: string;

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getPhotoUri, PHOTO_NAME_RE } from "@/lib/google-places";
+import { getPhotoUri, PHOTO_NAME_RE, placesApiKey } from "@/lib/google-places";
 
 /**
  * GET /api/places/photo?name=places/{placeId}/photos/{photoRef}&w=640
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   if (!PHOTO_NAME_RE.test(name)) {
     return NextResponse.json({ error: "Invalid photo name" }, { status: 400 });
   }
-  if (!process.env.GOOGLE_MAPS_API_KEY) {
+  if (!placesApiKey()) {
     return NextResponse.json({ error: "Places API not configured" }, { status: 404 });
   }
 

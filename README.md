@@ -137,8 +137,10 @@ Only `name` and `neighbourhood` are required. `slug`, `id`, timestamps and the G
 
 ## Google Maps Platform
 
-1. In Google Cloud, enable **Places API (New)**. Create a server key restricted to that API and set it as `GOOGLE_MAPS_API_KEY`.
-2. Run `npm run places:sync` (try `-- --dry-run` first). For each cafe it:
+1. In Google Cloud, enable **Places API (New)**. Create a server key restricted to that API and set it in `.env.local` as `GOOGLE_PLACES_API_KEY` (the older name `GOOGLE_MAPS_API_KEY` also works).
+2. **One-time Place ID lookup:** run `npm run places:ids` (or `node scripts/populate-place-ids.js`). Add `-- --dry-run` to preview, or `-- --limit 5` for a small first test. It searches `"<name> <address or neighbourhood> Toronto"` with the field mask `places.id,places.displayName,places.googleMapsUri`. Confident matches are saved as `placeId` and `googleMapsUri` in `data/cafes.seed.json`; cafes with no, weak, ambiguous or duplicate matches are printed and written to `data/place-id-review.json` (git-ignored) so you can fix them by hand. Cafes that already have a `placeId` are skipped unless you pass `--force`.
+
+   Alternatively, run `npm run places:sync` (try `-- --dry-run` first), which also checks whether each business is still open. For each cafe it:
    - runs a Text Search (biased to Toronto) and accepts the result only if the name matches well. Weak matches are listed for manual review.
    - stores **only** `google_place_id` and a `verification_status` (`verified` if `OPERATIONAL`, `closed` if `CLOSED_PERMANENTLY`).
    - writes to Supabase if configured, otherwise back into `data/cafes.seed.json`.

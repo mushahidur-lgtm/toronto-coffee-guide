@@ -21,7 +21,7 @@ import { normalize } from "../src/lib/search";
 config({ path: ".env.local" });
 config();
 
-const KEY = process.env.GOOGLE_MAPS_API_KEY;
+const KEY = process.env.GOOGLE_PLACES_API_KEY || process.env.GOOGLE_MAPS_API_KEY;
 const args = new Set(process.argv.slice(2));
 const DRY = args.has("--dry-run");
 const ALL = args.has("--all");
@@ -33,6 +33,8 @@ interface Row {
   address?: string | null;
   neighbourhood: string;
   google_place_id?: string | null;
+  placeId?: string;
+  googleMapsUri?: string;
   verification_status?: string;
   [k: string]: unknown;
 }
@@ -86,7 +88,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function main() {
   if (!KEY) {
-    console.error("Set GOOGLE_MAPS_API_KEY in .env.local (Places API (New) enabled).");
+    console.error("Set GOOGLE_PLACES_API_KEY in .env.local (Places API (New) enabled).");
     process.exit(1);
   }
   const useDb = !!(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
@@ -98,7 +100,7 @@ async function main() {
     if (error) throw error;
     rows = data as Row[];
   } else {
-    rows = JSON.parse(readFileSync(SEED, "utf8"));
+    rows = (JSON.parse(readFileSync(SEED, "utf8")) as Row[]).map((r) => ({ ...r, google_place_id: r.placeId ?? r.google_place_id ?? null }));
   }
 
   const review: string[] = [];
@@ -140,7 +142,12 @@ async function main() {
     await sleep(150);
   }
 
-  if (!db && !DRY) writeFileSync(SEED, JSON.stringify(rows, null, 2) + "\n");
+  if (!db && !DRY) {
+    // The seed file stores the ID as camelCase `placeId`.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const out = rows.map(({ google_place_id, ...r }) => (google_place_id ? { ...r, placeId: google_place_id } : r));
+    writeFileSync(SEED, JSON.stringify(out, null, 2) + "\n");
+  }
 
   console.log(`\nMatched ${matched} · permanently closed ${closed} · needs manual review ${review.length}${DRY ? " · DRY RUN, nothing written" : ""}`);
   if (review.length) {

@@ -24,8 +24,13 @@ const FIELDS = [
   "photos",
 ].join(",");
 
+/** Server key for Places API (New). GOOGLE_PLACES_API_KEY is preferred; GOOGLE_MAPS_API_KEY still works. */
+export function placesApiKey(): string | undefined {
+  return process.env.GOOGLE_PLACES_API_KEY || process.env.GOOGLE_MAPS_API_KEY || undefined;
+}
+
 export function placesEnabled(): boolean {
-  return !!process.env.GOOGLE_MAPS_API_KEY;
+  return !!placesApiKey();
 }
 
 const revalidate = () => Number(process.env.PLACES_REVALIDATE_SECONDS) || 3600;
@@ -42,7 +47,7 @@ interface PlaceDetailsResponse {
 }
 
 export async function getPlaceDetails(placeId: string): Promise<LivePlace | null> {
-  const key = process.env.GOOGLE_MAPS_API_KEY;
+  const key = placesApiKey();
   if (!key || !placeId) return null;
   try {
     const res = await fetch(`${API}/places/${encodeURIComponent(placeId)}`, {
@@ -81,7 +86,7 @@ export async function getPlaceDetails(placeId: string): Promise<LivePlace | null
 
 /** Resolve a Places photo resource name to a short-lived photo URI. */
 export async function getPhotoUri(photoName: string, maxWidthPx: number): Promise<string | null> {
-  const key = process.env.GOOGLE_MAPS_API_KEY;
+  const key = placesApiKey();
   if (!key) return null;
   const url = `${API}/${photoName}/media?maxWidthPx=${maxWidthPx}&skipHttpRedirect=true`;
   const res = await fetch(url, {

@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test:search": "tsx scripts/test-search.ts",
     "db:seed": "tsx scripts/seed-supabase.ts",
-    "places:sync": "tsx scripts/sync-google-places.ts"
+    "places:sync": "tsx scripts/sync-google-places.ts",
+    "places:ids": "node scripts/populate-place-ids.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.119.0",

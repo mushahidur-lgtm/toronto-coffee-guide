@@ -22,7 +22,9 @@ export function normalizeCafe(raw: Record<string, unknown>): Cafe {
   const name = String(raw.name ?? "").trim();
   const slug = str(raw.slug) ?? slugify(name);
   const address = str(raw.address);
-  const placeId = str(raw.google_place_id);
+  // Seed file uses camelCase `placeId` / `googleMapsUri`; database rows use snake_case.
+  const placeId = str(raw.placeId) ?? str(raw.google_place_id);
+  const mapsUri = str(raw.googleMapsUri) ?? str(raw.google_maps_url);
   const now = "2026-11-15T00:00:00.000Z";
   const hours = arr(raw.opening_hours);
   return {
@@ -35,7 +37,7 @@ export function normalizeCafe(raw: Record<string, unknown>): Cafe {
     latitude: num(raw.latitude),
     longitude: num(raw.longitude),
     website_url: str(raw.website_url),
-    google_maps_url: str(raw.google_maps_url) ?? googleMapsSearchUrl(name, address, placeId),
+    google_maps_url: mapsUri ?? googleMapsSearchUrl(name, address, placeId),
     google_place_id: placeId,
     phone: str(raw.phone),
     instagram_url: str(raw.instagram_url),

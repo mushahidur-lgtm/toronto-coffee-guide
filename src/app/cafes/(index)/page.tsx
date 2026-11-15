@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getCafeViews } from "@/lib/data";
+import { filtersFromParams } from "@/lib/search";
 import { CafeExplorer } from "@/components/CafeExplorer";
 
 export const revalidate = 3600;
@@ -11,8 +12,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "/cafes" },
 };
 
-export default async function CafesPage() {
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+/**
+ * Filters come from the URL on the server (?q=matcha&n=…&type=…&sort=…&open=1), so a search link or the
+ * search form works without JavaScript; with JavaScript the explorer takes over and updates in place.
+ */
+export default async function CafesPage({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+  const first = (k: string) => {
+    const v = params[k];
+    return Array.isArray(v) ? v[0] : v;
+  };
+  const initialFilters = filtersFromParams(first);
   const cafes = await getCafeViews();
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
       <header className="flex flex-wrap items-end justify-between gap-4 pb-8 pt-14 sm:pt-20">
@@ -26,7 +40,7 @@ export default async function CafesPage() {
           Map view
         </Link>
       </header>
-      <CafeExplorer cafes={cafes} autoFocus />
+      <CafeExplorer cafes={cafes} autoFocus initialFilters={initialFilters} initialNow={Date.now()} />
     </div>
   );
 }

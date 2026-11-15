@@ -5,7 +5,7 @@ import { ChevronDown, Clock, Search, SlidersHorizontal, X } from "lucide-react";
 import type { CafeView } from "@/lib/types";
 import { CAFE_TYPES } from "@/lib/types";
 import { FILTER_NEIGHBOURHOODS } from "@/lib/neighbourhoods";
-import { applyFilters, EMPTY_FILTERS, indexCafe, type Filters, type SortKey } from "@/lib/search";
+import { applyFilters, EMPTY_FILTERS, filtersFromParams, indexCafe, type Filters, type SortKey } from "@/lib/search";
 import { QUICK_SEARCHES } from "@/lib/site";
 import { cafeLocation, distanceKm, type LatLng } from "@/lib/geo";
 import { CafeCard } from "./CafeCard";
@@ -29,21 +29,22 @@ interface Props {
   featured?: CafeView[];
   headingLevel?: "h2" | "h1";
   autoFocus?: boolean;
+  /** Filters already applied on the server (from the URL). When omitted, they're read from the URL after mount. */
+  initialFilters?: Filters;
+  /** Server render time (ms), so "Open now" gives the same result during hydration. */
+  initialNow?: number;
 }
 
 function readUrl(): Partial<Filters> {
   if (typeof window === "undefined") return {};
   const p = new URLSearchParams(window.location.search);
-  const list = (k: string) => (p.get(k) ?? "").split(",").map((s) => s.trim()).filter(Boolean);
-  const sort = p.get("sort") as SortKey | null;
-  return {
-    query: p.get("q") ?? "",
-    neighbourhoods: list("n"),
-    types: list("type"),
-    sort: SORTS.some((s) => s.value === sort) ? sort! : "relevance",
-    openNow: p.get("open") === "1",
-  };
+  return filtersFromParams((k) => p.get(k));
 }
+
+/** Search URL for a term — chips and suggestions are real links, so they work without JavaScript. */
+const searchHref = (q: string) => `/cafes?q=${encodeURIComponent(q)}`;
+/** Let ctrl/cmd/shift/middle-click open the link normally; plain clicks are handled in place. */
+const isPlainClick = (e: React.MouseEvent) => e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
 
 function writeUrl(f: Filters) {
   const p = new URLSearchParams();
@@ -57,9 +58,9 @@ function writeUrl(f: Filters) {
   if (url !== `${window.location.pathname}${window.location.search}`) window.history.replaceState(null, "", url);
 }
 
-export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
+export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, initialNow }: Props) {
   const index = useMemo(() => cafes.map(indexCafe), [cafes]);
-  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
+  const [filters, setFilters] = useState<Filters>(initialFilters ?? EMPTY_FILTERS);
   const [visible, setVisible] = useState(PAGE);
   const [mobileFilters, setMobileFilters] = useState(false);
   const [ready, setReady] = useState(false);
@@ -68,8 +69,9 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
 
   // Restore state from the URL (?q=matcha&n=Chinatown&type=Korean%20Cafe&sort=az)
   useEffect(() => {
-    setFilters((f) => ({ ...f, ...readUrl() }));
+    if (!initialFilters) setFilters((f) => ({ ...f, ...readUrl() }));
     setReady(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -77,7 +79,7 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
   }, [filters, ready]);
 
   // "Open now" is evaluated against this clock, refreshed every minute while the filter is on.
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState(() => (initialNow ? new Date(initialNow) : new Date()));
   useEffect(() => {
     if (!filters.openNow) return;
     setNow(new Date());
@@ -179,7 +181,17 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
   return (
     <div>
       {/* ——— Search ——— */}
-      <form role="search" onSubmit={(e) => { e.preventDefault(); inputRef.current?.blur(); resultsRef.current?.scrollIntoView({ behavior: "smooth" }); }}>
+      {/* Without JavaScript this is a plain GET to /cafes?q=…, which the server renders. */}
+      <form
+        role="search"
+        action="/cafes"
+        method="get"
+        onSubmit={(e) => {
+          e.preventDefault();
+          inputRef.current?.blur();
+          resultsRef.current?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
         <label htmlFor="cafe-search" className="sr-only">
           Search coffee shops
         </label>
@@ -188,6 +200,7 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
           <input
             ref={inputRef}
             id="cafe-search"
+            name="q"
             type="search"
             autoComplete="off"
             autoFocus={autoFocus}
@@ -210,24 +223,29 @@ export function CafeExplorer({ cafes, featured = [], autoFocus }: Props) {
         </div>
       </form>
 
-      <div className="mt-4 flex flex-wrap gap-2" aria-label="Quick searches">
+      <nav className="mt-4 flex flex-wrap gap-2" aria-label="Quick searches">
         {QUICK_SEARCHES.map((q) => {
           const active = filters.query.trim().toLowerCase() === q.toLowerCase();
           return (
-            <button
+            <a
               key={q}
-              type="button"
-              aria-pressed={active}
-              onClick={() => (active ? update({ query: "" }) : runQuickSearch(q))}
+              href={searchHref(q)}
+              aria-current={active ? "true" : undefined}
+              onClick={(e) => {
+                if (!isPlainClick(e)) return;
+                e.preventDefault(); // with JavaScript, search in place instead of navigating
+                if (active) update({ query: "" });
+                else runQuickSearch(q);
+              }}
               className={`border px-3 py-1.5 text-sm transition-colors ${
                 active ? "border-ink bg-ink text-paper" : "border-line text-ink-2 hover:border-ink-2"
               }`}
             >
               {q}
-            </button>
+            </a>
           );
         })}
-      </div>
+      </nav>
 
       {/* ——— Featured (only while browsing) ——— */}
       {idle && featured.length > 0 && (
@@ -501,9 +519,18 @@ function EmptyState({
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         {["Matcha", "Croissant", "Vietnamese", "Kensington Market", "Cold brew"].map((q) => (
-          <button key={q} type="button" onClick={() => onPick(q)} className="border border-line px-3 py-1.5 text-sm hover:border-ink-2">
+          <a
+            key={q}
+            href={searchHref(q)}
+            onClick={(e) => {
+              if (!isPlainClick(e)) return;
+              e.preventDefault();
+              onPick(q);
+            }}
+            className="border border-line px-3 py-1.5 text-sm hover:border-ink-2"
+          >
             {q}
-          </button>
+          </a>
         ))}
       </div>
       <button type="button" onClick={onReset} className="link-quiet mt-6 text-sm">

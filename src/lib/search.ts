@@ -223,6 +223,27 @@ export interface Filters {
 
 export const EMPTY_FILTERS: Filters = { query: "", neighbourhoods: [], types: [], sort: "relevance", openNow: false };
 
+/**
+ * Filters from URL search params (?q=matcha&n=Chinatown,Downtown&type=Korean%20Cafe&sort=az&open=1).
+ * Shared by the server-rendered /cafes page (works without JavaScript) and the client explorer.
+ */
+export function filtersFromParams(get: (key: string) => string | null | undefined): Filters {
+  const list = (k: string) =>
+    (get(k) ?? "")
+      .split(",")
+      .map((s) => s.trim().slice(0, 60))
+      .filter(Boolean)
+      .slice(0, 20);
+  const sort = get("sort");
+  return {
+    query: (get("q") ?? "").slice(0, 200),
+    neighbourhoods: list("n"),
+    types: list("type"),
+    sort: isSortKey(sort) ? sort : "relevance",
+    openNow: get("open") === "1",
+  };
+}
+
 export function applyFilters<T extends Cafe>(index: IndexedCafe<T>[], f: Filters, now: Date = new Date()): SearchHit<T>[] {
   let hits = searchIndex(index, f.query);
   if (f.openNow) {

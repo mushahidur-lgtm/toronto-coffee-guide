@@ -8,7 +8,7 @@ import { CafeCard } from "@/components/CafeCard";
 import { Hours } from "@/components/Hours";
 import { displayUrl, googleMapsDirectionsUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
 import { neighbourhoodSlug } from "@/lib/neighbourhoods";
-import { parseHours, todayName } from "@/lib/hours";
+import { formatMonthYear, parseHours, todayName } from "@/lib/hours";
 import { SITE } from "@/lib/site";
 import { serializeJsonLd } from "@/lib/json-ld";
 
@@ -190,6 +190,11 @@ export default async function CafePage({ params }: Params) {
             </Section>
           )}
           <p className="border-t border-line pt-6 text-xs leading-relaxed text-muted">
+            {cafe.last_verified && (
+              <span className="mb-1.5 block text-ink-2">
+                Last verified <time dateTime={cafe.last_verified}>{formatMonthYear(cafe.last_verified)}</time>
+              </span>
+            )}
             {cafe.verification_status === "verified"
               ? "Business status confirmed with Google Maps."
               : "Details are editorial and haven't been confirmed against Google Maps yet."}{" "}

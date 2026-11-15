@@ -39,6 +39,17 @@ function imageUrl(v: unknown): string | null {
   return httpUrl(s);
 }
 
+/** "2026-11-15" or an ISO timestamp → "2026-11-15"; anything else (or an impossible date) → null. */
+export function isoDate(v: unknown): string | null {
+  const s = str(v);
+  const m = s?.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!m) return null;
+  const d = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
+  return d.getUTCFullYear() === Number(m[1]) && d.getUTCMonth() === Number(m[2]) - 1 && d.getUTCDate() === Number(m[3])
+    ? `${m[1]}-${m[2]}-${m[3]}`
+    : null;
+}
+
 /** Accepts a seed entry or a database row and fills every field with a safe default. */
 export function normalizeCafe(raw: Record<string, unknown>): Cafe {
   const name = String(raw.name ?? "").trim();
@@ -76,6 +87,7 @@ export function normalizeCafe(raw: Record<string, unknown>): Cafe {
     verification_status: (["verified", "closed"].includes(raw.verification_status as string)
       ? raw.verification_status
       : "unverified") as VerificationStatus,
+    last_verified: isoDate(raw.last_verified),
     source: str(raw.source),
     created_at: str(raw.created_at) ?? now,
     updated_at: str(raw.updated_at) ?? now,

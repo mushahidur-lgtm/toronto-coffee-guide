@@ -49,6 +49,8 @@ export interface SeedCafe {
   featured?: boolean;
   source?: string | null;
   verification_status?: VerificationStatus;
+  /** Date (YYYY-MM-DD) a person or the sync script last confirmed this listing. */
+  last_verified?: string;
   /** Google Places (New) place ID, set by scripts/populate-place-ids.js. Maps to Cafe.google_place_id. */
   placeId?: string;
   /** Google Maps link for the place, set by scripts/populate-place-ids.js. Maps to Cafe.google_maps_url. */
@@ -83,6 +85,8 @@ export interface Cafe {
   opening_hours: string[] | null;
   featured: boolean;
   verification_status: VerificationStatus;
+  /** Date (YYYY-MM-DD) the listing was last confirmed. null = never. */
+  last_verified: string | null;
   /** Where the editorial information came from. */
   source: string | null;
   created_at: string;

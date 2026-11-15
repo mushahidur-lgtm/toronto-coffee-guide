@@ -45,6 +45,11 @@ export function groupHours(lines: string[] | null | undefined): DayLine[] {
   }));
 }
 
+/** "2026-11-15" → "November 2026" (date-only, so formatted in UTC to avoid shifting a day). */
+export function formatMonthYear(isoDate: string): string {
+  return new Intl.DateTimeFormat("en-CA", { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${isoDate}T00:00:00Z`));
+}
+
 /** Current weekday name in Toronto. */
 export function todayName(now = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", { weekday: "long", timeZone: "America/Toronto" }).format(now);

@@ -40,6 +40,7 @@ create table if not exists public.cafes (
   featured            boolean not null default false,
   verification_status text not null default 'unverified' check (verification_status in ('unverified', 'verified', 'closed')),
   source              text,
+  last_verified       date,                 -- when a person or `npm run places:sync` last confirmed the listing
   created_at          timestamptz not null default now(),
   updated_at          timestamptz not null default now(),
 
@@ -95,3 +96,6 @@ $$;
 alter table public.cafes enable row level security;
 drop policy if exists "Public read" on public.cafes;
 create policy "Public read" on public.cafes for select using (true);
+
+-- Migration for databases created before last_verified existed (safe to re-run):
+alter table public.cafes add column if not exists last_verified date;

@@ -36,6 +36,7 @@ interface Row {
   placeId?: string;
   googleMapsUri?: string;
   verification_status?: string;
+  last_verified?: string;
   [k: string]: unknown;
 }
 
@@ -83,6 +84,9 @@ function similarity(a: string, b: string): number {
   A.forEach((t) => B.has(t) && hit++);
   return hit / Math.min(A.size, B.size);
 }
+
+/** Today in Toronto as YYYY-MM-DD. */
+const TODAY = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto" }).format(new Date());
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -135,8 +139,10 @@ async function main() {
 
     row.google_place_id = place.id;
     row.verification_status = status;
+    // Only a definite answer from Google counts as a verification.
+    if (status !== "unverified") row.last_verified = TODAY;
     if (db && !DRY) {
-      const { error } = await db.from("cafes").update({ google_place_id: place.id, verification_status: status }).eq("slug", row.slug as string);
+      const { error } = await db.from("cafes").update({ google_place_id: place.id, verification_status: status, ...(status !== "unverified" ? { last_verified: TODAY } : {}) }).eq("slug", row.slug as string);
       if (error) console.error(`  ↳ update failed: ${error.message}`);
     }
     await sleep(150);

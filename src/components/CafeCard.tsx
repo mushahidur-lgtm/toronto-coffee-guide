@@ -63,7 +63,7 @@ export function CafeCard({ cafe, highlights = [], priority }: Props) {
           <div>
             <dt className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">Hours</dt>
             <dd className="mt-1">
-              <Hours hours={cafe.opening_hours} />
+              <Hours hours={cafe.opening_hours} mapsUrl={cafe.google_maps_url} />
             </dd>
           </div>
         </dl>

@@ -145,7 +145,7 @@ export default async function CafePage({ params }: Params) {
             <p className="mt-1 text-muted">{cafe.neighbourhood}, Toronto</p>
           </Section>
           <Section title="Opening hours">
-            <Hours hours={cafe.opening_hours} variant="full" source={cafe.hours_source} today={todayName()} />
+            <Hours hours={cafe.opening_hours} variant="full" source={cafe.hours_source} today={todayName()} mapsUrl={cafe.google_maps_url} />
           </Section>
           <Section title="Links">
             <ul className="space-y-2">

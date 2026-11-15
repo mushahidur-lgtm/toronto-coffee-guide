@@ -6,11 +6,26 @@ interface Props {
   variant?: "grouped" | "full";
   source?: "google" | "editorial" | null;
   today?: string;
+  /** Where to send people when we don't have hours. */
+  mapsUrl?: string | null;
 }
 
-export function Hours({ hours, variant = "grouped", source, today }: Props) {
+export function Hours({ hours, variant = "grouped", source, today, mapsUrl }: Props) {
   const rows = variant === "full" ? parseHours(hours) : groupHours(hours);
-  if (!rows.length) return <p className="text-muted">Not available</p>;
+  if (!rows.length) {
+    return (
+      <p className="text-muted">
+        Hours not listed.{" "}
+        {mapsUrl ? (
+          <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="link-quiet text-ink">
+            Check Google Maps
+          </a>
+        ) : (
+          "Check Google Maps"
+        )}
+      </p>
+    );
+  }
   return (
     <div>
       <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-0.5">

@@ -9,6 +9,7 @@ import { SITE } from "@/lib/site";
 const NAV = [
   { href: "/cafes", label: "Explore Cafes" },
   { href: "/neighbourhoods", label: "Neighbourhoods" },
+  { href: "/map", label: "Map" },
   { href: "/about", label: "About" },
 ];
 
@@ -62,18 +63,20 @@ export function Header() {
       {open && (
         <nav id="mobile-nav" aria-label="Mobile" className="border-t border-line md:hidden">
           <ul className="mx-auto max-w-7xl px-4 py-2">
-            {NAV.map((n) => (
-              <li key={n.href}>
-                <Link href={n.href} className="block border-b border-line py-3 text-base last:border-0">
-                  {n.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link href="/map" className="block py-3 text-base">
-                Map
-              </Link>
-            </li>
+            {NAV.map((n, i) => {
+              const active = pathname === n.href || pathname.startsWith(n.href + "/");
+              return (
+                <li key={n.href}>
+                  <Link
+                    href={n.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`block py-3 text-base ${i < NAV.length - 1 ? "border-b border-line" : ""} ${active ? "font-medium" : ""}`}
+                  >
+                    {n.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       )}

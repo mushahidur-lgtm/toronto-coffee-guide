@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getCafeViews } from "@/lib/data";
-import { MapView, type MapMode } from "@/components/MapView";
+import { MapExplorer } from "@/components/map/MapExplorer";
+import type { MapMode } from "@/components/map/shared";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Map",
-  description: "A map of coffee shops and cafes across Toronto. Filter by drink, neighbourhood, cafe type or what's open now.",
+  description: "Explore Toronto coffee shops on a map: third-wave roasters, espresso bars, matcha, bakery-cafes and places to work, filtered by what's open now.",
   alternates: { canonical: "/map" },
 };
 
@@ -25,17 +25,9 @@ export default async function MapPage() {
   const cafes = mode === "google" ? all : all.map((c) => ({ ...c, google_location: null }));
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-      <header className="flex flex-wrap items-end justify-between gap-4 pb-6 pt-14 sm:pt-20">
-        <div>
-          <h1 className="text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">Map</h1>
-          <p className="mt-3 max-w-xl text-ink-2">{all.length} cafes across Toronto.</p>
-        </div>
-        <Link href="/cafes" className="link-quiet text-sm">
-          List view
-        </Link>
-      </header>
-      <MapView cafes={cafes} mode={mode} />
-    </div>
+    <>
+      <h1 className="sr-only">Map of Toronto coffee shops</h1>
+      <MapExplorer cafes={cafes} mode={mode} />
+    </>
   );
 }

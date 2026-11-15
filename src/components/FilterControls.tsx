@@ -5,7 +5,18 @@ import { ChevronDown, X } from "lucide-react";
 
 /** Filter UI pieces shared by the /cafes explorer and the /map filter bar. */
 
-export function FilterMenu({ label, count, children }: { label: string; count: number; children: React.ReactNode }) {
+export function FilterMenu({
+  label,
+  count,
+  children,
+  align = "left",
+}: {
+  label: string;
+  count: number;
+  children: React.ReactNode;
+  /** Open the panel towards the left when the button sits near the right edge. */
+  align?: "left" | "right";
+}) {
   return (
     <details data-popover className="relative">
       <summary
@@ -15,7 +26,11 @@ export function FilterMenu({ label, count, children }: { label: string; count: n
         {count > 0 && <span className="tabular-nums">({count})</span>}
         <ChevronDown size={14} strokeWidth={1.5} aria-hidden />
       </summary>
-      <div className="absolute left-0 z-30 mt-1 w-64 border border-line bg-paper p-3 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">{children}</div>
+      <div
+        className={`absolute ${align === "right" ? "right-0" : "left-0"} z-30 mt-1 max-h-[60vh] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto border border-line bg-paper p-3 shadow-[0_8px_24px_rgba(0,0,0,0.06)]`}
+      >
+        {children}
+      </div>
     </details>
   );
 }

@@ -174,7 +174,7 @@ export default async function CafePage({ params }: Params) {
                 </a>
               </li>
               <li>
-                <Link href={`/map?cafe=${encodeURIComponent(cafe.slug)}`} className="link-quiet inline-flex items-center gap-1">
+                <Link href={`/map?selected=${encodeURIComponent(cafe.slug)}`} className="link-quiet inline-flex items-center gap-1">
                   <MapPin size={14} strokeWidth={1.5} aria-hidden /> View on map
                 </Link>
               </li>

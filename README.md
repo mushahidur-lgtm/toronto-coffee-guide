@@ -209,6 +209,30 @@ Don't add a photo for a cafe that's permanently closed. Mark it `"verification_s
 
 Import the repo into Vercel, add the environment variables from `.env.example`, and deploy. Set `NEXT_PUBLIC_SITE_URL` to the production URL (your custom domain, if you have one) for canonical links, the sitemap, Open Graph images and structured data. Without it the site falls back to Vercel's production domain (`VERCEL_PROJECT_PRODUCTION_URL`), then to localhost.
 
+## Map explorer (`/map`)
+
+A split view on desktop (cafe list + map) and a full-screen map with a draggable bottom sheet on mobile.
+
+- **Quick filters:** search, Area, Type, plus a scrollable row of pills: *Open now*, *Laptop friendly*, *Patio* and eight Toronto categories (*Third-Wave & Roasters*, *Italian Espresso Bars*, *Asian-Inspired & Matcha*, *Bakery-Cafes*, *Work & Study*, *Multi-Concept & Hybrid*, *Grab-and-Go*, *Chains*).
+- **List ↔ map sync:** hovering a card highlights its pin (or a stand-in pin when it's inside a cluster). Clicking a card pans and zooms to it and opens its card. Clicking a pin opens the card and scrolls the list to it.
+- **Clustering:** `@googlemaps/markerclusterer`; clusters split from zoom 15 or when clicked.
+- **Search this area:** after the user pans or zooms well away from the last searched or fitted area, a pill appears that limits results to the visible map.
+- **URL state:** `?q=&n=&type=&open=1&category=third-wave,bakery&laptop=1&patio=1&bbox=s,w,n,e&selected=<slug>&lat=&lng=&zoom=`. Filters and selection add history entries, so Back and Forward work; map moves replace the current entry. The old `?cafe=<slug>` links still work.
+- **Google vs Leaflet:** with `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` and `NEXT_PUBLIC_GOOGLE_MAP_ID` you get exact pins. Without them, a Leaflet/OSM fallback groups cafes by neighbourhood, because Google coordinates can't go on a non-Google map. In that mode "Search this area" uses neighbourhood centres.
+
+**Categories and attributes** come from `src/lib/explorer.ts`. They're derived from existing data (cafe types, cuisines, tags) and never guessed. To set them by hand, add any of these to a cafe in the seed file or database:
+
+```json
+"explorer_categories": ["third-wave", "work-study"],
+"has_wifi": true,
+"has_patio": true,
+"roasts_in_house": true,
+"laptop_friendly": true,
+"is_chain": false
+```
+
+Leave a field out when you don't know it; unknown values never match a filter. *Patio* also uses Google's live `outdoorSeating`, which is requested in Place Details and never stored. That field bills Place Details at the Atmosphere tier; set `PLACES_ATMOSPHERE_FIELDS=false` to skip it. The Supabase columns are added at the end of `supabase/schema.sql`.
+
 ## Security
 
 - **Photo route:** `/api/place-photo` only serves place IDs from the cafe list, snaps `w` to 400, 800 or 1200, and is rate limited per IP through Upstash Redis (120/min and 2000/day by default; set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`). Without Redis there is no rate limit, so set it up before launch.

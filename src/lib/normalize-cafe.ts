@@ -1,5 +1,6 @@
 import type { Cafe, VerificationStatus } from "./types";
 import { googleMapsSearchUrl } from "./maps";
+import { isExplorerCategory } from "./explorer";
 
 export function slugify(s: string): string {
   return s
@@ -16,6 +17,8 @@ export function slugify(s: string): string {
 const arr = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string" && !!x.trim()) : []);
 const str = (v: unknown): string | null => (typeof v === "string" && v.trim() ? v.trim() : null);
 const num = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
+/** true / false, or null when unknown (anything that isn't a boolean). */
+const bool = (v: unknown): boolean | null => (typeof v === "boolean" ? v : null);
 
 /**
  * Only absolute http(s) URLs. Rejects javascript:, data:, protocol-relative and malformed values,
@@ -88,6 +91,12 @@ export function normalizeCafe(raw: Record<string, unknown>): Cafe {
       ? raw.verification_status
       : "unverified") as VerificationStatus,
     last_verified: isoDate(raw.last_verified),
+    explorer_categories: arr(raw.explorer_categories).filter(isExplorerCategory),
+    has_wifi: bool(raw.has_wifi),
+    has_patio: bool(raw.has_patio),
+    roasts_in_house: bool(raw.roasts_in_house),
+    laptop_friendly: bool(raw.laptop_friendly),
+    is_chain: raw.is_chain === true,
     source: str(raw.source),
     created_at: str(raw.created_at) ?? now,
     updated_at: str(raw.updated_at) ?? now,

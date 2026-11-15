@@ -1,3 +1,5 @@
+import type { CafeAttributes, ExplorerCategory } from "./explorer";
+
 /** Category values used for the "Cafe type" filter. Free-form extra categories are allowed. */
 export const CAFE_TYPES = [
   "Specialty Coffee",
@@ -55,6 +57,15 @@ export interface SeedCafe {
   placeId?: string;
   /** Google Maps link for the place, set by scripts/populate-place-ids.js. Maps to Cafe.google_maps_url. */
   googleMapsUri?: string;
+  /** Explorer categories (slugs from lib/explorer.ts). Overrides the derived list when set. */
+  explorer_categories?: string[];
+  /** Practical attributes. Only set what has been verified; leave out when unknown. */
+  has_wifi?: boolean;
+  has_patio?: boolean;
+  roasts_in_house?: boolean;
+  laptop_friendly?: boolean;
+  /** Part of a chain (Tim Hortons, Second Cup, …): listed under "Chains" on the map. */
+  is_chain?: boolean;
 }
 
 /** A row of the `cafes` table (or one entry of data/cafes.seed.json). */
@@ -87,6 +98,14 @@ export interface Cafe {
   verification_status: VerificationStatus;
   /** Date (YYYY-MM-DD) the listing was last confirmed. null = never. */
   last_verified: string | null;
+  /** Editorial explorer categories (override the derived ones when non-empty). */
+  explorer_categories: ExplorerCategory[];
+  /** Verified attributes; null = unknown. */
+  has_wifi: boolean | null;
+  has_patio: boolean | null;
+  roasts_in_house: boolean | null;
+  laptop_friendly: boolean | null;
+  is_chain: boolean;
   /** Where the editorial information came from. */
   source: string | null;
   created_at: string;
@@ -103,6 +122,8 @@ export interface LivePlace {
   latitude: number | null;
   longitude: number | null;
   businessStatus: string | null;
+  /** Google's outdoorSeating (Atmosphere field). null = not reported. */
+  outdoorSeating: boolean | null;
 }
 
 /** What the UI renders: the stored cafe merged with any live Google data. */
@@ -115,4 +136,6 @@ export interface CafeView extends Cafe {
   google_data: boolean;
   /** Live coordinates from Google — only for use on a Google map. */
   google_location: { lat: number; lng: number } | null;
+  /** Explorer categories + attributes, computed on the server (editorial data first, then live Google). */
+  attributes: CafeAttributes;
 }

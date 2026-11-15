@@ -6,6 +6,7 @@ import type { Cafe, CafeView, LivePlace } from "./types";
 import { httpUrl, normalizeCafe } from "./normalize-cafe";
 import { getPlaceDetails, placesEnabled } from "./google-places";
 import { googleMapsSearchUrl } from "./maps";
+import { deriveAttributes } from "./explorer";
 
 /**
  * Data access. The frontend only ever calls these functions, so swapping the JSON seed for
@@ -62,6 +63,7 @@ export function toView(cafe: Cafe, live: LivePlace | null): CafeView {
     photo: editorialPhoto,
     google_data: !!live,
     google_location: live?.latitude != null && live.longitude != null ? { lat: live.latitude, lng: live.longitude } : null,
+    attributes: deriveAttributes(cafe, live?.outdoorSeating ?? null),
   };
 }
 

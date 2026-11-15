@@ -99,3 +99,11 @@ create policy "Public read" on public.cafes for select using (true);
 
 -- Migration for databases created before last_verified existed (safe to re-run):
 alter table public.cafes add column if not exists last_verified date;
+
+-- Map explorer attributes (safe to re-run). Leave NULL when unknown; never guess.
+alter table public.cafes add column if not exists explorer_categories text[] not null default '{}';  -- slugs, see src/lib/explorer.ts
+alter table public.cafes add column if not exists has_wifi boolean;
+alter table public.cafes add column if not exists has_patio boolean;
+alter table public.cafes add column if not exists roasts_in_house boolean;
+alter table public.cafes add column if not exists laptop_friendly boolean;
+alter table public.cafes add column if not exists is_chain boolean not null default false;

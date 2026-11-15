@@ -1,0 +1,2387 @@
+[
+  {
+    "name": "Pilot Coffee Roasters — Wagstaff Tasting Room",
+    "neighbourhood": "Leslieville",
+    "address": "50 Wagstaff Dr, Toronto, ON",
+    "description": "The roastery and tasting room of one of Toronto's best-known specialty roasters, tucked into an industrial street in the east end.",
+    "specialty_drinks": [
+      "Espresso",
+      "Pour-over",
+      "Cold brew",
+      "Seasonal single-origin filter"
+    ],
+    "food_offerings": [
+      "Pastries"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster",
+      "tasting room",
+      "single origin"
+    ],
+    "website_url": "https://pilotcoffeeroasters.com",
+    "featured": true,
+    "source": "editorial"
+  },
+  {
+    "name": "Pilot Coffee Roasters — Yorkville",
+    "neighbourhood": "Yorkville",
+    "address": "55 Bloor St W, Toronto, ON",
+    "description": "A Pilot cafe at Bloor and Bay serving the roaster's espresso and filter coffee.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Filter coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "roaster"
+    ],
+    "website_url": "https://pilotcoffeeroasters.com",
+    "source": "https://ritual.co/blog/20-must-try-coffee-shops-in-toronto-your-2023-ritual-guide"
+  },
+  {
+    "name": "Pilot Coffee Roasters — Blue Jays Way",
+    "neighbourhood": "Entertainment District",
+    "address": "80 Blue Jays Way, Toronto, ON",
+    "description": "Pilot's Entertainment District cafe, a short walk from the stadium and the theatres.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Filter coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "roaster"
+    ],
+    "website_url": "https://pilotcoffeeroasters.com",
+    "source": "https://ritual.co/blog/20-must-try-coffee-shops-in-toronto-your-2023-ritual-guide"
+  },
+  {
+    "name": "Dineen Coffee Co.",
+    "neighbourhood": "Financial District",
+    "address": "140 Yonge St, Toronto, ON",
+    "description": "A grand, heritage-building cafe at Yonge and Temperance with tiled floors and a classic European feel.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Croissants",
+      "Pastries",
+      "Sandwiches"
+    ],
+    "cuisine_types": [
+      "European"
+    ],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Bakery & Cafe"
+    ],
+    "tags": [
+      "heritage building"
+    ],
+    "website_url": "https://dineencoffee.com",
+    "featured": true,
+    "source": "editorial"
+  },
+  {
+    "name": "Sam James Coffee Bar — Harbord",
+    "neighbourhood": "Harbord Village",
+    "address": null,
+    "description": "The original location of Sam James Coffee Bar, the Toronto espresso-bar group founded in 2009.",
+    "specialty_drinks": [
+      "Espresso",
+      "Cortado",
+      "Cappuccino"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "espresso bar"
+    ],
+    "website_url": "https://samjamescoffeebar.com",
+    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/"
+  },
+  {
+    "name": "Sam James Coffee Bar — PATH",
+    "neighbourhood": "Financial District",
+    "address": null,
+    "description": "Sam James' underground espresso bar in the PATH network, built for the downtown commute.",
+    "specialty_drinks": [
+      "Espresso",
+      "Cortado",
+      "Cappuccino"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "espresso bar",
+      "path"
+    ],
+    "website_url": "https://samjamescoffeebar.com",
+    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/"
+  },
+  {
+    "name": "Boxcar Social — Summerhill",
+    "neighbourhood": "Midtown",
+    "address": "1208 Yonge St, Toronto, ON",
+    "description": "Coffee bar by day and wine and whisky bar by night, pouring coffee from a rotating line-up of roasters.",
+    "specialty_drinks": [
+      "Espresso",
+      "Pour-over",
+      "Matcha latte",
+      "Iced matcha"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Matcha Cafe"
+    ],
+    "tags": [
+      "multi-roaster",
+      "wine bar"
+    ],
+    "website_url": "https://boxcarsocial.ca",
+    "source": "https://tastetoronto.com/guides/where-to-find-the-best-matcha-lattes-in-toronto"
+  },
+  {
+    "name": "Neo Coffee Bar — Frederick",
+    "neighbourhood": "St. Lawrence",
+    "address": "161 Frederick St, Toronto, ON",
+    "description": "Japanese-inspired coffee bar known for its matcha, hojicha and genmaicha drinks alongside Japanese-style pastries.",
+    "specialty_drinks": [
+      "Matcha latte",
+      "Hojicha latte",
+      "Genmaicha latte",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Japanese pastries",
+      "Roll cake"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Japanese Cafe",
+      "Matcha Cafe"
+    ],
+    "tags": [
+      "green tea"
+    ],
+    "website_url": "https://neocoffeebar.com",
+    "featured": true,
+    "source": "https://www.th3rdwave.coffee/neo-coffee-bar/"
+  },
+  {
+    "name": "Neo Coffee Bar — Bay x College",
+    "neighbourhood": "Bay & College",
+    "address": "770 Bay St, Unit 3, Toronto, ON",
+    "description": "Neo's Bay Street location, with specialty coffee, Japanese tea lattes, snacks and pastries.",
+    "specialty_drinks": [
+      "Matcha latte",
+      "Hojicha latte",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Japanese snacks",
+      "Pastries"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Japanese Cafe",
+      "Matcha Cafe"
+    ],
+    "tags": [],
+    "website_url": "https://neocoffeebar.com",
+    "source": "https://www.hungry416.com/?p=5974"
+  },
+  {
+    "name": "Jimmy's Coffee — Portland",
+    "neighbourhood": "Queen West",
+    "address": "107 Portland St, Toronto, ON",
+    "description": "The original Jimmy's, a cosy, local-favourite cafe just south of Queen Street West.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [],
+    "website_url": "https://jimmyscoffee.ca",
+    "source": "editorial"
+  },
+  {
+    "name": "Jimmy's Coffee — Baldwin",
+    "neighbourhood": "Kensington Market",
+    "address": "191 Baldwin St, Toronto, ON",
+    "description": "Jimmy's Kensington Market outpost on Baldwin Street, with a patio that's a neighbourhood people-watching spot.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "patio"
+    ],
+    "website_url": "https://jimmyscoffee.ca",
+    "source": "editorial"
+  },
+  {
+    "name": "Jimmy's Coffee — Lake Shore",
+    "neighbourhood": "Etobicoke",
+    "address": null,
+    "description": "A bright, comfortable Jimmy's location on Lake Shore Boulevard in Etobicoke.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [],
+    "website_url": "https://jimmyscoffee.ca",
+    "source": "Toronto cafe guides (web research, Nov 2026)"
+  },
+  {
+    "name": "FIKA Cafe",
+    "neighbourhood": "Kensington Market",
+    "address": "28 Kensington Ave, Toronto, ON",
+    "description": "A Swedish-inspired cafe in a Kensington Market house, named for the Swedish coffee-and-cake break.",
+    "specialty_drinks": [
+      "Latte",
+      "Espresso",
+      "Tea"
+    ],
+    "food_offerings": [
+      "Cardamom buns",
+      "Swedish pastries",
+      "Baked goods"
+    ],
+    "cuisine_types": [
+      "Swedish",
+      "Scandinavian"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "fika"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Balzac's Coffee Roasters — Distillery",
+    "neighbourhood": "Distillery District",
+    "address": "1 Trinity St, Toronto, ON",
+    "description": "Balzac's flagship cafe in a restored Victorian industrial building in the Distillery District, with a chandelier and a mezzanine.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Pastries",
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster",
+      "heritage building"
+    ],
+    "website_url": "https://balzacs.com",
+    "source": "editorial"
+  },
+  {
+    "name": "Balzac's Coffee Roasters — Liberty Village",
+    "neighbourhood": "Liberty Village",
+    "address": null,
+    "description": "Balzac's Liberty Village cafe, a work-friendly stop for the neighbourhood's offices and condos.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Pastries",
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "roaster"
+    ],
+    "website_url": "https://balzacs.com",
+    "source": "editorial"
+  },
+  {
+    "name": "Found Coffee",
+    "neighbourhood": "Kensington Market",
+    "address": null,
+    "description": "A small independent coffee bar near College Street and Kensington Market.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Library Coffee",
+    "neighbourhood": "Queen West",
+    "address": null,
+    "description": "A quiet Queen West specialty coffee shop recommended for focused work, reading and solo visits.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Pour-over"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "work friendly",
+      "quiet",
+      "the library specialty coffee"
+    ],
+    "source": "https://cafesintoronto.pages.dev/blog/top-10-toronto-coffee-shops-west-end"
+  },
+  {
+    "name": "Fahrenheit Coffee",
+    "neighbourhood": "St. Lawrence",
+    "address": "120 Lombard St, Toronto, ON",
+    "description": "A respected downtown roaster and espresso bar near St. Lawrence Market, known for carefully pulled shots.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Cappuccino"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "De Mello Coffee — Yorkville",
+    "neighbourhood": "Yorkville",
+    "address": null,
+    "description": "A lively Yorkville location of the Toronto specialty roaster De Mello, popular for coffee to go.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Cappuccino"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster",
+      "takeaway"
+    ],
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+  },
+  {
+    "name": "I Deal Coffee",
+    "neighbourhood": "Kensington Market",
+    "address": "84 Nassau St, Toronto, ON",
+    "description": "A long-running Kensington Market coffee house that roasts its own beans in small batches.",
+    "specialty_drinks": [
+      "Espresso",
+      "Drip coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster",
+      "small batch"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Moonbean Coffee Company",
+    "neighbourhood": "Kensington Market",
+    "address": "30 St Andrew St, Toronto, ON",
+    "description": "A Kensington Market institution roasting organic and fair-trade coffee in house, with a leafy front patio.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Chai latte",
+      "Loose-leaf tea"
+    ],
+    "food_offerings": [
+      "Baked goods",
+      "Vegan treats",
+      "Sandwiches"
+    ],
+    "cuisine_types": [
+      "Vegan-friendly"
+    ],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "organic",
+      "fair trade",
+      "roasts in house",
+      "patio"
+    ],
+    "website_url": "https://moonbeancoffee.com",
+    "featured": true,
+    "source": "editorial"
+  },
+  {
+    "name": "Quantum Coffee",
+    "neighbourhood": "King West",
+    "address": "460 King St W, Toronto, ON",
+    "description": "A spacious King West roastery-cafe with a laptop-friendly room and coffee roasted on site.",
+    "specialty_drinks": [
+      "Espresso",
+      "Pour-over",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Pastries"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster",
+      "work friendly"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Rooster Coffee House — Broadview",
+    "neighbourhood": "Riverside",
+    "address": "479 Broadview Ave, Toronto, ON",
+    "description": "A neighbourhood coffee house across from Riverdale Park East, with one of the best skyline views from any cafe in the city.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Pastries",
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "park view"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Te Aro",
+    "neighbourhood": "Leslieville",
+    "address": "983 Queen St E, Toronto, ON",
+    "description": "A Leslieville roastery-cafe in a big, bright room on Queen Street East.",
+    "specialty_drinks": [
+      "Espresso",
+      "Pour-over",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Tandem Coffee",
+    "neighbourhood": "Corktown",
+    "address": "368 King St E, Toronto, ON",
+    "description": "A minimalist King East specialty coffee bar with a focus on carefully brewed filter coffee.",
+    "specialty_drinks": [
+      "Espresso",
+      "Pour-over"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Odin Cafe + Bar",
+    "neighbourhood": "Corktown",
+    "address": "514 King St E, Toronto, ON",
+    "description": "A Scandinavian-style cafe by day and bar by night in a light-filled room on King East.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Pastries"
+    ],
+    "cuisine_types": [
+      "Scandinavian"
+    ],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "bar"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "White Squirrel Coffee Shop",
+    "neighbourhood": "Trinity Bellwoods",
+    "address": "907 Queen St W, Toronto, ON",
+    "description": "A small coffee shop at the corner of Trinity Bellwoods Park, named after the park's famous white squirrels.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "park"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Rooms Coffee",
+    "neighbourhood": "Ossington",
+    "address": null,
+    "description": "An Ossington cafe recommended for early mornings, working and neighbourhood regulars.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "work friendly"
+    ],
+    "source": "https://cafesintoronto.pages.dev/blog/top-10-toronto-coffee-shops-west-end"
+  },
+  {
+    "name": "The Matcha Tokyo",
+    "neighbourhood": "Ossington",
+    "address": null,
+    "description": "A matcha-focused cafe brand that made its Canadian debut on the Ossington strip.",
+    "specialty_drinks": [
+      "Matcha latte",
+      "Iced matcha",
+      "Ceremonial matcha"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Matcha Cafe",
+      "Japanese Cafe"
+    ],
+    "tags": [
+      "green tea"
+    ],
+    "source": "https://canadas100best.com/stories/matcha-tokyo-toronto-ossington-debut/"
+  },
+  {
+    "name": "Ezra's Pound",
+    "neighbourhood": "The Annex",
+    "address": "238 Dupont St, Toronto, ON",
+    "description": "A friendly Annex-area cafe on Dupont that has been a neighbourhood fixture for years.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Neighbourhood Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Manic Coffee",
+    "neighbourhood": "Little Italy",
+    "address": "426 College St, Toronto, ON",
+    "description": "A College Street specialty coffee bar near Bathurst with a serious approach to espresso.",
+    "specialty_drinks": [
+      "Espresso",
+      "Pour-over",
+      "Latte"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Cafe Pamenar",
+    "neighbourhood": "Kensington Market",
+    "address": "307 Augusta Ave, Toronto, ON",
+    "description": "A relaxed Kensington Market cafe by day that turns into a bar in the evening.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "bar"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Wanda's Pie in the Sky",
+    "neighbourhood": "Kensington Market",
+    "address": "287 Augusta Ave, Toronto, ON",
+    "description": "A Kensington Market bakery-cafe famous for its fruit pies and cakes by the slice.",
+    "specialty_drinks": [
+      "Drip coffee",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Pies",
+      "Cakes",
+      "Cookies",
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "pie"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Café Diplomatico",
+    "neighbourhood": "Little Italy",
+    "address": "594 College St, Toronto, ON",
+    "description": "A classic Little Italy cafe and patio at College and Clinton, serving espresso, pizza and pasta since the late 1960s.",
+    "specialty_drinks": [
+      "Espresso",
+      "Cappuccino"
+    ],
+    "food_offerings": [
+      "Pizza",
+      "Pasta",
+      "Sandwiches"
+    ],
+    "cuisine_types": [
+      "Italian"
+    ],
+    "cafe_categories": [
+      "Traditional Cafe",
+      "Brunch Cafe"
+    ],
+    "tags": [
+      "patio",
+      "espresso bar"
+    ],
+    "featured": true,
+    "source": "editorial"
+  },
+  {
+    "name": "Sicilian Sidewalk Café",
+    "neighbourhood": "Little Italy",
+    "address": "712 College St, Toronto, ON",
+    "description": "An old-school Little Italy gelateria and espresso bar on College Street.",
+    "specialty_drinks": [
+      "Espresso",
+      "Cappuccino"
+    ],
+    "food_offerings": [
+      "Gelato",
+      "Italian pastries"
+    ],
+    "cuisine_types": [
+      "Italian"
+    ],
+    "cafe_categories": [
+      "Traditional Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "gelato",
+      "patio"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Golden Wheat Bakery",
+    "neighbourhood": "Little Italy",
+    "address": "652 College St, Toronto, ON",
+    "description": "A Portuguese bakery and cafe on College Street known for its custard tarts and sandwiches.",
+    "specialty_drinks": [
+      "Espresso",
+      "Galão"
+    ],
+    "food_offerings": [
+      "Pastel de nata",
+      "Sandwiches",
+      "Bread",
+      "Pastries"
+    ],
+    "cuisine_types": [
+      "Portuguese"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Traditional Cafe"
+    ],
+    "tags": [
+      "custard tarts"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Nova Era Bakery",
+    "neighbourhood": "Little Portugal",
+    "address": null,
+    "description": "A Toronto Portuguese bakery with an espresso counter, serving natas, breads and savoury pastries.",
+    "specialty_drinks": [
+      "Espresso",
+      "Galão"
+    ],
+    "food_offerings": [
+      "Pastel de nata",
+      "Bread",
+      "Pastries"
+    ],
+    "cuisine_types": [
+      "Portuguese"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Traditional Cafe"
+    ],
+    "tags": [
+      "custard tarts"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Lady Marmalade",
+    "neighbourhood": "Riverside",
+    "address": "265 Broadview Ave, Toronto, ON",
+    "description": "A beloved east-end brunch spot known for its eggs benny variations and weekend lineups.",
+    "specialty_drinks": [
+      "Drip coffee",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Eggs benedict",
+      "Brunch plates",
+      "All-day breakfast"
+    ],
+    "cuisine_types": [
+      "Brunch"
+    ],
+    "cafe_categories": [
+      "Brunch Cafe"
+    ],
+    "tags": [
+      "weekend brunch"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "The Federal",
+    "neighbourhood": "Brockton Village",
+    "address": null,
+    "description": "A Dundas West brunch spot with a relaxed, neighbourhood feel.",
+    "specialty_drinks": [
+      "Drip coffee",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Brunch plates",
+      "All-day breakfast"
+    ],
+    "cuisine_types": [
+      "Brunch"
+    ],
+    "cafe_categories": [
+      "Brunch Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Saving Grace",
+    "neighbourhood": "Trinity Bellwoods",
+    "address": null,
+    "description": "A small, much-loved Dundas West brunch restaurant with a creative breakfast menu.",
+    "specialty_drinks": [
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Brunch plates",
+      "All-day breakfast"
+    ],
+    "cuisine_types": [
+      "Brunch"
+    ],
+    "cafe_categories": [
+      "Brunch Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Nadège Patisserie",
+    "neighbourhood": "Trinity Bellwoods",
+    "address": "780 Queen St W, Toronto, ON",
+    "description": "A French patisserie across from Trinity Bellwoods Park, known for its macarons, croissants and plated cakes.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Macarons",
+      "Croissants",
+      "Cakes",
+      "Viennoiserie"
+    ],
+    "cuisine_types": [
+      "French"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "patisserie"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Sud Forno — Queen West",
+    "neighbourhood": "Queen West",
+    "address": "716 Queen St W, Toronto, ON",
+    "description": "An Italian bakery and espresso bar from the Terroni team, with breads, pastries and pizza al taglio.",
+    "specialty_drinks": [
+      "Espresso",
+      "Cappuccino"
+    ],
+    "food_offerings": [
+      "Italian pastries",
+      "Bread",
+      "Pizza",
+      "Sandwiches"
+    ],
+    "cuisine_types": [
+      "Italian"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe"
+    ],
+    "tags": [
+      "espresso bar"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Forno Cultura",
+    "neighbourhood": "King West",
+    "address": "609 King St W, Toronto, ON",
+    "description": "An Italian artisan bakery on King West with breads, pastries and espresso.",
+    "specialty_drinks": [
+      "Espresso",
+      "Cappuccino"
+    ],
+    "food_offerings": [
+      "Italian pastries",
+      "Bread",
+      "Cookies"
+    ],
+    "cuisine_types": [
+      "Italian"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Little Pebbles",
+    "neighbourhood": "Kensington Market",
+    "address": "160 Baldwin St, Toronto, ON",
+    "description": "A small Japanese-inspired cafe in Kensington Market serving matcha and hojicha drinks and Japanese-style sweets.",
+    "specialty_drinks": [
+      "Matcha latte",
+      "Hojicha latte",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Japanese-inspired desserts"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Japanese Cafe",
+      "Matcha Cafe"
+    ],
+    "tags": [
+      "green tea"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "915 Dupont",
+    "neighbourhood": "Dupont",
+    "address": "915 Dupont St, Toronto, ON",
+    "description": "A kissaten-style space: matcha and espresso by day for work-from-homers, a DJ-driven listening bar after dusk.",
+    "specialty_drinks": [
+      "Matcha",
+      "Espresso"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Japanese Cafe",
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "kissaten",
+      "listening bar"
+    ],
+    "source": "https://canadas100best.com/list/2026/915-dupont-2026/"
+  },
+  {
+    "name": "Tsuchi Cafe",
+    "neighbourhood": "Little Italy",
+    "address": "688 College St, Toronto, ON",
+    "description": "A Japanese cafe on College Street with plant-based sandwiches, soups and sweets.",
+    "specialty_drinks": [
+      "Coffee",
+      "Tea drinks"
+    ],
+    "food_offerings": [
+      "Plant-based sandwiches",
+      "Soups",
+      "Sweets"
+    ],
+    "cuisine_types": [
+      "Japanese",
+      "Vegan"
+    ],
+    "cafe_categories": [
+      "Japanese Cafe"
+    ],
+    "tags": [
+      "plant based"
+    ],
+    "source": "https://www.hungry416.com/?p=5974"
+  },
+  {
+    "name": "Ohiru Cafe",
+    "neighbourhood": "Harbord Village",
+    "address": "370 College St, Toronto, ON",
+    "description": "A College Street cafe serving modern Japanese-inspired brunch and handcrafted drinks.",
+    "specialty_drinks": [
+      "Handcrafted cafe drinks"
+    ],
+    "food_offerings": [
+      "Japanese-inspired brunch"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Japanese Cafe",
+      "Brunch Cafe"
+    ],
+    "tags": [],
+    "source": "https://www.hungry416.com/?p=5974"
+  },
+  {
+    "name": "Film Cafe",
+    "neighbourhood": "Kensington Market",
+    "address": "230 Augusta Ave, Toronto, ON",
+    "description": "A Kensington Market cafe with Japanese- and Mexican-inspired food that hosts live music and comedy.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Japanese-inspired food",
+      "Mexican-inspired food"
+    ],
+    "cuisine_types": [
+      "Japanese",
+      "Mexican"
+    ],
+    "cafe_categories": [
+      "Japanese Cafe"
+    ],
+    "tags": [
+      "live music",
+      "comedy"
+    ],
+    "source": "https://www.hungry416.com/?p=5974"
+  },
+  {
+    "name": "Fuwa Fuwa Dessert Cafe",
+    "neighbourhood": "The Annex",
+    "address": "408 Bloor St W, Toronto, ON",
+    "description": "An Annex dessert cafe specializing in jiggly Japanese soufflé pancakes with a long list of toppings.",
+    "specialty_drinks": [
+      "Cafe drinks"
+    ],
+    "food_offerings": [
+      "Soufflé pancakes"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Dessert Cafe",
+      "Japanese Cafe"
+    ],
+    "tags": [
+      "pancakes"
+    ],
+    "source": "https://www.hungry416.com/?p=5974"
+  },
+  {
+    "name": "Fluffy Fluffy Dessert Cafe",
+    "neighbourhood": "Midtown",
+    "address": "2471 Yonge St, Toronto, ON",
+    "description": "A Yonge and Eglinton dessert cafe known for Japanese-style soufflé pancakes.",
+    "specialty_drinks": [
+      "Refreshing drinks"
+    ],
+    "food_offerings": [
+      "Soufflé pancakes"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Dessert Cafe",
+      "Japanese Cafe"
+    ],
+    "tags": [
+      "pancakes"
+    ],
+    "source": "https://www.hungry416.com/?p=5974"
+  },
+  {
+    "name": "Lait Night",
+    "neighbourhood": "Chinatown",
+    "address": "81 Huron St, Main Floor, Toronto, ON",
+    "description": "A dessert cafe near Baldwin Village serving Japanese-inspired desserts and handcrafted beverages.",
+    "specialty_drinks": [
+      "Handcrafted beverages"
+    ],
+    "food_offerings": [
+      "Japanese-inspired desserts"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Dessert Cafe",
+      "Japanese Cafe"
+    ],
+    "tags": [],
+    "source": "https://www.hungry416.com/?p=5974"
+  },
+  {
+    "name": "Cafe Wanoka",
+    "neighbourhood": "Scarborough",
+    "address": "2101 Brimley Rd, Scarborough, ON",
+    "description": "A Scarborough cafe for Japanese sweets: mochi, cakes and traditional wagashi.",
+    "specialty_drinks": [
+      "Japanese tea",
+      "Cafe drinks"
+    ],
+    "food_offerings": [
+      "Mochi",
+      "Wagashi",
+      "Cakes",
+      "Japanese pastries"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Dessert Cafe",
+      "Japanese Cafe"
+    ],
+    "tags": [],
+    "source": "https://www.hungry416.com/?p=5974"
+  },
+  {
+    "name": "Soul Cafe",
+    "neighbourhood": "North York",
+    "address": "23 Drewry Ave, North York, ON",
+    "description": "A Korean cafe near Yonge and Finch known for its shaved-ice desserts.",
+    "specialty_drinks": [
+      "Coffee",
+      "Tea"
+    ],
+    "food_offerings": [
+      "Bingsu (shaved ice)"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "bingsu",
+      "shaved ice"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "Cafe Kray",
+    "neighbourhood": "North York",
+    "address": "4850 Yonge St, Floor 2, North York, ON",
+    "description": "A second-floor North York cafe serving ethically sourced coffee and tea with Korean desserts.",
+    "specialty_drinks": [
+      "Coffee",
+      "Tea"
+    ],
+    "food_offerings": [
+      "Korean desserts"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe"
+    ],
+    "tags": [
+      "ethically sourced"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "Cafe Daily",
+    "neighbourhood": "North York",
+    "address": "5519 Yonge St, North York, ON",
+    "description": "A North York Korean cafe for coffee, bingsu and desserts.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Bingsu (shaved ice)",
+      "Desserts"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "bingsu"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "The Cups",
+    "neighbourhood": "North York",
+    "address": "5647 Yonge St, 2nd Floor, North York, ON",
+    "description": "A second-floor Korean dessert cafe on Yonge with bingsu, cakes and other sweets.",
+    "specialty_drinks": [
+      "Coffee",
+      "Tea"
+    ],
+    "food_offerings": [
+      "Bingsu (shaved ice)",
+      "Cakes"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "bingsu"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "Dear & Fro",
+    "neighbourhood": "Scarborough",
+    "address": "3300 Midland Ave #39, Scarborough, ON",
+    "description": "A Scarborough cafe specializing in contemporary Korean desserts.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Contemporary Korean desserts"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "JJIN Toast",
+    "neighbourhood": "Koreatown",
+    "address": "792 Bathurst St, Toronto, ON",
+    "description": "A Bathurst Street spot near Bloor for Korean street-style toast sandwiches.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Korean toast sandwiches"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe"
+    ],
+    "tags": [
+      "korean toast",
+      "street food"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "Hodo Kwaja",
+    "neighbourhood": "Koreatown",
+    "address": "656 Bloor St W, Toronto, ON",
+    "description": "A Koreatown shop on Bloor named for hodo-kwaja, the walnut-shaped Korean cake, also serving shaved ice.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Walnut cakes (hodo-kwaja)",
+      "Shaved ice"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "bingsu"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "Dessert Fox",
+    "neighbourhood": "Koreatown",
+    "address": "635 Bloor St W, Toronto, ON",
+    "description": "A Koreatown dessert cafe best known for its croffles (croissant waffles).",
+    "specialty_drinks": [
+      "Coffee",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Croffles"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "croffle"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "HANBINGO",
+    "neighbourhood": "Chinatown",
+    "address": "397 Spadina Ave, Toronto, ON",
+    "description": "A Spadina Avenue Korean dessert cafe specializing in bingsu.",
+    "specialty_drinks": [
+      "Cafe drinks"
+    ],
+    "food_offerings": [
+      "Bingsu (shaved ice)"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "bingsu",
+      "한빙고"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "Snowday Bingsu & Dessert Cafe",
+    "neighbourhood": "Church-Wellesley",
+    "address": "449 Church St, Toronto, ON",
+    "description": "A Church Street Korean dessert cafe serving bingsu, with coffee from Toronto roaster De Mello.",
+    "specialty_drinks": [
+      "De Mello coffee",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Bingsu (shaved ice)",
+      "Desserts"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "bingsu"
+    ],
+    "source": "https://www.hungry416.com/?p=6805"
+  },
+  {
+    "name": "Hẻm Social",
+    "neighbourhood": "Little Portugal",
+    "address": null,
+    "description": "A Little Portugal Vietnamese cafe pouring traditional drip coffee sweetened with condensed milk.",
+    "specialty_drinks": [
+      "Vietnamese drip coffee (phin)",
+      "Vietnamese iced coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "ca phe sua da",
+      "condensed milk"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "Coffee Dak Lak",
+    "neighbourhood": "Kensington Market",
+    "address": null,
+    "description": "A Vietnamese coffee shop near Kensington Market (one of several Dak Lak locations) known for its egg coffee.",
+    "specialty_drinks": [
+      "Egg coffee",
+      "Vietnamese coffee",
+      "Low-caffeine Vietnamese coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "ca phe trung"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "Cactus Vietnamese Tea and Coffee",
+    "neighbourhood": "Koreatown",
+    "address": null,
+    "description": "One of Toronto's most beloved Vietnamese cafes, using coffee from Lam Dong and making creamy salted and yogurt coffees.",
+    "specialty_drinks": [
+      "Iced yogurt coffee",
+      "Sea salt creamy coffee",
+      "Vietnamese coffee",
+      "Bubble tea"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "salt coffee",
+      "boba"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "Rustle & Still",
+    "neighbourhood": "Koreatown",
+    "address": null,
+    "description": "A Koreatown Vietnamese cafe pairing phin coffee and pandan-matcha lattes with fusion banh mi.",
+    "specialty_drinks": [
+      "Vietnamese iced coffee",
+      "Coconut condensed-milk coffee",
+      "Matcha pandan latte",
+      "Purple sweet potato latte"
+    ],
+    "food_offerings": [
+      "Fusion banh mi"
+    ],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe",
+      "Matcha Cafe"
+    ],
+    "tags": [
+      "pandan"
+    ],
+    "featured": true,
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "The Oats Kafé",
+    "neighbourhood": "Church-Wellesley",
+    "address": null,
+    "description": "A cosy Vietnamese coffee shop near the Church-Wellesley Village serving bac xiu and coconut coffee.",
+    "specialty_drinks": [
+      "Bac xiu (white coffee)",
+      "Coconut coffee",
+      "Vietnamese coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "Playground Cafe",
+    "neighbourhood": "Cabbagetown",
+    "address": null,
+    "description": "A Cabbagetown Vietnamese cafe with salted cream coffee, coconut coffee and a mango-tea 'mangocha'.",
+    "specialty_drinks": [
+      "Salted creme coffee",
+      "Coconut coffee",
+      "Bac xiu",
+      "Mangocha"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "salt coffee"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "+84 Café",
+    "neighbourhood": "Little Italy",
+    "address": null,
+    "description": "A Vietnamese cafe near Little Italy, named for Vietnam's dialling code, known for egg, salt and durian coffees.",
+    "specialty_drinks": [
+      "Egg coffee",
+      "Salt coffee",
+      "Durian coffee",
+      "Traditional Vietnamese coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "plus 84"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "LÀ LÁ Bakeshop",
+    "neighbourhood": "The Annex",
+    "address": null,
+    "description": "An Annex Vietnamese bakeshop pairing cream-topped coffees with Vietnamese-inspired cakes and croissants.",
+    "specialty_drinks": [
+      "Iced coconut coffee",
+      "Salted cream coffee",
+      "Pandan cream coffee",
+      "Durian cream coffee"
+    ],
+    "food_offerings": [
+      "Vietnamese-inspired cakes",
+      "Croissants"
+    ],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe",
+      "Bakery & Cafe"
+    ],
+    "tags": [
+      "pandan"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "Cộng Cà Phê — Annex",
+    "neighbourhood": "The Annex",
+    "address": null,
+    "description": "Toronto outpost of the hugely popular Hanoi-born cafe chain, known for its coconut coffee and retro decor.",
+    "specialty_drinks": [
+      "Coconut coffee",
+      "Bac xiu",
+      "Vietnamese coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "cong caphe"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "Cộng Cà Phê — Yonge Street",
+    "neighbourhood": "Downtown Yonge",
+    "address": null,
+    "description": "Cộng Cà Phê's downtown Yonge Street location, serving the chain's signature coconut coffee.",
+    "specialty_drinks": [
+      "Coconut coffee",
+      "Bac xiu",
+      "Vietnamese coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "cong caphe"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "Dzô Viet Eatery",
+    "neighbourhood": "Chinatown",
+    "address": null,
+    "description": "A Vietnamese restaurant across from the Art Gallery of Ontario, worth a stop for its egg crème coffee.",
+    "specialty_drinks": [
+      "Egg crème coffee",
+      "Vietnamese coffee"
+    ],
+    "food_offerings": [
+      "Vietnamese dishes"
+    ],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "egg coffee",
+      "restaurant"
+    ],
+    "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
+  },
+  {
+    "name": "Banh Haus",
+    "neighbourhood": "Chinatown",
+    "address": null,
+    "description": "A Chinatown counter for banh mi, vermicelli bowls and Vietnamese iced coffee.",
+    "specialty_drinks": [
+      "Vietnamese iced coffee"
+    ],
+    "food_offerings": [
+      "Banh mi",
+      "Vermicelli bowls"
+    ],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [],
+    "source": "https://torontolife.com/food/whats-on-the-takeout-menu-at-banh-haus-chinatowns-new-spot-for-banh-mi-vermicelli-bowls-and-vietnamese-iced-coffee/"
+  },
+  {
+    "name": "Phin Cafe Bar",
+    "neighbourhood": "Scarborough",
+    "address": null,
+    "description": "A Vietnamese coffee shop tucked inside Scarborough's Sky City Shopping Centre, opened in October 2025.",
+    "specialty_drinks": [
+      "Vietnamese phin coffee",
+      "Vietnamese iced coffee"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe"
+    ],
+    "tags": [
+      "sky city"
+    ],
+    "source": "https://www.blogto.com/cafes/phin-cafe-bar-toronto/"
+  },
+  {
+    "name": "Bonjour Brioche",
+    "neighbourhood": "Leslieville",
+    "address": "812 Queen St E, Toronto, ON",
+    "description": "A Leslieville French bakery and brunch spot famous for its croissants and weekend crowds.",
+    "specialty_drinks": [
+      "Espresso",
+      "Café au lait"
+    ],
+    "food_offerings": [
+      "Croissants",
+      "Brioche",
+      "Quiche",
+      "Brunch plates"
+    ],
+    "cuisine_types": [
+      "French"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Brunch Cafe"
+    ],
+    "tags": [
+      "viennoiserie"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Mercury Espresso Bar",
+    "neighbourhood": "Leslieville",
+    "address": "915 Queen St E, Toronto, ON",
+    "description": "A narrow, long-running Leslieville espresso bar on Queen East.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "espresso bar"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Jet Fuel Coffee",
+    "neighbourhood": "Cabbagetown",
+    "address": "519 Parliament St, Toronto, ON",
+    "description": "A Cabbagetown espresso bar with a cult following and a cycling-culture crowd.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "espresso bar"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Brick Street Bakery",
+    "neighbourhood": "Distillery District",
+    "address": "55 Mill St, Toronto, ON",
+    "description": "A Distillery District bakery with breads, sausage rolls, pastries and coffee.",
+    "specialty_drinks": [
+      "Drip coffee",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Bread",
+      "Pastries",
+      "Sausage rolls",
+      "Croissants"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Bakery & Cafe"
+    ],
+    "tags": [],
+    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/"
+  },
+  {
+    "name": "Arvo Coffee",
+    "neighbourhood": "Distillery District",
+    "address": null,
+    "description": "An independent specialty coffee shop in the Distillery District.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [],
+    "source": "https://www.torontotourism.org/best-coffee-shops-toronto/"
+  },
+  {
+    "name": "SOMA Chocolatemaker — Distillery",
+    "neighbourhood": "Distillery District",
+    "address": "32 Tank House Ln, Toronto, ON",
+    "description": "A bean-to-bar chocolate maker in the Distillery District, with drinking chocolate and espresso alongside its bars and truffles.",
+    "specialty_drinks": [
+      "Drinking chocolate",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Chocolate bars",
+      "Truffles",
+      "Gelato"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "hot chocolate",
+      "bean to bar"
+    ],
+    "website_url": "https://www.somachocolate.com",
+    "source": "editorial"
+  },
+  {
+    "name": "Athens Pastries",
+    "neighbourhood": "Danforth",
+    "address": "509 Danforth Ave, Toronto, ON",
+    "description": "A Greektown bakery best known for its spanakopita and Greek custard pies.",
+    "specialty_drinks": [
+      "Greek coffee",
+      "Frappé"
+    ],
+    "food_offerings": [
+      "Spanakopita",
+      "Galaktoboureko",
+      "Bougatsa",
+      "Pastries"
+    ],
+    "cuisine_types": [
+      "Greek"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Traditional Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Serano Bakery",
+    "neighbourhood": "Danforth",
+    "address": "830 Pape Ave, Toronto, ON",
+    "description": "A Greek bakery just north of the Danforth, with phyllo pastries, breads and coffee.",
+    "specialty_drinks": [
+      "Greek coffee",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Spanakopita",
+      "Phyllo pastries",
+      "Bread"
+    ],
+    "cuisine_types": [
+      "Greek"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Traditional Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Red Rocket Coffee — Danforth",
+    "neighbourhood": "Danforth",
+    "address": null,
+    "description": "An east-end neighbourhood coffee shop with house-baked goods.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Neighbourhood Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "The Remarkable Bean",
+    "neighbourhood": "The Beaches",
+    "address": "2242 Queen St E, Toronto, ON",
+    "description": "A Beaches favourite on Queen East, roasting its own coffee for the neighbourhood since the 1990s.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte",
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Baked goods",
+      "Sandwiches"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Neighbourhood Cafe",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Crema Coffee Co. — Junction",
+    "neighbourhood": "The Junction",
+    "address": null,
+    "description": "A Junction neighbourhood coffee shop on Dundas West.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Cherry Bomb",
+    "neighbourhood": "Roncesvalles",
+    "address": "79 Roncesvalles Ave, Toronto, ON",
+    "description": "A Roncesvalles coffee shop with house-made baked goods, a staple of the strip.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods",
+      "Cookies"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Mabel's Bakery — Roncesvalles",
+    "neighbourhood": "Roncesvalles",
+    "address": "323 Roncesvalles Ave, Toronto, ON",
+    "description": "A Roncesvalles bakery and specialty food shop with scones, pies, breads and coffee to go.",
+    "specialty_drinks": [
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Scones",
+      "Pies",
+      "Bread",
+      "Prepared foods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Bakery & Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Terminal 3 Roasters",
+    "neighbourhood": "Etobicoke",
+    "address": "3337 Lake Shore Blvd W, Etobicoke, ON",
+    "description": "A pour-over-focused roaster on Lake Shore West with a well-chosen bean selection and a solid latte menu.",
+    "specialty_drinks": [
+      "Pour-over",
+      "Latte",
+      "Espresso"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Roastery"
+    ],
+    "tags": [
+      "roaster",
+      "single origin"
+    ],
+    "source": "https://th3rdwave.coffee/terminal-3-roasters"
+  },
+  {
+    "name": "Yellow Cup Café",
+    "neighbourhood": "Etobicoke",
+    "address": "225 The East Mall, Etobicoke, ON",
+    "description": "A homey Etobicoke hangout for locals, known for crêpes as well as coffee.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Crêpes"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Neighbourhood Cafe",
+      "Brunch Cafe"
+    ],
+    "tags": [
+      "crepes"
+    ],
+    "source": "Toronto cafe guides (web research, Nov 2026)"
+  },
+  {
+    "name": "The Sydney Grind",
+    "neighbourhood": "Etobicoke",
+    "address": null,
+    "description": "An Australian-style cafe in Etobicoke with treats like lamingtons and Anzac cookies.",
+    "specialty_drinks": [
+      "Flat white",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Lamingtons",
+      "Anzac cookies"
+    ],
+    "cuisine_types": [
+      "Australian"
+    ],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Bakery & Cafe"
+    ],
+    "tags": [
+      "aussie"
+    ],
+    "source": "Toronto cafe guides (web research, Nov 2026)"
+  },
+  {
+    "name": "Aesēt Coffee Co.",
+    "neighbourhood": "Yorkville",
+    "address": null,
+    "description": "A bright, well-designed specialty cafe and one of the most-reviewed coffee shops in Yorkville.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "aeset"
+    ],
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+  },
+  {
+    "name": "Coco Espresso Bar",
+    "neighbourhood": "Yorkville",
+    "address": null,
+    "description": "Yorkville's go-to late-night coffee option, open into the evening on weekdays.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [
+      "late night"
+    ],
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+  },
+  {
+    "name": "Goldstruck Coffee",
+    "neighbourhood": "Yorkville",
+    "address": null,
+    "description": "A small, cosy below-ground cafe in Yorkville.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [
+      "Baked goods"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee",
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "hidden gem"
+    ],
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+  },
+  {
+    "name": "Jacked Up Coffee",
+    "neighbourhood": "Yorkville",
+    "address": null,
+    "description": "A tiny Yorkville coffee counter with some of the neighbourhood's most reliable lattes.",
+    "specialty_drinks": [
+      "Latte",
+      "Espresso"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [],
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+  },
+  {
+    "name": "Amadeus Patisserie",
+    "neighbourhood": "Yorkville",
+    "address": null,
+    "description": "A Yorkville patisserie for coffee with European-style pastries and cakes; go early on weekends.",
+    "specialty_drinks": [
+      "Espresso",
+      "Cappuccino"
+    ],
+    "food_offerings": [
+      "Pastries",
+      "Cakes",
+      "Croissants"
+    ],
+    "cuisine_types": [
+      "European"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "patisserie"
+    ],
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+  },
+  {
+    "name": "Virtu Café",
+    "neighbourhood": "Yorkville",
+    "address": null,
+    "description": "A calmer Yorkville cafe suited to sitting down and staying a while.",
+    "specialty_drinks": [
+      "Espresso",
+      "Latte"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Neighbourhood Cafe"
+    ],
+    "tags": [
+      "quiet"
+    ],
+    "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide"
+  },
+  {
+    "name": "Pain Perdu",
+    "neighbourhood": "Midtown",
+    "address": null,
+    "description": "A French bakery-cafe on St. Clair West with viennoiserie, quiche and brunch.",
+    "specialty_drinks": [
+      "Café au lait",
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Croissants",
+      "Quiche",
+      "Viennoiserie",
+      "Brunch plates"
+    ],
+    "cuisine_types": [
+      "French"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Brunch Cafe"
+    ],
+    "tags": [],
+    "source": "editorial"
+  },
+  {
+    "name": "Blackbird Baking Co.",
+    "neighbourhood": "Kensington Market",
+    "address": "172 Baldwin St, Toronto, ON",
+    "description": "A Kensington Market bakery known for naturally leavened breads, croissants and pastries.",
+    "specialty_drinks": [
+      "Drip coffee"
+    ],
+    "food_offerings": [
+      "Sourdough bread",
+      "Croissants",
+      "Pastries"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Bakery & Cafe"
+    ],
+    "tags": [
+      "sourdough"
+    ],
+    "source": "editorial"
+  },
+  {
+    "name": "Tsujiri",
+    "neighbourhood": "Downtown Yonge",
+    "address": "147 Dundas St W, Toronto, ON",
+    "description": "Toronto outpost of the Kyoto tea house founded in 1860, serving matcha drinks, floats and soft serve.",
+    "specialty_drinks": [
+      "Matcha latte",
+      "Matcha float",
+      "Hojicha latte"
+    ],
+    "food_offerings": [
+      "Matcha soft serve",
+      "Matcha desserts"
+    ],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Matcha Cafe",
+      "Japanese Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [
+      "green tea",
+      "kyoto"
+    ],
+    "source": "https://blogto.com/eat_drink/2022/02/tsujiri-toronto-locations"
+  },
+  {
+    "name": "The Brick Room",
+    "neighbourhood": "Financial District",
+    "address": "181 Bay St, Toronto, ON",
+    "description": "A cafe in the PATH at Brookfield Place known for its matcha and espresso, including strawberry and blueberry-lavender matcha lattes.",
+    "specialty_drinks": [
+      "Strawberry matcha latte",
+      "Blueberry-lavender matcha latte",
+      "Matcha latte"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Matcha Cafe"
+    ],
+    "tags": [
+      "green tea"
+    ],
+    "source": "https://blogto.com/cafes/the-brick-room-toronto"
+  },
+  {
+    "name": "Matcha Matcha — Church St",
+    "neighbourhood": "Church-Wellesley",
+    "address": "407 Church St, Toronto, ON",
+    "description": "The flagship of one of Toronto’s most popular matcha cafes, on Church Street.",
+    "specialty_drinks": [
+      "Matcha latte",
+      "Iced matcha",
+      "Ceremonial matcha"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Matcha Cafe"
+    ],
+    "tags": [
+      "green tea"
+    ],
+    "source": "https://www.blogto.com/eat_drink/2025/10/matcha-matcha-dundas-toronto/"
+  },
+  {
+    "name": "Matcha Matcha — Dundas",
+    "neighbourhood": "Chinatown",
+    "address": "294 Dundas St W, Toronto, ON",
+    "description": "Matcha Matcha’s second location on Dundas Street West, opened in October 2025.",
+    "specialty_drinks": [
+      "Matcha latte",
+      "Iced matcha",
+      "Ceremonial matcha"
+    ],
+    "food_offerings": [],
+    "cuisine_types": [
+      "Japanese"
+    ],
+    "cafe_categories": [
+      "Matcha Cafe"
+    ],
+    "tags": [
+      "green tea"
+    ],
+    "source": "https://www.blogto.com/eat_drink/2025/10/matcha-matcha-dundas-toronto/"
+  }
+]

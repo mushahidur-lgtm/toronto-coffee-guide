@@ -1,0 +1,82 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { SITE } from "@/lib/site";
+
+const NAV = [
+  { href: "/cafes", label: "Explore Cafes" },
+  { href: "/neighbourhoods", label: "Neighbourhoods" },
+  { href: "/about", label: "About" },
+];
+
+export function Header() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => setOpen(false), [pathname]);
+
+  return (
+    <header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/85">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:bg-paper focus:px-3 focus:py-2 focus:text-sm"
+      >
+        Skip to content
+      </a>
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
+        <Link href="/" className="text-[15px] font-semibold tracking-tight">
+          {SITE.name}
+        </Link>
+        <nav aria-label="Main" className="hidden md:block">
+          <ul className="flex items-center gap-8 text-sm">
+            {NAV.map((n) => {
+              const active = pathname === n.href || pathname.startsWith(n.href + "/");
+              return (
+                <li key={n.href}>
+                  <Link
+                    href={n.href}
+                    aria-current={active ? "page" : undefined}
+                    className={active ? "text-ink" : "text-muted transition-colors hover:text-ink"}
+                  >
+                    {n.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <button
+          type="button"
+          className="-mr-2 p-2 md:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((o) => !o)}
+        >
+          {open ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
+        </button>
+      </div>
+      {open && (
+        <nav id="mobile-nav" aria-label="Mobile" className="border-t border-line md:hidden">
+          <ul className="mx-auto max-w-7xl px-4 py-2">
+            {NAV.map((n) => (
+              <li key={n.href}>
+                <Link href={n.href} className="block border-b border-line py-3 text-base last:border-0">
+                  {n.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/map" className="block py-3 text-base">
+                Map
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      )}
+    </header>
+  );
+}

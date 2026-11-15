@@ -18,6 +18,17 @@ export function displayUrl(url: string): string {
   return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 }
 
+/** True for instagram.com / instagr.am profile links (some cafes use Instagram as their website). */
+export function isInstagramUrl(url: string | null | undefined): boolean {
+  if (!url) return false;
+  try {
+    const host = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+    return host === "instagram.com" || host.endsWith(".instagram.com") || host === "instagr.am";
+  } catch {
+    return false;
+  }
+}
+
 export function instagramHandle(url: string): string {
   const m = url.match(/instagram\.com\/([^/?#]+)/i);
   return m ? `@${m[1]}` : displayUrl(url);

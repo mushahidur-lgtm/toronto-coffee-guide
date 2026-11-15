@@ -6,7 +6,7 @@ import { getCafeBySlug, getCafeViews } from "@/lib/data";
 import { CafePhoto } from "@/components/CafePhoto";
 import { CafeCard } from "@/components/CafeCard";
 import { Hours } from "@/components/Hours";
-import { displayUrl, googleMapsDirectionsUrl, instagramHandle } from "@/lib/maps";
+import { displayUrl, googleMapsDirectionsUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
 import { neighbourhoodSlug } from "@/lib/neighbourhoods";
 import { parseHours, todayName } from "@/lib/hours";
 import { SITE } from "@/lib/site";
@@ -152,7 +152,8 @@ export default async function CafePage({ params }: Params) {
               {cafe.website_url && (
                 <li>
                   <a href={cafe.website_url} target="_blank" rel="noopener noreferrer" className="link-quiet inline-flex items-center gap-1">
-                    {displayUrl(cafe.website_url)} <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />
+                    {isInstagramUrl(cafe.website_url) ? `Instagram ${instagramHandle(cafe.website_url)}` : displayUrl(cafe.website_url)}{" "}
+                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />
                   </a>
                 </li>
               )}
@@ -171,7 +172,7 @@ export default async function CafePage({ params }: Params) {
                   Get directions <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />
                 </a>
               </li>
-              {cafe.instagram_url && (
+              {cafe.instagram_url && !(isInstagramUrl(cafe.website_url) && cafe.website_url === cafe.instagram_url) && (
                 <li>
                   <a href={cafe.instagram_url} target="_blank" rel="noopener noreferrer" className="link-quiet inline-flex items-center gap-1">
                     Instagram {instagramHandle(cafe.instagram_url)} <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />

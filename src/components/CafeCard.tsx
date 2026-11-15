@@ -3,7 +3,7 @@ import { ArrowUpRight, MapPin } from "lucide-react";
 import type { CafeView } from "@/lib/types";
 import { CafePhoto } from "./CafePhoto";
 import { Hours } from "./Hours";
-import { displayUrl } from "@/lib/maps";
+import { displayUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
 
 interface Props {
   cafe: CafeView;
@@ -75,9 +75,13 @@ export function CafeCard({ cafe, highlights = [], priority }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               className="link-quiet inline-flex items-center gap-1"
-              aria-label={`${cafe.name} website (${displayUrl(cafe.website_url)}), opens in a new tab`}
+              aria-label={
+                isInstagramUrl(cafe.website_url)
+                  ? `${cafe.name} on Instagram (${instagramHandle(cafe.website_url)}), opens in a new tab`
+                  : `${cafe.name} website (${displayUrl(cafe.website_url)}), opens in a new tab`
+              }
             >
-              Visit website <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />
+              {isInstagramUrl(cafe.website_url) ? "Instagram" : "Visit website"} <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />
             </a>
           )}
           <a

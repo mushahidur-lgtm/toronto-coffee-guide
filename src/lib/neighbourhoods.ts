@@ -28,6 +28,7 @@ export const NEIGHBOURHOODS: Neighbourhood[] = [
   { name: "Downtown Yonge", slug: "downtown-yonge", region: "Downtown", lat: 43.6561, lng: -79.3802, aliases: ["yonge and dundas", "yonge & dundas"] },
   { name: "Bay & College", slug: "bay-college", region: "Downtown", lat: 43.6604, lng: -79.3857, aliases: ["discovery district"] },
   { name: "Church-Wellesley", slug: "church-wellesley", region: "Downtown", lat: 43.665, lng: -79.381, aliases: ["the village", "church street"] },
+  { name: "St. James Town", slug: "st-james-town", region: "Downtown", lat: 43.6697, lng: -79.3738, aliases: ["st jamestown", "bloor east", "bloor and sherbourne", "sherbourne"] },
   { name: "Chinatown", slug: "chinatown", region: "Downtown", lat: 43.6529, lng: -79.398, aliases: ["spadina", "baldwin village"] },
   { name: "Kensington Market", slug: "kensington-market", region: "Downtown", lat: 43.6547, lng: -79.4005, aliases: ["kensington"] },
   { name: "Harbord Village", slug: "harbord-village", region: "Downtown", lat: 43.6615, lng: -79.4045, aliases: ["harbord"] },

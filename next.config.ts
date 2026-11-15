@@ -76,6 +76,12 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  // Old cafe URLs that changed when a listing was corrected. Permanent (308) so links and search results follow.
+  async redirects() {
+    return [
+      { source: "/cafes/de-mello-coffee-yorkville", destination: "/cafes/de-mello-coffee-bloor-east", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

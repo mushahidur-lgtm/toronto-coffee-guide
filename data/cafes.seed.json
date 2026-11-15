@@ -466,10 +466,10 @@
     "googleMapsUri": "https://maps.google.com/?cid=15784468381387369305&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
-    "name": "De Mello Coffee — Yorkville",
-    "neighbourhood": "Yorkville",
+    "name": "De Mello Coffee — Bloor East",
+    "neighbourhood": "St. James Town",
     "address": null,
-    "description": "A lively Yorkville location of the Toronto specialty roaster De Mello, popular for coffee to go.",
+    "description": "A De Mello Coffee cafe on Bloor Street East near Sherbourne, a short walk east of Yorkville, popular for coffee to go.",
     "specialty_drinks": [
       "Espresso",
       "Latte",
@@ -483,7 +483,8 @@
     ],
     "tags": [
       "roaster",
-      "takeaway"
+      "takeaway",
+      "bloor east"
     ],
     "source": "https://cafesintoronto.pages.dev/blog/yorkville-cafe-guide",
     "placeId": "ChIJQ29ouJzL1IkRXwvMR3mPdmc",

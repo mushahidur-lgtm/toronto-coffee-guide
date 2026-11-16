@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import type { CafeView } from "@/lib/types";
 import { CafePhoto } from "./CafePhoto";
+import { VenueBadge } from "./VenueBadge";
 import { formatDistance } from "@/lib/geo";
 import { Hours } from "./Hours";
 import { displayUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
@@ -40,10 +41,13 @@ export function CafeCard({ cafe, highlights = [], priority, distanceKm }: Props)
       />
 
       <div className="flex flex-1 flex-col pt-4">
-        <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-          {cafe.neighbourhood}
-          {distanceKm != null && <span className="normal-case tracking-normal"> · {formatDistance(distanceKm)} away</span>}
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
+            {cafe.neighbourhood}
+            {distanceKm != null && <span className="normal-case tracking-normal"> · {formatDistance(distanceKm)} away</span>}
+          </p>
+          <VenueBadge venue={cafe.venue_type} />
+        </div>
         <h3 className="mt-1.5 text-lg font-semibold leading-snug tracking-tight">
           <Link href={`/cafes/${cafe.slug}`} className="hover:underline hover:underline-offset-4">
             {cafe.name}

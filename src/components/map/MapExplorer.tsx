@@ -7,6 +7,7 @@ import { ArrowUpRight, LocateFixed, Search as SearchIcon, X } from "lucide-react
 import type { CafeView } from "@/lib/types";
 import { applyFilters, indexCafe, type Filters } from "@/lib/search";
 import { EXPLORER_CATEGORIES, type ExplorerCategory } from "@/lib/explorer";
+import type { VenueType } from "@/lib/venue";
 import { EMPTY_MAP_STATE, inBbox, mapStateToParams, movedSignificantly, parseMapState, type Bbox, type MapState } from "@/lib/map-state";
 import { googleMapsDirectionsUrl } from "@/lib/maps";
 import { isOpenNow, todayHoursText } from "@/lib/hours";
@@ -121,6 +122,12 @@ export function MapExplorer({ cafes, mode }: Props) {
   const visibleIds = useMemo(() => new Set(results.map((c) => c.id)), [results]);
   const unplaced = useMemo(() => new Set(results.filter((c) => !positions.get(c.id)).map((c) => c.id)), [results, positions]);
 
+  const venueCounts = useMemo(() => {
+    const counts: Record<VenueType, number> = { "specialty-cafe": 0, "tea-matcha": 0, "restaurant-coffee": 0 };
+    for (const c of cafes) counts[c.venue_type]++;
+    return counts;
+  }, [cafes]);
+
   const categoryCounts = useMemo(() => {
     const counts = Object.fromEntries(EXPLORER_CATEGORIES.map((c) => [c.slug, 0])) as Record<ExplorerCategory, number>;
     for (const c of cafes) for (const k of c.attributes.categories) counts[k]++;
@@ -226,7 +233,7 @@ export function MapExplorer({ cafes, mode }: Props) {
 
   const countLine = (
     <p className="text-sm text-muted" aria-live="polite">
-      <span className="font-medium text-ink">{results.length}</span> {results.length === 1 ? "cafe" : "cafes"}
+      <span className="font-medium text-ink">{results.length}</span> {results.length === 1 ? "place" : "places"}
       {unplaced.size > 0 && <> · {unplaced.size} not on the map</>}
       {state.bbox && <> · in this area</>}
     </p>
@@ -249,6 +256,8 @@ export function MapExplorer({ cafes, mode }: Props) {
       <QuickFilterBar
         state={state}
         categoryCounts={categoryCounts}
+        venueCounts={venueCounts}
+        onVenue={(v) => setFilters({ venue: v })}
         onQuery={(q) => setFilters({ query: q }, "replace")}
         onToggleCategory={toggleCategory}
         onToggle={toggle}

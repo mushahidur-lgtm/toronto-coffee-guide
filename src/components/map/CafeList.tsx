@@ -6,6 +6,7 @@ import { ArrowUpRight, Coffee, Laptop, Sun } from "lucide-react";
 import type { CafeView } from "@/lib/types";
 import { isOpenNow, todayHoursText } from "@/lib/hours";
 import { explorerLabel } from "@/lib/explorer";
+import { VenueBadge } from "../VenueBadge";
 import type { Selection } from "./shared";
 
 interface Props {
@@ -98,9 +99,12 @@ const Row = memo(function Row({
       >
         <span className="block text-[11px] font-medium uppercase tracking-[0.12em] text-muted">{c.neighbourhood}</span>
         <span className="mt-1 block font-semibold leading-snug tracking-tight">{c.name}</span>
-        {a.categories.length > 0 && (
-          <span className="mt-0.5 block truncate text-sm text-muted">{a.categories.slice(0, 2).map(explorerLabel).join(" · ")}</span>
-        )}
+        <span className="mt-1 flex min-w-0 items-center gap-2">
+          <VenueBadge venue={c.venue_type} />
+          {a.categories.length > 0 && (
+            <span className="truncate text-sm text-muted">{a.categories.slice(0, 2).map(explorerLabel).join(" · ")}</span>
+          )}
+        </span>
         <span className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
           {open === true && <span className="bg-ink px-1.5 py-px text-[11px] font-semibold text-paper">Open now</span>}
           {open === false && <span className="border border-line-strong px-1.5 text-[11px] text-muted">Closed</span>}

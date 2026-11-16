@@ -4,6 +4,7 @@ import { Clock, Laptop, Search, Sun, X } from "lucide-react";
 import { CAFE_TYPES } from "@/lib/types";
 import { FILTER_NEIGHBOURHOODS } from "@/lib/neighbourhoods";
 import { EXPLORER_CATEGORIES, type ExplorerCategory } from "@/lib/explorer";
+import { VENUE_TYPES, type VenueType } from "@/lib/venue";
 import type { MapState } from "@/lib/map-state";
 import { CheckList, Chip, FilterMenu } from "../FilterControls";
 
@@ -14,6 +15,8 @@ interface Props {
   onToggleCategory: (c: ExplorerCategory) => void;
   onToggle: (key: "openNow" | "laptop" | "patio") => void;
   onToggleList: (key: "neighbourhoods" | "types", value: string) => void;
+  venueCounts: Record<VenueType, number>;
+  onVenue: (v: VenueType | null) => void;
   onClearArea: () => void;
   onClearAll: () => void;
 }
@@ -28,10 +31,10 @@ const pill = (active: boolean, disabled = false) =>
   }`;
 
 /** Search, area/type menus, and a horizontally scrollable row of category + attribute pills. */
-export function QuickFilterBar({ state, categoryCounts, onQuery, onToggleCategory, onToggle, onToggleList, onClearArea, onClearAll }: Props) {
+export function QuickFilterBar({ state, categoryCounts, venueCounts, onVenue, onQuery, onToggleCategory, onToggle, onToggleList, onClearArea, onClearAll }: Props) {
   const f = state.filters;
   const anyActive =
-    !!f.query.trim() || f.neighbourhoods.length > 0 || f.types.length > 0 || f.openNow || state.categories.length > 0 || state.laptop || state.patio || !!state.bbox;
+    !!f.query.trim() || f.neighbourhoods.length > 0 || f.types.length > 0 || f.openNow || !!f.venue || state.categories.length > 0 || state.laptop || state.patio || !!state.bbox;
 
   return (
     <div className="shrink-0 border-b border-line bg-paper">
@@ -61,6 +64,16 @@ export function QuickFilterBar({ state, categoryCounts, onQuery, onToggleCategor
       {/* Scrollable pills. The fade on the right hints there's more. */}
       <div className="relative">
         <div className="flex gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] sm:px-6 [&::-webkit-scrollbar]:hidden" role="toolbar" aria-label="Quick filters">
+          {VENUE_TYPES.map((v) => {
+            const active = f.venue === v.slug;
+            return (
+              <button key={v.slug} type="button" aria-pressed={active} title={v.hint} onClick={() => onVenue(active ? null : v.slug)} className={pill(active)}>
+                {v.short}
+                <span className={`tabular-nums ${active ? "text-paper/70" : "text-muted"}`}>{venueCounts[v.slug]}</span>
+              </button>
+            );
+          })}
+          <span className="mx-1 w-px shrink-0 self-stretch bg-line" aria-hidden />
           <button type="button" aria-pressed={f.openNow} onClick={() => onToggle("openNow")} className={pill(f.openNow)}>
             <Clock size={14} strokeWidth={1.5} aria-hidden /> Open now
           </button>

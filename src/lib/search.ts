@@ -13,6 +13,13 @@
 import type { Cafe } from "./types";
 import { getNeighbourhood, matchesNeighbourhoodFilter } from "./neighbourhoods";
 import { isOpenNow } from "./hours";
+import { isVenueType, type VenueType } from "./venue";
+
+const VENUE_KEYWORDS: Record<VenueType, string> = {
+  "specialty-cafe": "cafe coffee shop",
+  "tea-matcha": "tea house tea shop",
+  "restaurant-coffee": "restaurant bakery",
+};
 
 export function normalize(s: string): string {
   return s
@@ -63,8 +70,13 @@ const SYNONYMS_RAW: Record<string, string[]> = {
   "specialty coffee": ["specialty coffee", "roaster", "roastery", "pour over", "single origin", "third wave"],
   "pour over": ["pour over", "filter coffee", "pourover"],
   dessert: ["dessert", "dessert cafe", "bingsu", "cake", "gelato", "ice cream", "souffle pancake", "mochi", "macaron", "cheesecake"],
-  "bubble tea": ["bubble tea", "boba"],
-  tea: ["tea", "matcha", "hojicha", "chai", "genmaicha"],
+  "bubble tea": ["bubble tea", "boba", "milk tea"],
+  tea: ["tea", "matcha", "hojicha", "chai", "genmaicha", "bubble tea", "milk tea", "loose leaf", "tea house"],
+  chai: ["chai", "chai latte", "masala chai"],
+  "tea house": ["tea house", "tea room", "tea shop", "loose leaf", "bubble tea"],
+  "loose leaf": ["loose leaf", "loose leaf tea"],
+  "milk tea": ["milk tea", "bubble tea", "boba"],
+  restaurant: ["restaurant", "bistro", "diner", "brunch"],
   vegan: ["vegan", "plant based"],
   italian: ["italian", "espresso bar", "gelato", "cannoli"],
   greek: ["greek", "spanakopita", "galaktoboureko", "bougatsa"],
@@ -148,6 +160,8 @@ export function indexCafe<T extends Cafe>(cafe: T): IndexedCafe<T> {
   const hood = getNeighbourhood(cafe.neighbourhood);
   add("neighbourhood", 6, [cafe.neighbourhood, hood?.region, ...(hood?.aliases ?? [])].filter(Boolean).join(" · "));
   cafe.cafe_categories.forEach((c) => add("category", 6, c));
+  // Neutral venue keywords (not the display label: "Tea Houses & Matcha Bars" would make every tea shop match "matcha").
+  add("category", 4, VENUE_KEYWORDS[cafe.venue_type]);
   cafe.specialty_drinks.forEach((d) => add("drink", 5, d));
   cafe.food_offerings.forEach((f) => add("food", 5, f));
   cafe.cuisine_types.forEach((c) => add("cuisine", 5, c));
@@ -182,7 +196,9 @@ export function searchIndex<T extends Cafe>(index: IndexedCafe<T>[], query: stri
         let s = 0;
         let hl: string | null = null;
         // 1–2 letter words ("de", "co") only match whole words, or "de" would match "dessert".
-        const wholeWordOnly = t.length < 3;
+        // Whole words only for 1–2 letter words ("de" ≠ "dessert") and for complete known terms
+        // ("chai" ≠ "chain"); anything else may be a word still being typed, so it prefix-matches.
+        const wholeWordOnly = t.length < 3 || SYNONYMS.has(t);
         for (const f of fields) {
           if (!f.text.includes(wholeWordOnly ? ` ${t} ` : ` ${t}`)) continue;
           const exact = f.text.includes(` ${t} `) ? 1 : 0.7;
@@ -221,9 +237,11 @@ export interface Filters {
   sort: SortKey;
   /** Only cafes whose listed hours say they're open right now (Toronto time). Unknown hours are excluded. */
   openNow: boolean;
+  /** Primary venue type tab (null = all). */
+  venue: VenueType | null;
 }
 
-export const EMPTY_FILTERS: Filters = { query: "", neighbourhoods: [], types: [], sort: "relevance", openNow: false };
+export const EMPTY_FILTERS: Filters = { query: "", neighbourhoods: [], types: [], sort: "relevance", openNow: false, venue: null };
 
 /** Filters → URL params (inverse of filtersFromParams). Default values are left out. */
 export function filtersToParams(f: Filters): URLSearchParams {
@@ -233,6 +251,7 @@ export function filtersToParams(f: Filters): URLSearchParams {
   if (f.types.length) p.set("type", f.types.join(","));
   if (f.sort !== "relevance") p.set("sort", f.sort);
   if (f.openNow) p.set("open", "1");
+  if (f.venue) p.set("venue", f.venue);
   return p;
 }
 
@@ -254,6 +273,7 @@ export function filtersFromParams(get: (key: string) => string | null | undefine
     types: list("type"),
     sort: isSortKey(sort) ? sort : "relevance",
     openNow: get("open") === "1",
+    venue: isVenueType(get("venue")) ? (get("venue") as VenueType) : null,
   };
 }
 
@@ -261,6 +281,9 @@ export function applyFilters<T extends Cafe>(index: IndexedCafe<T>[], f: Filters
   let hits = searchIndex(index, f.query);
   if (f.openNow) {
     hits = hits.filter((h) => isOpenNow(h.cafe.opening_hours, now) === true);
+  }
+  if (f.venue) {
+    hits = hits.filter((h) => h.cafe.venue_type === f.venue);
   }
   if (f.neighbourhoods.length) {
     hits = hits.filter((h) => f.neighbourhoods.some((n) => matchesNeighbourhoodFilter(h.cafe.neighbourhood, n)));

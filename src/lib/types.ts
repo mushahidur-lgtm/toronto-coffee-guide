@@ -1,4 +1,5 @@
 import type { CafeAttributes, ExplorerCategory } from "./explorer";
+import type { VenueType } from "./venue";
 
 /** Category values used for the "Cafe type" filter. Free-form extra categories are allowed. */
 export const CAFE_TYPES = [
@@ -10,6 +11,7 @@ export const CAFE_TYPES = [
   "Bakery & Cafe",
   "Brunch Cafe",
   "Dessert Cafe",
+  "Tea House",
 ] as const;
 
 export type CafeType = (typeof CAFE_TYPES)[number];
@@ -66,6 +68,8 @@ export interface SeedCafe {
   laptop_friendly?: boolean;
   /** Part of a chain (Tim Hortons, Second Cup, …): listed under "Chains" on the map. */
   is_chain?: boolean;
+  /** Primary venue type (slug from lib/venue.ts). Overrides the derived one when set. */
+  venue_type?: string;
 }
 
 /** A row of the `cafes` table (or one entry of data/cafes.seed.json). */
@@ -106,6 +110,8 @@ export interface Cafe {
   roasts_in_house: boolean | null;
   laptop_friendly: boolean | null;
   is_chain: boolean;
+  /** Primary venue type: the editorial override, or derived from categories/tags. */
+  venue_type: VenueType;
   /** Where the editorial information came from. */
   source: string | null;
   created_at: string;

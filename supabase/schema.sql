@@ -107,3 +107,7 @@ alter table public.cafes add column if not exists has_patio boolean;
 alter table public.cafes add column if not exists roasts_in_house boolean;
 alter table public.cafes add column if not exists laptop_friendly boolean;
 alter table public.cafes add column if not exists is_chain boolean not null default false;
+
+-- Primary venue type (safe to re-run). NULL = derive from categories (see src/lib/venue.ts).
+alter table public.cafes add column if not exists venue_type text
+  check (venue_type is null or venue_type in ('specialty-cafe', 'tea-matcha', 'restaurant-coffee'));

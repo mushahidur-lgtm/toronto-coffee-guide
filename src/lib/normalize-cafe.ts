@@ -1,6 +1,7 @@
 import type { Cafe, VerificationStatus } from "./types";
 import { googleMapsSearchUrl } from "./maps";
 import { isExplorerCategory } from "./explorer";
+import { deriveVenueType, isVenueType } from "./venue";
 
 export function slugify(s: string): string {
   return s
@@ -97,6 +98,9 @@ export function normalizeCafe(raw: Record<string, unknown>): Cafe {
     roasts_in_house: bool(raw.roasts_in_house),
     laptop_friendly: bool(raw.laptop_friendly),
     is_chain: raw.is_chain === true,
+    venue_type: isVenueType(raw.venue_type)
+      ? raw.venue_type
+      : deriveVenueType({ cafe_categories: arr(raw.cafe_categories), tags: arr(raw.tags) }),
     source: str(raw.source),
     created_at: str(raw.created_at) ?? now,
     updated_at: str(raw.updated_at) ?? now,

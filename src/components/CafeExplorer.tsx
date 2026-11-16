@@ -10,6 +10,7 @@ import { CheckList, Chip, FilterMenu, usePopoverDismiss } from "./FilterControls
 import { QUICK_SEARCHES } from "@/lib/site";
 import { cafeLocation, distanceKm, type LatLng } from "@/lib/geo";
 import { CafeCard } from "./CafeCard";
+import { VENUE_TYPES, type VenueType } from "@/lib/venue";
 
 const PAGE = 12;
 
@@ -117,7 +118,17 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
 
   const deferred = useDeferredValue(filters);
   const stale = deferred !== filters;
-  const filtered = useMemo(() => applyFilters(index, deferred, now), [index, deferred, now]);
+  // Counts per venue tab reflect every other filter; the tab itself then narrows the list.
+  const anyVenue = useMemo(() => applyFilters(index, { ...deferred, venue: null }, now), [index, deferred, now]);
+  const venueCounts = useMemo(() => {
+    const counts: Record<VenueType, number> = { "specialty-cafe": 0, "tea-matcha": 0, "restaurant-coffee": 0 };
+    for (const h of anyVenue) counts[h.cafe.venue_type]++;
+    return counts;
+  }, [anyVenue]);
+  const filtered = useMemo(
+    () => (deferred.venue ? anyVenue.filter((h) => h.cafe.venue_type === deferred.venue) : anyVenue),
+    [anyVenue, deferred.venue],
+  );
   const { hits, distances, unlocated } = useMemo(() => {
     const distances = new Map<string, number>();
     if (!nearMe || !origin) return { hits: filtered, distances, unlocated: 0 };
@@ -149,8 +160,8 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
   };
 
   const activeFilterCount = filters.neighbourhoods.length + filters.types.length + (filters.openNow ? 1 : 0);
-  const clearAll = { query: "", neighbourhoods: [], types: [], openNow: false };
-  const idle = !filters.query.trim() && activeFilterCount === 0;
+  const clearAll = { query: "", neighbourhoods: [], types: [], openNow: false, venue: null };
+  const idle = !filters.query.trim() && activeFilterCount === 0 && !filters.venue;
   const shown = hits.slice(0, visible);
 
   const runQuickSearch = (q: string) => {
@@ -252,11 +263,36 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
       <section ref={resultsRef} aria-labelledby="results-heading" className="mt-20 scroll-mt-20">
         <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-ink pb-3">
           <h2 id="results-heading" className="text-xl font-semibold tracking-tight sm:text-2xl">
-            {idle ? "All cafes" : "Results"}
+            {idle ? "All places" : "Results"}
           </h2>
           <p className="text-sm text-muted" aria-live="polite" aria-atomic="true">
-            {hits.length} {hits.length === 1 ? "cafe" : "cafes"} found
+            Showing <span className="font-medium text-ink">{hits.length}</span> {hits.length === 1 ? "place" : "places"} in Toronto
           </p>
+        </div>
+
+        {/* Venue type tabs */}
+        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
+          <div role="group" aria-label="Venue type" className="flex min-w-max gap-1 border-b border-line">
+            {[{ slug: null, short: "All", hint: "Everything in the guide" }, ...VENUE_TYPES].map((v) => {
+              const active = filters.venue === v.slug;
+              const count = v.slug ? venueCounts[v.slug] : anyVenue.length;
+              return (
+                <button
+                  key={v.slug ?? "all"}
+                  type="button"
+                  aria-pressed={active}
+                  title={v.hint}
+                  onClick={() => update({ venue: v.slug })}
+                  className={`-mb-px inline-flex items-center gap-1.5 whitespace-nowrap border-b-2 px-3 py-3 text-sm transition-colors ${
+                    active ? "border-ink font-medium text-ink" : "border-transparent text-muted hover:text-ink"
+                  }`}
+                >
+                  {v.short}
+                  <span className="tabular-nums text-xs text-muted">{count}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Filter bar */}
@@ -349,7 +385,7 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
               </label>
             </fieldset>
             <button type="button" onClick={() => setMobileFilters(false)} className="bg-ink py-3 text-sm text-paper">
-              Show {hits.length} {hits.length === 1 ? "cafe" : "cafes"}
+              Show {hits.length} {hits.length === 1 ? "place" : "places"}
             </button>
           </div>
         )}

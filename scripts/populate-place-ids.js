@@ -89,10 +89,13 @@ function splitName(name) {
 /** 0–1: how much of our brand Google's name contains (spacing-insensitive: "Cong Caphe" ≈ "Cộng Cà Phê"). */
 function nameScore(brand, googleName) {
   const ours = brandTokens(brand);
+  const theirWords = new Set(brandTokens(googleName));
   const theirs = compact(googleName);
   if (!ours.length) return compact(brand) && theirs.includes(compact(brand)) ? 1 : 0;
-  if (theirs.includes(ours.join(""))) return 1;
-  return ours.filter((t) => theirs.includes(t)).length / ours.length;
+  // Whole brand with spacing ignored ("Cong Caphe" = "Cộng Cà Phê"), but only for multi-word brands,
+  // so a one-word brand can't match inside another word ("machi" inside "zagmachi").
+  if (ours.length > 1 && theirs.includes(ours.join(""))) return 1;
+  return ours.filter((t) => theirWords.has(t)).length / ours.length;
 }
 
 /** Does Google's address contain our street address (number + first street word)? */

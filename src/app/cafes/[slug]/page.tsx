@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight, MapPin } from "lucide-react";
 import { getCafeBySlug, getCafeViews } from "@/lib/data";
 import { CafePhoto } from "@/components/CafePhoto";
 import { CafeCard } from "@/components/CafeCard";
+import { VenueBadge } from "@/components/VenueBadge";
 import { Hours } from "@/components/Hours";
 import { displayUrl, googleMapsDirectionsUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
 import { neighbourhoodSlug } from "@/lib/neighbourhoods";
@@ -98,14 +99,17 @@ export default async function CafePage({ params }: Params) {
           {cafe.neighbourhood}
         </Link>
         <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-6xl">{cafe.name}</h1>
-        {cafe.cafe_categories.length > 0 && (
-          <p className="mt-4 text-ink-2">
-            {[
-              ...cafe.cafe_categories,
-              ...cafe.cuisine_types.filter((cu) => !cafe.cafe_categories.some((t) => t.toLowerCase().startsWith(cu.toLowerCase()))),
-            ].join(" · ")}
-          </p>
-        )}
+        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <VenueBadge venue={cafe.venue_type} />
+          {cafe.cafe_categories.length > 0 && (
+            <p className="text-ink-2">
+              {[
+                ...cafe.cafe_categories,
+                ...cafe.cuisine_types.filter((cu) => !cafe.cafe_categories.some((t) => t.toLowerCase().startsWith(cu.toLowerCase()))),
+              ].join(" · ")}
+            </p>
+          )}
+        </div>
       </header>
 
       <CafePhoto

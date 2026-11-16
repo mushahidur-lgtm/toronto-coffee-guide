@@ -43,8 +43,8 @@ export function deriveCategories(c: Cafe): ExplorerCategory[] {
   }
   if (has(c.cuisine_types, "italian")) out.add("italian-espresso");
   if (
-    has(cats, "matcha cafe", "japanese cafe", "korean cafe", "vietnamese cafe") ||
-    has(c.cuisine_types, "japanese", "korean", "vietnamese")
+    has(cats, "matcha cafe", "japanese cafe", "korean cafe", "vietnamese cafe", "tea house") ||
+    has(c.cuisine_types, "japanese", "korean", "vietnamese", "taiwanese", "chinese")
   ) {
     out.add("asian-matcha");
   }

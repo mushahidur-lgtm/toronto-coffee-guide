@@ -1863,7 +1863,8 @@
     ],
     "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/",
     "placeId": "ChIJI1kf3zc1K4gR6p-abgSPy1o",
-    "googleMapsUri": "https://maps.google.com/?cid=6542480132884045802&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+    "googleMapsUri": "https://maps.google.com/?cid=6542480132884045802&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "venue_type": "restaurant-coffee"
   },
   {
     "name": "Banh Haus",
@@ -2585,5 +2586,473 @@
     "source": "https://www.blogto.com/eat_drink/2025/10/matcha-matcha-dundas-toronto/",
     "placeId": "ChIJeZUuank1K4gRK2IF-58ptmA",
     "googleMapsUri": "https://maps.google.com/?cid=6968803240490394155&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [
+      "loose leaf tea",
+      "tea shop"
+    ],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Tao Tea Leaf — Yonge Street",
+    "neighbourhood": "Yorkville",
+    "description": "A Toronto loose-leaf tea shop on Yonge Street, just north of Bloor.",
+    "specialty_drinks": [
+      "Loose-leaf tea"
+    ],
+    "placeId": "ChIJY9v-IKk0K4gRQ13DybiX1oE",
+    "googleMapsUri": "https://maps.google.com/?cid=9355832095823584579&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [
+      "loose leaf tea",
+      "tea shop",
+      "commuter"
+    ],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Tao Tea Leaf — Union Station",
+    "neighbourhood": "Financial District",
+    "description": "Tao Tea Leaf’s loose-leaf tea shop inside Union Station, handy for commuters.",
+    "specialty_drinks": [
+      "Loose-leaf tea"
+    ],
+    "placeId": "ChIJw7paW7A1K4gRLWTCjeOGs7M",
+    "googleMapsUri": "https://maps.google.com/?cid=12948841665514333229&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [
+      "Taiwanese"
+    ],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Machi Machi — Yonge & Wellesley",
+    "neighbourhood": "Church-Wellesley",
+    "description": "A location of the Taiwanese tea brand Machi Machi, serving milk teas and bubble tea.",
+    "specialty_drinks": [
+      "Milk tea",
+      "Bubble tea"
+    ],
+    "is_chain": true,
+    "placeId": "ChIJYVYq2dM1K4gRfcM9bX59Mms",
+    "googleMapsUri": "https://maps.google.com/?cid=7724374292845937533&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [
+      "Taiwanese"
+    ],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Machi Machi — Fairview Mall",
+    "neighbourhood": "North York",
+    "description": "Machi Machi’s Taiwanese milk teas and bubble tea at Fairview Mall.",
+    "specialty_drinks": [
+      "Milk tea",
+      "Bubble tea"
+    ],
+    "is_chain": true,
+    "placeId": "ChIJ6Ve9WrItK4gRbUKKu76VHKE",
+    "googleMapsUri": "https://maps.google.com/?cid=11609318585877021293&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "ICHA Tea — Spadina",
+    "neighbourhood": "Chinatown",
+    "description": "A bubble tea shop on Spadina Avenue in Chinatown.",
+    "specialty_drinks": [
+      "Bubble tea",
+      "Milk tea"
+    ],
+    "placeId": "ChIJ__8DpMQ0K4gRPNzVwLvVVkA",
+    "googleMapsUri": "https://maps.google.com/?cid=4636127868795345980&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Cha Miao — Dundas",
+    "neighbourhood": "Chinatown",
+    "description": "A tea house on Dundas Street West near University Avenue serving tea drinks.",
+    "specialty_drinks": [
+      "Tea drinks"
+    ],
+    "placeId": "ChIJGckzrrU1K4gRl0Q1zR5b1dM",
+    "googleMapsUri": "https://maps.google.com/?cid=15264206699892130967&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [
+      "Taiwanese"
+    ],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Chatime — Bloor West",
+    "neighbourhood": "The Annex",
+    "description": "A location of the Taiwanese bubble tea chain near Bloor and Spadina.",
+    "specialty_drinks": [
+      "Bubble tea",
+      "Milk tea"
+    ],
+    "is_chain": true,
+    "placeId": "ChIJPXCBrAc1K4gRgqsQ4jv7z4g",
+    "googleMapsUri": "https://maps.google.com/?cid=9858374343951690626&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [
+      "Taiwanese"
+    ],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "The Alley — Bloor West",
+    "neighbourhood": "Koreatown",
+    "description": "A location of the Taiwanese tea chain The Alley, near Bloor and Bathurst.",
+    "specialty_drinks": [
+      "Brown sugar milk tea",
+      "Bubble tea"
+    ],
+    "is_chain": true,
+    "placeId": "ChIJZRgNOBc1K4gR4rfzvb9FLvI",
+    "googleMapsUri": "https://maps.google.com/?cid=17450962295935186914&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Kung Fu Tea — Danforth",
+    "neighbourhood": "Danforth",
+    "description": "A location of the bubble tea chain on the Danforth.",
+    "specialty_drinks": [
+      "Bubble tea",
+      "Milk tea"
+    ],
+    "is_chain": true,
+    "placeId": "ChIJfyuZW6nN1IkRt7XiRhqe9MA",
+    "googleMapsUri": "https://maps.google.com/?cid=13903911785295164855&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "food_offerings": [],
+    "cuisine_types": [
+      "Taiwanese"
+    ],
+    "cafe_categories": [
+      "Tea House"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Presotea — Scarborough",
+    "neighbourhood": "Scarborough",
+    "description": "A Scarborough location of the Taiwanese tea chain Presotea.",
+    "specialty_drinks": [
+      "Bubble tea"
+    ],
+    "is_chain": true,
+    "placeId": "ChIJH6bkhfDR1IkRPCsBd6rTPZk",
+    "googleMapsUri": "https://maps.google.com/?cid=11042214590476790588&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Daan Go Cake Lab — Spadina",
+    "neighbourhood": "Chinatown",
+    "description": "A Toronto bakery for Asian-inspired cakes and pastries, inside R&D on Spadina.",
+    "specialty_drinks": [],
+    "food_offerings": [
+      "Cakes",
+      "Pastries"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Dessert Cafe"
+    ],
+    "placeId": "ChIJ534ludc1K4gRswBINAwwFqQ",
+    "googleMapsUri": "https://maps.google.com/?cid=11823690700682690739&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Daan Go Cake Lab — Scarborough",
+    "neighbourhood": "Scarborough",
+    "description": "Daan Go Cake Lab’s Scarborough bakery for Asian-inspired cakes and pastries.",
+    "specialty_drinks": [],
+    "food_offerings": [
+      "Cakes",
+      "Pastries"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Dessert Cafe"
+    ],
+    "placeId": "ChIJ__-_heLT1IkRYU0kEFAfyQc",
+    "googleMapsUri": "https://maps.google.com/?cid=561014057312996705&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [
+      "Italian"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Terroni — Queen West",
+    "neighbourhood": "Queen West",
+    "description": "A Southern Italian restaurant on Queen West from the Terroni group, which also runs Sud Forno.",
+    "specialty_drinks": [
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Pizza",
+      "Pasta"
+    ],
+    "cafe_categories": [
+      "Restaurant"
+    ],
+    "placeId": "ChIJezJp5eM0K4gR1wTbPFAdVKI",
+    "googleMapsUri": "https://maps.google.com/?cid=11697006362643596503&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [
+      "Brunch"
+    ],
+    "tags": [
+      "brunch"
+    ],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Mildred’s Temple Kitchen",
+    "neighbourhood": "Liberty Village",
+    "description": "A Liberty Village restaurant best known for its weekend brunch and blueberry pancakes.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Brunch plates",
+      "Pancakes"
+    ],
+    "cafe_categories": [
+      "Restaurant",
+      "Brunch Cafe"
+    ],
+    "placeId": "ChIJI4DOYAE1K4gRrXtqciHmAlI",
+    "googleMapsUri": "https://maps.google.com/?cid=5909538692391402413&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [
+      "Egyptian",
+      "Brunch"
+    ],
+    "tags": [
+      "brunch"
+    ],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Maha’s Brunch",
+    "neighbourhood": "Leslieville",
+    "description": "An Egyptian brunch restaurant on Greenwood Avenue.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Egyptian brunch dishes"
+    ],
+    "cafe_categories": [
+      "Restaurant",
+      "Brunch Cafe"
+    ],
+    "placeId": "ChIJhTdaQofL1IkRDHRk4LCE52k",
+    "googleMapsUri": "https://maps.google.com/?cid=7631213988816385036&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [
+      "French"
+    ],
+    "tags": [
+      "bistro"
+    ],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Le Sélect Bistro",
+    "neighbourhood": "King West",
+    "description": "A long-running French bistro on Wellington Street West.",
+    "specialty_drinks": [
+      "Espresso"
+    ],
+    "food_offerings": [
+      "French bistro dishes"
+    ],
+    "cafe_categories": [
+      "Restaurant"
+    ],
+    "placeId": "ChIJx8LPLtk0K4gRVkpHcrMIYKE",
+    "googleMapsUri": "https://maps.google.com/?cid=11628303804680063574&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [
+      "Italian"
+    ],
+    "tags": [
+      "espresso bar",
+      "food hall"
+    ],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Eataly Toronto",
+    "neighbourhood": "Yorkville",
+    "description": "The Toronto branch of the Italian food hall in the Manulife Centre, with a Caffè Vergnano espresso bar.",
+    "specialty_drinks": [
+      "Espresso (Caffè Vergnano)",
+      "Cappuccino"
+    ],
+    "food_offerings": [
+      "Italian pastries",
+      "Pizza"
+    ],
+    "cafe_categories": [
+      "Restaurant",
+      "Traditional Cafe"
+    ],
+    "placeId": "ChIJ4z32eu81K4gRWBnHwAoH0vk",
+    "googleMapsUri": "https://maps.google.com/?cid=18001458403318634840&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Emmer",
+    "neighbourhood": "Harbord Village",
+    "description": "A bakery on Harbord Street.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Bread",
+      "Pastries"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe"
+    ],
+    "placeId": "ChIJ13N509M1K4gRDWRuLeo8SCY",
+    "googleMapsUri": "https://maps.google.com/?cid=2758521748246651917&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [],
+    "tags": [
+      "diner"
+    ],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Fran’s Restaurant — College Street",
+    "neighbourhood": "Bay & College",
+    "description": "A long-running Toronto diner near College subway station.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Diner breakfast"
+    ],
+    "cafe_categories": [
+      "Restaurant"
+    ],
+    "placeId": "ChIJ_SEys7U0K4gRvk-B5aDrpmE",
+    "googleMapsUri": "https://maps.google.com/?cid=7036570544090730430&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [
+      "French"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Bobbette & Belle — Leslieville",
+    "neighbourhood": "Leslieville",
+    "description": "A Leslieville pastry shop known for French macarons and cakes.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Macarons",
+      "Cakes",
+      "Pastries"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Dessert Cafe"
+    ],
+    "placeId": "ChIJkeMBZJ3L1IkROaSVxIX8ABQ",
+    "googleMapsUri": "https://maps.google.com/?cid=1441429532217549881&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "address": null,
+    "cuisine_types": [
+      "French"
+    ],
+    "tags": [],
+    "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
+    "name": "Thobors — Eglinton West",
+    "neighbourhood": "Midtown",
+    "description": "A French boulangerie-pâtisserie and café on Eglinton Avenue West.",
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Croissants",
+      "Bread",
+      "Pastries"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe"
+    ],
+    "placeId": "ChIJxR8HxJgzK4gR1oj-dRxTJYw",
+    "googleMapsUri": "https://maps.google.com/?cid=10098569121152010454&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   }
 ]

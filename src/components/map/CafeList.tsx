@@ -99,7 +99,7 @@ const Row = memo(function Row({
         <span className="block text-[11px] font-medium uppercase tracking-[0.12em] text-muted">{c.neighbourhood}</span>
         <span className="mt-1 block font-semibold leading-snug tracking-tight">{c.name}</span>
         <span className="mt-1 flex min-w-0 items-center gap-2">
-          <VenueBadge venue={c.venue_type} />
+          <VenueBadge venue={c.venue_type} cafe={c} />
           {a.categories.length > 0 && (
             <span className="truncate text-sm text-muted">{a.categories.slice(0, 2).map(explorerLabel).join(" · ")}</span>
           )}

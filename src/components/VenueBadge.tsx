@@ -1,4 +1,4 @@
-import { venueInfo, type VenueType } from "@/lib/venue";
+import { venueBadge, venueInfo, type VenueType } from "@/lib/venue";
 
 /** Subtle colour per venue type: neutral for cafes, a muted green for tea, a warm tint for restaurants & bakeries. */
 export const VENUE_BADGE_STYLE: Record<VenueType, { bg: string; fg: string; border: string }> = {
@@ -7,7 +7,16 @@ export const VENUE_BADGE_STYLE: Record<VenueType, { bg: string; fg: string; bord
   "restaurant-coffee": { bg: "#f6efe8", fg: "#6b4226", border: "#e7d8c9" },
 };
 
-export function VenueBadge({ venue, className = "" }: { venue: VenueType; className?: string }) {
+export function VenueBadge({
+  venue,
+  cafe,
+  className = "",
+}: {
+  venue: VenueType;
+  /** The listing's categories and tags, so bakeries read "Bakery & Cafe" rather than "Restaurant & Bakery". */
+  cafe?: { cafe_categories: string[]; tags: string[] };
+  className?: string;
+}) {
   const s = VENUE_BADGE_STYLE[venue];
   return (
     <span
@@ -15,7 +24,7 @@ export function VenueBadge({ venue, className = "" }: { venue: VenueType; classN
       style={{ background: s.bg, color: s.fg, borderColor: s.border }}
       title={venueInfo(venue).label}
     >
-      {venueInfo(venue).badge}
+      {cafe ? venueBadge(venue, cafe) : venueInfo(venue).badge}
     </span>
   );
 }

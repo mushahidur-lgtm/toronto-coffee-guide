@@ -8,6 +8,8 @@ import { CafeCard } from "@/components/CafeCard";
 import { VenueBadge } from "@/components/VenueBadge";
 import { Hours } from "@/components/Hours";
 import { TodayHours } from "@/components/TodayHours";
+import { hasReadableHours } from "@/lib/hours";
+import { schemaType } from "@/lib/venue";
 import { GoogleRating } from "@/components/GoogleRating";
 import { FavouriteButton } from "@/components/FavouriteButton";
 import { PhotoGallery } from "@/components/PhotoGallery";
@@ -65,7 +67,7 @@ export default async function CafePage({ params }: Params) {
   };
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": cafe.venue_type === "restaurant-coffee" ? "Restaurant" : "CafeOrCoffeeShop",
+    "@type": schemaType(cafe.venue_type, cafe),
     name: cafe.name,
     url: `${SITE.url}/cafes/${cafe.slug}`,
     description: cafe.description ?? undefined,
@@ -115,7 +117,7 @@ export default async function CafePage({ params }: Params) {
           </Link>
           <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-6xl">{cafe.name}</h1>
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
-            <VenueBadge venue={cafe.venue_type} className="rounded-full" />
+            <VenueBadge venue={cafe.venue_type} cafe={cafe} className="rounded-full" />
             {cafe.cafe_categories.length > 0 && (
               <p className="text-ink-2">
                 {[
@@ -188,17 +190,15 @@ export default async function CafePage({ params }: Params) {
             <p className="mt-3 text-xs text-muted">Not yet verified: {unverified.join(", ")}. We only list what we can confirm.</p>
           </section>
 
-          {cafe.tags.length > 0 && (
-            <Section title="Good to know">
-              <p className="text-ink-2">{cafe.tags.join(" · ")}</p>
-            </Section>
-          )}
+          {/* Tags are search keywords (aliases, spellings), not reader-facing facts, so they aren't printed here. */}
         </div>
 
         <aside className="lg:sticky lg:top-24 lg:self-start">
-          <Section title="Today">
-            <TodayHours hours={cafe.opening_hours} />
-          </Section>
+          {hasReadableHours(cafe.opening_hours) && (
+            <Section title="Today">
+              <TodayHours hours={cafe.opening_hours} />
+            </Section>
+          )}
           <Section title="Address">
             {cafe.address ? <p>{cafe.address}</p> : <p className="text-muted">Not available</p>}
             <p className="mt-1 text-muted">{cafe.neighbourhood}, Toronto</p>

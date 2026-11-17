@@ -45,16 +45,16 @@ None found (place ID, name or address).
 
 ## Hidden as closed
 
-- Tandem Coffee (Corktown): Google: permanently closed
-- Odin Cafe + Bar (Corktown): Google: permanently closed
-- Saving Grace (Trinity Bellwoods): Google: permanently closed
-- Fluffy Fluffy Dessert Cafe (Midtown): Google: permanently closed
-- Cactus Vietnamese Tea and Coffee (Koreatown): Google: permanently closed
+- Tandem Coffee (Corktown): marked closed in the data
+- Odin Cafe + Bar (Corktown): marked closed in the data
+- Saving Grace (Trinity Bellwoods): marked closed in the data
+- Fluffy Fluffy Dessert Cafe (Midtown): marked closed in the data
+- Cactus Vietnamese Tea and Coffee (Koreatown): marked closed in the data
 - The Oats Kafé (Church-Wellesley): marked closed in the data
-- Playground Cafe (Cabbagetown): Google: permanently closed
-- LÀ LÁ Bakeshop (The Annex): Google: permanently closed
-- Banh Haus (Chinatown): Google: permanently closed
-- Crema Coffee Co. — Junction (The Junction): Google: permanently closed
+- Playground Cafe (Cabbagetown): marked closed in the data
+- LÀ LÁ Bakeshop (The Annex): marked closed in the data
+- Banh Haus (Chinatown): marked closed in the data
+- Crema Coffee Co. — Junction (The Junction): marked closed in the data
 
 ## Cafes by neighbourhood
 

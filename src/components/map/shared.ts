@@ -7,7 +7,7 @@ import { getNeighbourhood } from "@/lib/neighbourhoods";
 import { todayStatus, todayStatusText } from "@/lib/hours";
 import { googleMapsDirectionsUrl } from "@/lib/maps";
 import type { LatLng } from "@/lib/geo";
-import { venueInfo } from "@/lib/venue";
+import { venueBadge } from "@/lib/venue";
 import { VENUE_BADGE_STYLE } from "../VenueBadge";
 
 export type MapMode = "google" | "leaflet";
@@ -71,7 +71,7 @@ export function popupHtml(c: CafeView, now: Date): string {
   return `<div style="font:13px/1.45 var(--font-inter),system-ui,sans-serif;color:${INK};min-width:190px;max-width:250px;padding:2px 2px 4px">
     <a href="${esc(cafeHref(c.slug))}" style="display:block;font-size:15px;font-weight:600;color:${INK};text-decoration:none;line-height:1.25">${esc(c.name)}</a>
     <div style="margin-top:3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b6b6b">${esc(c.neighbourhood)}</div>
-    <div style="margin-top:5px"><span style="display:inline-block;border:1px solid ${vb.border};background:${vb.bg};color:${vb.fg};padding:0 6px;font-size:11px;font-weight:500;line-height:16px">${esc(venueInfo(c.venue_type).badge)}</span></div>
+    <div style="margin-top:5px"><span style="display:inline-block;border:1px solid ${vb.border};background:${vb.bg};color:${vb.fg};padding:0 6px;font-size:11px;font-weight:500;line-height:16px">${esc(venueBadge(c.venue_type, c))}</span></div>
     ${types ? `<div style="margin-top:3px;color:#3d3d3d">${esc(types)}</div>` : ""}
     ${statusHtml}
     <div style="margin-top:9px;display:flex;gap:14px">

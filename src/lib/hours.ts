@@ -207,6 +207,12 @@ export function todayStatus(lines: string[] | null | undefined, now = new Date()
   return { state: "closed", closedAllDay: today.length === 0, next };
 }
 
+/** True when every listed day parses, i.e. a "Today" status can be computed whatever the day. */
+export function hasReadableHours(lines: string[] | null | undefined): boolean {
+  const days = parseHours(lines);
+  return days.length === 7 && days.every((d) => parseDayRanges(d.hours) !== null);
+}
+
 /** One line for the UI: "Open until 4:00 PM", "Opens today at 9:00 AM", "Closed today · Opens tomorrow at 9:00 AM". */
 export function todayStatusText(s: TodayStatus): string {
   if (s.state === "open") return s.allDay ? "Open 24 hours" : `Open until ${s.until}`;

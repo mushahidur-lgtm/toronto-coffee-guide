@@ -38,7 +38,7 @@ export function CafeCard({ cafe, highlights = [], priority, distanceKm }: Props)
           <FavouriteButton slug={cafe.slug} name={cafe.name} />
         </div>
         <div className="pointer-events-none absolute left-3 top-3">
-          <VenueBadge venue={cafe.venue_type} className="rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.08)]" />
+          <VenueBadge venue={cafe.venue_type} cafe={cafe} className="rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.08)]" />
         </div>
       </div>
 

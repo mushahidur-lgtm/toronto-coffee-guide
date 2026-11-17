@@ -3537,5 +3537,147 @@
     "source": "https://www.blogto.com/eat_drink/2025/10/shaghf-coffee-toronto/",
     "placeId": "ChIJW6KAjVLP1IkRYtcopxysKlQ",
     "googleMapsUri": "https://maps.google.com/?cid=6064849087271327586&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "specialty_drinks": [
+      "Specialty coffee"
+    ],
+    "food_offerings": [
+      "Mediterranean-inspired food"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Specialty Coffee"
+    ],
+    "tags": [],
+    "name": "Pablo's Coffee House",
+    "neighbourhood": "Don Mills",
+    "address": "32 Clock Tower Rd, North York, ON M3C 0G2",
+    "description": "A family-owned cafe in the heart of the Shops at Don Mills, with specialty coffee and a Mediterranean-inspired food menu.",
+    "source": "https://www.torontodine.com/441056665766519/Pablo%27s-Coffee-House",
+    "placeId": "ChIJ_ZZsKFHN1IkRz8P-R9ge_nc",
+    "googleMapsUri": "https://maps.google.com/?cid=8646382248867578831&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "specialty_drinks": [
+      "Phin coffee",
+      "Vietnamese iced coffee"
+    ],
+    "food_offerings": [
+      "Croissants",
+      "Matcha tiramisu",
+      "Pastries"
+    ],
+    "cuisine_types": [
+      "Vietnamese"
+    ],
+    "cafe_categories": [
+      "Vietnamese Cafe",
+      "Bakery & Cafe"
+    ],
+    "tags": [],
+    "name": "Hoang Viet Bakery Coffee",
+    "neighbourhood": "Downsview",
+    "address": "4730 Jane St, North York, ON M3N 2L2",
+    "description": "A Vietnamese bakery-cafe on Jane Street with phin coffee and Vietnamese iced coffee alongside pastries such as French vanilla croissants and matcha tiramisu.",
+    "source": "https://streetsoftoronto.com/streats/hoang-viet-bakery-coffee/",
+    "placeId": "ChIJ45dOHNQvK4gRnnoYipkasn4",
+    "googleMapsUri": "https://maps.google.com/?cid=9129388641382595230&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "specialty_drinks": [
+      "Coffee"
+    ],
+    "food_offerings": [
+      "Korean breads",
+      "Pastries"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe",
+      "Korean Cafe"
+    ],
+    "tags": [],
+    "name": "Bakery Gateau",
+    "neighbourhood": "Don Mills",
+    "address": "865 York Mills Rd, Unit 1, North York, ON M3B 1Y6",
+    "description": "One of Toronto's first Korean bakeries, on York Mills Road since 2003, known for Korean-style breads and pastries, with coffee alongside.",
+    "source": "https://www.hungry416.com/?p=6735",
+    "placeId": "ChIJSyRq9fksK4gRsbG1dJOaIfI",
+    "googleMapsUri": "https://maps.google.com/?cid=17447396389518946737&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "specialty_drinks": [],
+    "food_offerings": [
+      "Bingsu",
+      "Shine Muscat bingsu"
+    ],
+    "cuisine_types": [
+      "Korean"
+    ],
+    "cafe_categories": [
+      "Korean Cafe",
+      "Dessert Cafe"
+    ],
+    "tags": [],
+    "name": "The Peachy",
+    "neighbourhood": "Willowdale",
+    "address": "5650 Yonge St, North York, ON M2M 4G3",
+    "description": "A Korean dessert cafe on the ground floor of the Xerox Tower at Yonge and Finch, across from Finch Station, known for bingsu such as Shine Muscat.",
+    "source": "https://blogto.com/bakery/peachy-toronto",
+    "placeId": "ChIJwXsMP9YtK4gRncs88NJvmC4",
+    "googleMapsUri": "https://maps.google.com/?cid=3357556473969036189&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "specialty_drinks": [
+      "Espresso"
+    ],
+    "food_offerings": [
+      "Pastries",
+      "Bread",
+      "Pizza",
+      "Gelato",
+      "Desserts"
+    ],
+    "cuisine_types": [
+      "Italian"
+    ],
+    "cafe_categories": [
+      "Bakery & Cafe"
+    ],
+    "tags": [],
+    "name": "Lamanna's Bakery",
+    "neighbourhood": "Rouge",
+    "address": "6758 Kingston Rd, Scarborough, ON M1B 1G8",
+    "description": "An Italian bakery and cafe at Kingston Road and Sheppard since 2004, pulling espresso on an Italian machine, with pastries, bread, hot food, pizza and gelato.",
+    "source": "https://tastetoronto.com/guides/the-best-italian-bakeries-in-toronto",
+    "placeId": "ChIJPW3XwtHb1IkRImD8IPEE-3w",
+    "googleMapsUri": "https://maps.google.com/?cid=9005797313544478754&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
+  },
+  {
+    "specialty_drinks": [
+      "Milkshakes"
+    ],
+    "food_offerings": [
+      "Cakes",
+      "Pastries",
+      "Gelato",
+      "Ice cream",
+      "Sundaes"
+    ],
+    "cuisine_types": [],
+    "cafe_categories": [
+      "Dessert Cafe"
+    ],
+    "tags": [],
+    "name": "Treats 'n Eats Desserts",
+    "neighbourhood": "Agincourt",
+    "address": "4830 Sheppard Ave E, Unit 6, Scarborough, ON M1S 5M9",
+    "description": "A dessert shop on Sheppard Avenue East with cakes, pastries, gelato, ice cream by the scoop, sundaes and milkshakes.",
+    "source": "https://mainmenus.com/toronto-on-restaurants/dessert-cuisine/treats-n-eats-desserts",
+    "placeId": "ChIJvZaEV5HR1IkRcgsxJzLmIvg",
+    "googleMapsUri": "https://maps.google.com/?cid=17880106573694569330&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   }
 ]

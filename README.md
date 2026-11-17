@@ -124,6 +124,14 @@ The synonym table lives at the top of `src/lib/search.ts`. Extend it as the data
   - Links to other neighbourhoods in the same region.
   - Neighbourhoods with no listed cafes return 404.
 
+- **North York and Scarborough guides:** `/neighbourhoods/north-york` and `/neighbourhoods/scarborough` are region landing pages linking to their areas. Areas follow Canada Post postal codes (forward sortation areas, per Wikipedia's *List of postal codes of Canada: M*): Willowdale, Fairview, Don Mills, York Mills and Downsview; Milliken, Agincourt, Dorset Park, Wexford, Golden Mile, West Hill and Rouge. To place a new cafe, take the first three characters of its postal code. The filters also have "North York" and "Scarborough" options that cover every area.
+- **Today line:** `todayStatus()` in `src/lib/hours.ts` renders "Open until 4:00 PM", "Opens today at 9:00 AM" or "Closed today · Opens Wednesday at 9:00 AM". It shows nothing when the hours are missing or can't be read.
+- **Work-friendly:** one rule, `isWorkFriendly()` in `src/lib/explorer.ts`, drives the collection, the map pill and the Work & Study category. A cafe qualifies if it's explicitly marked laptop-friendly, has verified Wi-Fi, or has a `work friendly` tag.
+
+## Data quality
+
+`npx tsx scripts/data-quality.ts` writes `docs/data-quality-report.md`. It checks for missing descriptions, menu highlights, place IDs and photo sources, invalid URLs, unknown neighbourhoods, duplicate names, addresses and place IDs, and the closed list. It also gives counts by region and neighbourhood. With `--live`, it makes one Place Details request per cafe to check photos, hours, coordinates, websites and business status. That's the same request the site makes every hour, and only counts are written.
+
 ---
 
 ## Data model

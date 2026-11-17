@@ -3,6 +3,7 @@ import { getAllCafes } from "@/lib/data";
 import {
   fetchPlacePhotoMedia,
   getPlacePhotoMeta,
+  getPlacePhotos,
   isPhotoOfPlace,
   PLACE_ID_RE,
   PlacesError,
@@ -64,6 +65,21 @@ export async function GET(req: NextRequest) {
           "Content-Type": upstream.headers.get("content-type") ?? "image/jpeg",
           "X-Content-Type-Options": "nosniff",
         },
+      });
+    }
+
+    // ?all=1 → up to 6 photos for the cafe page gallery (each still streamed through this route).
+    if (params.get("all") === "1") {
+      const list = await getPlacePhotos(placeId, 6);
+      return json({
+        photos: list.photos
+          .filter((p) => p.photoName)
+          .map((p) => ({
+            imageUrl: `/api/place-photo?${new URLSearchParams({ placeId, photo: p.photoName!, w: String(w) })}`,
+            authorName: p.authorName,
+            authorUri: p.authorUri,
+          })),
+        googleMapsUri: list.googleMapsUri,
       });
     }
 

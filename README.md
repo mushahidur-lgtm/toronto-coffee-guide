@@ -42,17 +42,25 @@ src/lib/
   data.ts                     Data access (Supabase → seed fallback) + live Google enrichment
   google-places.ts            Places API (New) client, server-only
   search.ts                   Search engine (shared by browser and /api/cafes)
+  suggest.ts                  Autocomplete suggestions (menu items, cafes, neighbourhoods)
+  facets.ts                   Drink / food / amenity filters, matched against structured fields only
+  collections.ts              Editorial collections (/toronto/<slug>), shown once 3+ cafes qualify
+  favourites.ts               Favourites (localStorage, no account)
+  menu.ts                     Menu sections + "You might also like" for cafe pages
   neighbourhoods.ts           Neighbourhoods, regions ("Downtown"), aliases, filter logic
+  neighbourhood-intros.ts     Short intro paragraph per neighbourhood page
   hours.ts, maps.ts           Hours grouping, Google Maps URL builders
 src/components/               Header, CafeExplorer (search/filters/sort/load more), CafeCard,
-                              CafePhoto (+ attribution), Hours, NeighbourhoodGrid, MapView
+                              CafePhoto (+ attribution), PhotoGallery, CafeLocationMap,
+                              FavouriteButton, Hours, NeighbourhoodGrid, map/
 src/app/
-  page.tsx                    Home: hero search, quick searches, featured, results, neighbourhoods
+  page.tsx                    Home: hero search, quick searches, collections, results
   cafes/(index)/              /cafes: full explorer + loading skeleton
   cafes/[slug]/               Cafe detail page (+ schema.org CafeOrCoffeeShop JSON-LD)
-  neighbourhoods/, map/, about/
-  api/cafes                   JSON search API: ?q=&n=&type=&sort=&limit=&offset=
-  api/place-photo             Live Google photo + attribution, streamed with no-store (key stays server-side)
+  neighbourhoods/, map/, about/, categories/, favourites/, toronto/[slug]/
+  api/cafes                   JSON search API: ?q=&n=&type=&venue=&sort=&limit=&offset=
+  api/place-photo             Live Google photo(s) + attribution, streamed with no-store (key stays server-side);
+                              ?all=1 returns up to 6 photos for the cafe-page gallery
   sitemap.ts, robots.ts
 ```
 
@@ -69,26 +77,52 @@ Search is the core feature, and it is **not** a name filter. Each cafe is indexe
 | Cafe categories (Specialty Coffee, Matcha Cafe, …) | 6 |
 | Specialty drinks · food offerings · cuisine types | 5 |
 | Tags (extra keywords such as "egg coffee", "roaster") | 3 |
-| Description | 2 |
 | Address | 1 |
+
+Descriptions are deliberately **not** indexed: a cafe that merely mentions "croissant" in passing shouldn't show up for that search.
 
 How it behaves:
 
 - Case- and accent-insensitive: `bánh mì` = `banh mi`, `Cộng Cà Phê` = `cong ca phe`.
 - Partial matching at word starts, so results update as you type: `matc` → matcha, `vietnam` → Vietnamese.
 - Light plural stemming: `croissants` → croissant, `bakeries` → bakery.
-- Synonym concepts: `croissant` also finds pastries and viennoiserie; `vietnamese` finds cà phê, phin, bạc xỉu, egg and salt coffee; `japanese` finds matcha, hojicha, wagashi, soufflé pancakes; `korean` finds bingsu and croffles; `cold brew` finds nitro.
-- Every concept in the query must match (AND); any synonym of a concept may match (OR). Filler words ("cafe", "near", "toronto") are ignored.
+- Synonym concepts: `croissant` also finds viennoiserie and croffles; `vietnamese` finds cà phê, phin, bạc xỉu, egg and salt coffee; `japanese` finds matcha, hojicha, wagashi, soufflé pancakes; `korean` finds bingsu and croffles; `cold brew` finds nitro; `laptop friendly`, `wifi`, `patio`, `late night` and `quiet` map to the matching attributes.
+- Short and known words match whole words only, so `chai` doesn't match "chain".
+- Typo tolerance: unknown words are corrected against the indexed vocabulary (`matcah` → matcha, `croisant` → croissant).
+- Every concept in the query must match (AND); any synonym of a concept may match (OR). Filler words ("cafe", "near", "toronto") are ignored. Multi-word phrases such as `egg coffee` prefer exact-phrase matches.
+- If nothing matches every word, a "close matches" fallback shows cafes matching most of them, with a notice.
 - Results are ranked by weighted score plus a whole-phrase bonus. Cards show **"Matches: Matcha latte"**, so it's clear why a cafe appeared.
+- **Autocomplete** (`src/lib/suggest.ts`) suggests menu items, cafes and neighbourhoods as you type; arrow keys and Enter work.
 
 The synonym table lives at the top of `src/lib/search.ts`. Extend it as the dataset grows.
 
-**Filters** (neighbourhood multi-select, where "Downtown" means the whole region and "Other" means anything not listed; cafe type multi-select; **Open now**) combine with the search and with each other. **Sort:** best match, A–Z, Z–A, neighbourhood, **Near me**. The state lives in the URL (`/cafes?q=matcha&n=Downtown&type=Japanese%20Cafe&open=1`), so searches can be shared, and `/cafes` renders that URL on the server, so search links and the search form work without JavaScript.
+**Filters** (neighbourhood multi-select, where "Downtown" means the whole region and "Other" means anything not listed; cafe type multi-select; venue type; **Drinks**, **Food** and **Amenities** from `src/lib/facets.ts`; **Open now**) combine with the search and with each other. Facet options match structured fields only (menu items, categories, verified attributes) and an option with no supporting cafe is hidden, which is why there's no atmosphere or price filter yet: the data doesn't exist. URL params: `d=matcha,cold-brew`, `f=croissants`, `a=wifi`. On mobile the filters open in a full-screen drawer. **Sort:** best match, A–Z, Z–A, neighbourhood, **Near me**. The state lives in the URL (`/cafes?q=matcha&n=Downtown&type=Japanese%20Cafe&open=1`), so searches can be shared, and `/cafes` renders that URL on the server, so search links and the search form work without JavaScript.
 
 - **Open now** parses each cafe's hours (Google's weekday format, including split shifts and hours past midnight) against the current time in Toronto. Cafes with unknown hours are left out while it's on.
 - **Near me** asks for the visitor's location only when they pick it, sorts by distance using the cafe's editorial coordinates or its live Google location, and lists cafes without a location last. The location stays in the browser and is never put in the URL. If permission is denied, the order doesn't change.
 
 **Scaling:** with a few hundred cafes, searching in the browser is instant (the whole dataset is about 60 KB). Past roughly 1,000 cafes, switch `CafeExplorer` to call `/api/cafes` or the Postgres `search_cafes(q)` function in `supabase/schema.sql`, which uses a weighted `tsvector` (A–D weights mirroring the table above), prefix matching and trigram name matching.
+
+---
+
+## Discovery features
+
+- **Collections** (`src/lib/collections.ts`): themed lists such as *Best Matcha in Toronto* and *Work-Friendly Cafes*, each with its own `/toronto/<slug>` page and a card on the homepage and `/categories`. Membership comes from structured data. Lists that need human judgement (*Hidden Gems*, *Beautiful Cafes*) use the cafe's editorial `collections` field, e.g. `"collections": ["hidden-gems"]`. A collection appears only once 3 or more cafes qualify; until then its page returns 404 and it's left out of the sitemap.
+- **Favourites:** the heart on cards and cafe pages saves to `localStorage` (`tcg:favourites`), with no account. The header shows the count, and `/favourites` lists them.
+- **Cafe pages:**
+  - The menu is grouped into *Coffee*, *Matcha & tea*, *Specialty drinks* and *Food & pastries*.
+  - Only verified amenities are shown, and unknown ones are listed as "Not yet verified".
+  - Live Google rating and today's hours.
+  - A photo gallery: up to 5 more Google photos, loaded when the section scrolls into view, each credited, with a keyboard-friendly lightbox.
+  - A location map: a Google pin with the browser key, otherwise OpenStreetMap with our own coordinates, or the neighbourhood as an approximate area.
+  - "You might also like", scored on neighbourhood, venue type, shared menu specialties and categories.
+- **Neighbourhood pages:**
+  - A short intro (`src/lib/neighbourhood-intros.ts`).
+  - "Popular here" chips that link to the filtered explorer.
+  - Cafe photos and an area map.
+  - A "View on the map" link (`/map?n=<name>`).
+  - Links to other neighbourhoods in the same region.
+  - Neighbourhoods with no listed cafes return 404.
 
 ---
 
@@ -211,7 +245,7 @@ Import the repo into Vercel, add the environment variables from `.env.example`, 
 
 ## Map explorer (`/map`)
 
-A split view on desktop (cafe list + map) and a full-screen map with a draggable bottom sheet on mobile.
+A split view on desktop (map on the left, cafe list on the right) and a full-screen map with a draggable bottom sheet on mobile.
 
 - **Quick filters:** search, Area, Type, plus a scrollable row of pills: *Open now*, *Laptop friendly*, *Patio* and eight Toronto categories (*Third-Wave & Roasters*, *Italian Espresso Bars*, *Asian-Inspired & Matcha*, *Bakery-Cafes*, *Work & Study*, *Multi-Concept & Hybrid*, *Grab-and-Go*, *Chains*).
 - **List ↔ map sync:** hovering a card highlights its pin (or a stand-in pin when it's inside a cluster). Clicking a card pans and zooms to it and opens its card. Clicking a pin opens the card and scrolls the list to it.

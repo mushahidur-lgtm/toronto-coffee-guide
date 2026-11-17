@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { MarkerClusterer } from "@googlemaps/markerclusterer";
 import type { CafeView } from "@/lib/types";
 import { COFFEE, ESPRESSO, INK, TORONTO, popupHtml, positionOf, type CanvasProps, type ViewportReport } from "./shared";
+import { loadGoogleMaps } from "./loader";
 
 /**
  * Google Maps canvas: AdvancedMarkerElement pins (Map ID required), MarkerClusterer, one shared InfoWindow.
@@ -11,7 +12,6 @@ import { COFFEE, ESPRESSO, INK, TORONTO, popupHtml, positionOf, type CanvasProps
  * hover/selection only restyle pins. All listeners are removed on unmount.
  */
 
-let optionsSet = false;
 
 type PinStyle = "normal" | "featured" | "active";
 
@@ -62,13 +62,8 @@ export default function GoogleMapCanvas({ cafes, visibleIds, selection, hoveredI
     let cancelled = false;
     (async () => {
       try {
-        const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY!;
         const mapId = process.env.NEXT_PUBLIC_GOOGLE_MAP_ID!;
-        const { setOptions, importLibrary } = await import("@googlemaps/js-api-loader");
-        if (!optionsSet) {
-          setOptions({ key, v: "weekly", language: "en", region: "CA", mapIds: [mapId] });
-          optionsSet = true;
-        }
+        const importLibrary = await loadGoogleMaps();
         const [{ Map: GMap, InfoWindow }, { AdvancedMarkerElement, PinElement }, mc] = await Promise.all([
           importLibrary("maps"),
           importLibrary("marker"),

@@ -115,6 +115,29 @@ export interface PlacePhotoMeta {
 }
 
 /** Latest photo + attribution for a place. Field mask: photos,googleMapsUri. */
+/** Up to `limit` photos with their author attributions (for the cafe page gallery). Never cached. */
+export async function getPlacePhotos(placeId: string, limit = 6): Promise<{ photos: Omit<PlacePhotoMeta, "googleMapsUri">[]; googleMapsUri: string | null }> {
+  const key = placesApiKey();
+  if (!key) throw new PlacesError(503, "no_key", "GOOGLE_PLACES_API_KEY is not set");
+  const res = await fetch(`${API}/places/${encodeURIComponent(placeId)}`, {
+    headers: { "X-Goog-Api-Key": key, "X-Goog-FieldMask": "photos,googleMapsUri" },
+    cache: "no-store",
+  });
+  if (!res.ok) throw upstreamError(res, "place");
+  const body = (await res.json()) as {
+    googleMapsUri?: string;
+    photos?: { name: string; authorAttributions?: { displayName?: string; uri?: string }[] }[];
+  };
+  return {
+    photos: (body.photos ?? []).slice(0, limit).map((p) => ({
+      photoName: p.name,
+      authorName: p.authorAttributions?.[0]?.displayName ?? null,
+      authorUri: p.authorAttributions?.[0]?.uri ?? null,
+    })),
+    googleMapsUri: body.googleMapsUri ?? null,
+  };
+}
+
 export async function getPlacePhotoMeta(placeId: string): Promise<PlacePhotoMeta> {
   const key = placesApiKey();
   if (!key) throw new PlacesError(503, "no_key", "GOOGLE_PLACES_API_KEY is not set");

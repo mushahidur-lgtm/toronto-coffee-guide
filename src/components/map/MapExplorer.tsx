@@ -266,9 +266,9 @@ export function MapExplorer({ cafes, mode }: Props) {
         onClearAll={clearAll}
       />
 
-      <div className="relative min-h-0 flex-1 md:grid md:grid-cols-[380px_1fr] lg:grid-cols-[420px_1fr]">
+      <div className="relative min-h-0 flex-1 md:grid md:grid-cols-[1fr_380px] lg:grid-cols-[1fr_420px]">
         {isDesktop && (
-          <aside className="hidden min-h-0 flex-col border-r border-line md:flex" aria-label="Cafe list">
+          <aside className="hidden min-h-0 flex-col border-l border-line md:order-last md:flex" aria-label="Cafe list">
             <div className="flex items-center justify-between border-b border-line px-5 py-3">{countLine}</div>
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">{list}</div>
           </aside>

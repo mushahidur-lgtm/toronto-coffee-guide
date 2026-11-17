@@ -22,6 +22,8 @@ const DETAIL_FIELDS = [
   "nationalPhoneNumber",
   "googleMapsUri",
   "businessStatus",
+  "rating",
+  "userRatingCount",
   // Atmosphere field for the map's "Patio" filter. Requesting it bills Place Details at the Atmosphere tier;
   // set PLACES_ATMOSPHERE_FIELDS=false to skip it (the filter then uses editorial "patio" tags only).
   ...(process.env.PLACES_ATMOSPHERE_FIELDS === "false" ? [] : ["outdoorSeating"]),
@@ -47,6 +49,8 @@ interface PlaceDetailsResponse {
   googleMapsUri?: string;
   businessStatus?: string;
   outdoorSeating?: boolean;
+  rating?: number;
+  userRatingCount?: number;
 }
 
 /** Text details for a cafe page (no photos — those load lazily via /api/place-photo). */
@@ -73,6 +77,8 @@ export async function getPlaceDetails(placeId: string): Promise<LivePlace | null
       longitude: p.location?.longitude ?? null,
       businessStatus: p.businessStatus ?? null,
       outdoorSeating: typeof p.outdoorSeating === "boolean" ? p.outdoorSeating : null,
+      rating: typeof p.rating === "number" ? p.rating : null,
+      userRatingCount: typeof p.userRatingCount === "number" ? p.userRatingCount : null,
     };
   } catch (err) {
     console.warn(`[places] details ${placeId} failed`, err);

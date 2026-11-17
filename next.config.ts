@@ -86,6 +86,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/cafes/de-mello-coffee-yorkville", destination: "/cafes/de-mello-coffee-bloor-east", permanent: true },
+      // Short form from the brief (/cafe/neo-coffee-bar) → the canonical /cafes/<slug>.
+      { source: "/cafe/:slug", destination: "/cafes/:slug", permanent: true },
+      { source: "/neighbourhood/:slug", destination: "/neighbourhoods/:slug", permanent: true },
     ];
   },
 };

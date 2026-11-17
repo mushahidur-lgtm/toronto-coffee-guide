@@ -98,6 +98,7 @@ export function normalizeCafe(raw: Record<string, unknown>): Cafe {
     roasts_in_house: bool(raw.roasts_in_house),
     laptop_friendly: bool(raw.laptop_friendly),
     is_chain: raw.is_chain === true,
+    collections: arr(raw.collections).filter((s) => /^[a-z0-9-]{1,60}$/.test(s)),
     venue_type: isVenueType(raw.venue_type)
       ? raw.venue_type
       : deriveVenueType({ cafe_categories: arr(raw.cafe_categories), tags: arr(raw.tags) }),

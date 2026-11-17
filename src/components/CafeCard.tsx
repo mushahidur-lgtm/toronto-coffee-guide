@@ -3,106 +3,110 @@ import { ArrowUpRight, MapPin } from "lucide-react";
 import type { CafeView } from "@/lib/types";
 import { CafePhoto } from "./CafePhoto";
 import { VenueBadge } from "./VenueBadge";
+import { FavouriteButton } from "./FavouriteButton";
+import { GoogleRating } from "./GoogleRating";
+import { TodayHours } from "./TodayHours";
 import { formatDistance } from "@/lib/geo";
-import { Hours } from "./Hours";
-import { displayUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
+import { googleMapsDirectionsUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
 
 interface Props {
   cafe: CafeView;
   highlights?: string[];
+  priority?: boolean;
   /** Distance from the visitor, when sorting by "Near me". */
   distanceKm?: number;
-  priority?: boolean;
 }
 
 const MAIN_TYPES = new Set([
-  "Specialty Coffee", "Matcha Cafe", "Vietnamese Cafe", "Japanese Cafe", "Korean Cafe", "Bakery & Cafe", "Brunch Cafe", "Dessert Cafe",
+  "Specialty Coffee", "Matcha Cafe", "Vietnamese Cafe", "Japanese Cafe", "Korean Cafe", "Bakery & Cafe", "Brunch Cafe", "Dessert Cafe", "Tea House", "Restaurant",
 ]);
 
+/** Editorial cafe card: photo + save, name, neighbourhood · category, description, tags, rating, today's hours, links. */
 export function CafeCard({ cafe, highlights = [], priority, distanceKm }: Props) {
-  const specialties = Array.from(new Set([...cafe.specialty_drinks, ...cafe.food_offerings])).slice(0, 5);
-  const mainTypes = cafe.cafe_categories.filter((c) => MAIN_TYPES.has(c));
-  const types = [
-    ...mainTypes,
-    // Skip "Japanese" when "Japanese Cafe" is already shown.
-    ...cafe.cuisine_types.filter((cu) => !mainTypes.some((t) => t.toLowerCase().startsWith(cu.toLowerCase()))),
-  ];
-  const typeLine = Array.from(new Set(types.length ? types : cafe.cafe_categories)).slice(0, 3).join(" · ");
+  const href = `/cafes/${cafe.slug}`;
+  const category = cafe.cafe_categories.find((c) => MAIN_TYPES.has(c)) ?? cafe.cafe_categories[0];
+  const tags = Array.from(new Set([...cafe.specialty_drinks, ...cafe.food_offerings])).slice(0, 4);
+  const insta = isInstagramUrl(cafe.website_url);
 
   return (
-    <article className="flex h-full flex-col">
-      <CafePhoto
-        photo={cafe.photo}
-        placeId={cafe.google_place_id}
-        name={cafe.name}
-        width={800}
-        priority={priority}
-        href={`/cafes/${cafe.slug}`}
-      />
+    <article className="group flex h-full flex-col">
+      <div className="relative overflow-hidden rounded-lg">
+        <div className="transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transform-none">
+          <CafePhoto photo={cafe.photo} placeId={cafe.google_place_id} name={cafe.name} width={800} priority={priority} href={href} />
+        </div>
+        <div className="absolute right-3 top-3">
+          <FavouriteButton slug={cafe.slug} name={cafe.name} />
+        </div>
+        <div className="pointer-events-none absolute left-3 top-3">
+          <VenueBadge venue={cafe.venue_type} className="rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.08)]" />
+        </div>
+      </div>
 
       <div className="flex flex-1 flex-col pt-4">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-            {cafe.neighbourhood}
-            {distanceKm != null && <span className="normal-case tracking-normal"> · {formatDistance(distanceKm)} away</span>}
-          </p>
-          <VenueBadge venue={cafe.venue_type} />
-        </div>
-        <h3 className="mt-1.5 text-lg font-semibold leading-snug tracking-tight">
-          <Link href={`/cafes/${cafe.slug}`} className="hover:underline hover:underline-offset-4">
+        <h3 className="text-lg font-semibold leading-snug tracking-tight">
+          <Link href={href} className="hover:underline hover:underline-offset-4">
             {cafe.name}
           </Link>
         </h3>
-        {typeLine && <p className="mt-1 text-sm text-muted">{typeLine}</p>}
-        {cafe.description && <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{cafe.description}</p>}
+        <p className="mt-1 text-sm text-muted">
+          {cafe.neighbourhood}
+          {category ? ` · ${category}` : ""}
+          {distanceKm != null && ` · ${formatDistance(distanceKm)} away`}
+        </p>
+        <GoogleRating rating={cafe.google_rating} count={cafe.google_review_count} className="mt-1.5" />
+        {cafe.description && <p className="mt-3 line-clamp-2 text-[15px] leading-relaxed text-ink-2">{cafe.description}</p>}
 
         {highlights.length > 0 && (
-          <p className="mt-3 text-sm">
+          <p className="mt-2 text-sm">
             <span className="text-muted">Matches: </span>
             {highlights.join(", ")}
           </p>
         )}
 
-        <dl className="mt-4 space-y-3 border-t border-line pt-4 text-sm">
-          {specialties.length > 0 && (
-            <div>
-              <dt className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">Specialties</dt>
-              <dd className="mt-1 leading-relaxed">{specialties.join(" · ")}</dd>
-            </div>
-          )}
-          <div>
-            <dt className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">Hours</dt>
-            <dd className="mt-1">
-              <Hours hours={cafe.opening_hours} mapsUrl={cafe.google_maps_url} />
-            </dd>
-          </div>
-        </dl>
+        {tags.length > 0 && (
+          <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Specialties">
+            {tags.map((t) => (
+              <li key={t} className="rounded-full bg-cream px-2.5 py-0.5 text-xs text-ink-2 ring-1 ring-inset ring-sand">
+                {t}
+              </li>
+            ))}
+          </ul>
+        )}
 
-        <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-5 text-sm">
+        <div className="mt-4 space-y-1 border-t border-line pt-3">
+          <TodayHours hours={cafe.opening_hours} />
+          {cafe.address && (
+            <p className="flex items-start gap-1.5 text-sm text-muted">
+              <MapPin size={14} strokeWidth={1.5} className="mt-0.5 shrink-0" aria-hidden />
+              <span className="line-clamp-1">{cafe.address.replace(/,?\s*(ON|Ontario)\s+[A-Z]\d[A-Z]\s?\d[A-Z]\d,?\s*(Canada)?$/i, "")}</span>
+            </p>
+          )}
+        </div>
+
+        <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 text-sm">
           {cafe.website_url && (
             <a
               href={cafe.website_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-quiet inline-flex items-center gap-1"
-              aria-label={
-                isInstagramUrl(cafe.website_url)
-                  ? `${cafe.name} on Instagram (${instagramHandle(cafe.website_url)}), opens in a new tab`
-                  : `${cafe.name} website (${displayUrl(cafe.website_url)}), opens in a new tab`
-              }
+              className="link-quiet inline-flex items-center gap-0.5"
+              aria-label={insta ? `${cafe.name} on Instagram (${instagramHandle(cafe.website_url)}), opens in a new tab` : `${cafe.name} website, opens in a new tab`}
             >
-              {isInstagramUrl(cafe.website_url) ? "Instagram" : "Visit website"} <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />
+              {insta ? "Instagram" : "Website"} <ArrowUpRight size={13} strokeWidth={1.5} aria-hidden />
             </a>
           )}
           <a
-            href={cafe.google_maps_url ?? "#"}
+            href={googleMapsDirectionsUrl(cafe.name, cafe.address, cafe.google_place_id)}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-quiet inline-flex items-center gap-1"
-            aria-label={`View ${cafe.name} on Google Maps, opens in a new tab`}
+            className="link-quiet inline-flex items-center gap-0.5"
+            aria-label={`Directions to ${cafe.name} on Google Maps, opens in a new tab`}
           >
-            <MapPin size={14} strokeWidth={1.5} aria-hidden /> View on Google Maps
+            Directions <ArrowUpRight size={13} strokeWidth={1.5} aria-hidden />
           </a>
+          <Link href={href} className="ml-auto inline-flex items-center rounded-full border border-line px-3 py-1 text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper">
+            View details
+          </Link>
         </div>
       </div>
     </article>

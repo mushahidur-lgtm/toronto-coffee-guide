@@ -14,19 +14,9 @@ function resolveSiteUrl(): string {
 
 export const SITE = {
   name: "Toronto Coffee Guide",
-  tagline: "Discover Toronto's Coffee Scene.",
-  description:
-    "Find your next favourite coffee shop. Explore independent cafes, specialty coffee, matcha bars, and hidden gems across Toronto.",
+  tagline: "Find Your Next Favourite Cafe in Toronto.",
+  description: "Discover independent coffee shops, specialty matcha bars, hidden gems and neighbourhood favourites.",
   url: resolveSiteUrl().replace(/\/$/, ""),
 };
 
-export const QUICK_SEARCHES = [
-  "Matcha",
-  "Vietnamese Coffee",
-  "Specialty Coffee",
-  "Japanese Cafes",
-  "Bakeries",
-  "Cold Brew",
-  "Brunch",
-  "Pastries",
-];
+export const QUICK_SEARCHES = ["Matcha", "Vietnamese Coffee", "Specialty Coffee", "Japanese Cafes", "Croissants", "Work-Friendly Cafes"];

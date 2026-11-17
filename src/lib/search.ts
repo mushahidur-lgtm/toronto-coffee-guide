@@ -10,7 +10,10 @@
  *
  * Runs identically in the browser (instant results as you type) and on the server (/api/cafes).
  */
-import type { Cafe } from "./types";
+import type { Cafe, CafeView } from "./types";
+import { deriveAttributes } from "./explorer";
+import { FACET_GROUP_KEYS, FACET_GROUPS, isFacetKey, matchesFacets } from "./facets";
+import { parseDayRanges, parseHours } from "./hours";
 import { getNeighbourhood, matchesNeighbourhoodFilter } from "./neighbourhoods";
 import { isOpenNow } from "./hours";
 import { isVenueType, type VenueType } from "./venue";
@@ -61,7 +64,7 @@ const SYNONYMS_RAW: Record<string, string[]> = {
   "japanese cafe": ["japanese", "japanese cafe", "kissaten"],
   korean: ["korean", "korean cafe", "bingsu", "croffle", "hodo", "injeolmi", "dalgona", "korean toast"],
   "korean cafe": ["korean", "korean cafe"],
-  croissant: ["croissant", "pastry", "pastries", "viennoiserie", "croffle"],
+  croissant: ["croissant", "viennoiserie", "croffle"],
   pastry: ["pastry", "pastries", "croissant", "viennoiserie", "pastel de nata", "cinnamon bun", "cardamom bun", "tart", "danish", "patisserie", "baked goods"],
   bakery: ["bakery", "bakeshop", "bakery and cafe", "baked goods", "bread", "patisserie", "boulangerie"],
   "cold brew": ["cold brew", "nitro"],
@@ -83,10 +86,22 @@ const SYNONYMS_RAW: Record<string, string[]> = {
   portuguese: ["portuguese", "pastel de nata", "natas"],
   french: ["french", "patisserie", "croissant", "macaron", "viennoiserie"],
   roaster: ["roaster", "roastery", "roasts in house"],
+  // Amenities and atmosphere (matched against verified attributes / editorial tags, never descriptions)
+  "laptop friendly": ["laptop friendly", "work friendly", "remote work"],
+  "work friendly": ["work friendly", "laptop friendly", "remote work"],
+  "remote work": ["remote work", "work friendly", "laptop friendly"],
+  "work from": ["work friendly", "laptop friendly"],
+  wifi: ["wifi"],
+  "wi fi": ["wifi"],
+  "outdoor seating": ["outdoor seating", "patio"],
+  patio: ["patio", "outdoor seating"],
+  "late night": ["late night", "open late"],
+  "open late": ["open late", "late night"],
+  quiet: ["quiet"],
 };
 
 /** Words dropped from multi-word queries ("matcha cafe near kensington" → matcha + kensington). */
-const STOP = new Set(["cafe", "caf", "coffee shop", "shop", "the", "a", "an", "and", "in", "near", "at", "of", "toronto", "best", "spot", "place", "with", "for"]);
+const STOP = new Set(["cafe", "caf", "coffee shop", "shop", "the", "a", "an", "and", "in", "near", "at", "of", "toronto", "best", "spot", "place", "with", "for", "around", "by", "good", "great", "some", "me", "i", "want", "where", "find"]);
 
 const SYNONYMS = new Map<string, string[]>(
   Object.entries(SYNONYMS_RAW).map(([k, v]) => [stemPhrase(k), Array.from(new Set([k, ...v].map(stemPhrase)))]),
@@ -134,7 +149,7 @@ export function parseQuery(query: string): Group[] {
 }
 
 interface Field {
-  key: "name" | "category" | "neighbourhood" | "drink" | "food" | "cuisine" | "tag" | "description" | "address";
+  key: "name" | "category" | "neighbourhood" | "drink" | "food" | "cuisine" | "tag" | "amenity" | "address";
   weight: number;
   text: string; // padded, normalized + stemmed
   raw: string;
@@ -166,14 +181,71 @@ export function indexCafe<T extends Cafe>(cafe: T): IndexedCafe<T> {
   cafe.food_offerings.forEach((f) => add("food", 5, f));
   cafe.cuisine_types.forEach((c) => add("cuisine", 5, c));
   cafe.tags.forEach((t) => add("tag", 3, t));
-  add("description", 2, cafe.description);
+  // Descriptions are deliberately NOT indexed: a word in prose isn't evidence a cafe serves something.
   add("address", 1, cafe.address);
+  const a = (cafe as Cafe & Partial<Pick<CafeView, "attributes">>).attributes ?? deriveAttributes(cafe);
+  if (a.laptopFriendly) add("amenity", 5, "Laptop friendly, work friendly, remote work");
+  if (a.hasPatio) add("amenity", 5, "Patio, outdoor seating");
+  if (a.hasWifi) add("amenity", 5, "Wifi");
+  if (a.roastsInHouse) add("amenity", 3, "Roasts in house, roaster");
+  if (closesLate(cafe.opening_hours)) add("amenity", 4, "Late night, open late");
   return { cafe, fields };
+}
+
+/** Open at or after 9 pm on at least one day, according to the listed hours. */
+export function closesLate(lines: string[] | null | undefined): boolean {
+  return parseHours(lines).some((d) => (parseDayRanges(d.hours) ?? []).some((r) => r.end >= 21 * 60));
+}
+
+// ---- typo tolerance -----------------------------------------------------------------
+const vocabCache = new WeakMap<object, string[]>();
+function vocabulary(index: IndexedCafe[]): string[] {
+  const hit = vocabCache.get(index);
+  if (hit) return hit;
+  const words = new Set<string>();
+  for (const { fields } of index) for (const f of fields) for (const w of f.text.split(" ")) if (w.length >= 4) words.add(w);
+  const list = [...words];
+  vocabCache.set(index, list);
+  return list;
+}
+
+/** Damerau-Levenshtein distance, giving up once it exceeds max. */
+function editDistance(a: string, b: string, max: number): number {
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  const d: number[][] = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    let rowMin = Infinity;
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost);
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+      rowMin = Math.min(rowMin, d[i][j]);
+    }
+    if (rowMin > max) return max + 1;
+  }
+  return d[a.length][b.length];
+}
+
+/** For a word that matches nothing, the closest real words in the index ("croisant" -> "croissant"). */
+export function corrections(index: IndexedCafe[], word: string): string[] {
+  if (word.length < 5 || word.includes(" ")) return [];
+  const vocab = vocabulary(index);
+  if (vocab.some((w) => w.startsWith(word))) return [];
+  const max = word.length >= 8 ? 2 : 1;
+  const scored = vocab.map((w) => [w, editDistance(word, w, max)] as const).filter(([, d]) => d <= max);
+  if (!scored.length) return [];
+  const best = Math.min(...scored.map(([, d]) => d));
+  return scored.filter(([, d]) => d === best).map(([w]) => w).slice(0, 3);
 }
 
 export interface SearchHit<T extends Cafe = Cafe> {
   cafe: T;
   score: number;
+  /** True when no cafe matched every word and this one matches only some (shown as "close matches"). */
+  partial?: boolean;
+  /** The whole multi-word query appears as a phrase in one of this cafe's fields. */
+  phrase?: boolean;
   /** Menu items / attributes that matched, e.g. ["Matcha latte"]. */
   highlights: string[];
 }
@@ -181,6 +253,23 @@ export interface SearchHit<T extends Cafe = Cafe> {
 export function searchIndex<T extends Cafe>(index: IndexedCafe<T>[], query: string): SearchHit<T>[] {
   const groups = parseQuery(query);
   if (!groups.length) return index.map((i) => ({ cafe: i.cafe, score: 0, highlights: [] }));
+  // Typo tolerance: a single word that matches nothing gets its nearest real words as alternatives.
+  for (const g of groups) {
+    for (const fix of corrections(index, g.label)) if (!g.terms.some((t) => t.t === fix)) g.terms.push({ t: fix, w: 0.8 });
+  }
+  const strict = runSearch(index, groups, query, false);
+  if (groups.length >= 2) {
+    // "egg coffee": if some cafes have the exact phrase on their menu, show only those
+    // (not "eggs benedict" + "drip coffee").
+    const exact = strict.filter((h) => h.phrase);
+    if (exact.length) return exact;
+  }
+  if (strict.length || groups.length < 2) return strict;
+  // Nothing matches every word ("quiet cafe with wifi"): fall back to cafes matching some of them.
+  return runSearch(index, groups, query, true);
+}
+
+function runSearch<T extends Cafe>(index: IndexedCafe<T>[], groups: Group[], query: string, relaxed: boolean): SearchHit<T>[] {
 
   const phraseTokens = normalize(query).split(" ").filter(Boolean);
   const phrase = phraseTokens.length > 1 ? phraseTokens.map(stem).join(" ") : null;
@@ -203,7 +292,7 @@ export function searchIndex<T extends Cafe>(index: IndexedCafe<T>[], query: stri
           if (!f.text.includes(wholeWordOnly ? ` ${t} ` : ` ${t}`)) continue;
           const exact = f.text.includes(` ${t} `) ? 1 : 0.7;
           s += f.weight * exact;
-          if (!hl && (f.key === "drink" || f.key === "food" || f.key === "tag" || f.key === "cuisine")) hl = f.raw;
+          if (!hl && (f.key === "drink" || f.key === "food" || f.key === "tag" || f.key === "cuisine" || f.key === "amenity")) hl = f.raw.split(",")[0];
         }
         s *= w;
         if (s > best) {
@@ -212,16 +301,18 @@ export function searchIndex<T extends Cafe>(index: IndexedCafe<T>[], query: stri
         }
       }
       if (best === 0) {
+        if (relaxed) continue;
         ok = false;
         break;
       }
       total += best;
       if (bestHighlight && !highlights.includes(bestHighlight)) highlights.push(bestHighlight);
     }
-    if (!ok) continue;
+    if (!ok || total === 0) continue;
     // Whole-phrase bonus: "egg coffee" as written beats "eggs benedict" + "drip coffee".
-    if (phrase && fields.some((f) => f.text.includes(` ${phrase}`))) total += 25;
-    hits.push({ cafe, score: total, highlights: highlights.slice(0, 3) });
+    const phraseHit = !!phrase && fields.some((f) => f.key !== "address" && f.text.includes(` ${phrase}`));
+    if (phraseHit) total += 25;
+    hits.push({ cafe, score: total, highlights: highlights.slice(0, 3), ...(relaxed ? { partial: true } : {}), ...(phraseHit ? { phrase: true } : {}) });
   }
   return hits;
 }
@@ -239,9 +330,23 @@ export interface Filters {
   openNow: boolean;
   /** Primary venue type tab (null = all). */
   venue: VenueType | null;
+  /** Facet keys from lib/facets.ts (any-of within a group). */
+  drinks: string[];
+  food: string[];
+  amenities: string[];
 }
 
-export const EMPTY_FILTERS: Filters = { query: "", neighbourhoods: [], types: [], sort: "relevance", openNow: false, venue: null };
+export const EMPTY_FILTERS: Filters = {
+  query: "",
+  neighbourhoods: [],
+  types: [],
+  sort: "relevance",
+  openNow: false,
+  venue: null,
+  drinks: [],
+  food: [],
+  amenities: [],
+};
 
 /** Filters → URL params (inverse of filtersFromParams). Default values are left out. */
 export function filtersToParams(f: Filters): URLSearchParams {
@@ -252,6 +357,7 @@ export function filtersToParams(f: Filters): URLSearchParams {
   if (f.sort !== "relevance") p.set("sort", f.sort);
   if (f.openNow) p.set("open", "1");
   if (f.venue) p.set("venue", f.venue);
+  for (const g of FACET_GROUP_KEYS) if (f[g].length) p.set(FACET_GROUPS[g].param, f[g].join(","));
   return p;
 }
 
@@ -274,6 +380,15 @@ export function filtersFromParams(get: (key: string) => string | null | undefine
     sort: isSortKey(sort) ? sort : "relevance",
     openNow: get("open") === "1",
     venue: isVenueType(get("venue")) ? (get("venue") as VenueType) : null,
+    ...(Object.fromEntries(
+      FACET_GROUP_KEYS.map((g) => [
+        g,
+        (get(FACET_GROUPS[g].param) ?? "")
+          .split(",")
+          .map((v) => v.trim())
+          .filter((v, i, arr) => v && isFacetKey(g, v) && arr.indexOf(v) === i),
+      ]),
+    ) as Pick<Filters, "drinks" | "food" | "amenities">),
   };
 }
 
@@ -284,6 +399,9 @@ export function applyFilters<T extends Cafe>(index: IndexedCafe<T>[], f: Filters
   }
   if (f.venue) {
     hits = hits.filter((h) => h.cafe.venue_type === f.venue);
+  }
+  for (const g of FACET_GROUP_KEYS) {
+    if (f[g]?.length) hits = hits.filter((h) => matchesFacets(h.cafe, g, f[g]));
   }
   if (f.neighbourhoods.length) {
     hits = hits.filter((h) => f.neighbourhoods.some((n) => matchesNeighbourhoodFilter(h.cafe.neighbourhood, n)));

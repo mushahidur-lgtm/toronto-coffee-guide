@@ -1,7 +1,8 @@
 "use client";
 
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
-import { Clock, Search, SlidersHorizontal, X } from "lucide-react";
+import { Clock, Coffee, MapPin, Search, SlidersHorizontal, Utensils, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import type { CafeView } from "@/lib/types";
 import { CAFE_TYPES } from "@/lib/types";
 import { FILTER_NEIGHBOURHOODS } from "@/lib/neighbourhoods";
@@ -11,6 +12,8 @@ import { QUICK_SEARCHES } from "@/lib/site";
 import { cafeLocation, distanceKm, type LatLng } from "@/lib/geo";
 import { CafeCard } from "./CafeCard";
 import { VENUE_TYPES, type VenueType } from "@/lib/venue";
+import { FACET_GROUP_KEYS, FACET_GROUPS, type FacetGroupKey } from "@/lib/facets";
+import { suggest, type Suggestion } from "@/lib/suggest";
 
 const PAGE = 12;
 
@@ -35,6 +38,8 @@ interface Props {
   initialFilters?: Filters;
   /** Server render time (ms), so "Open now" gives the same result during hydration. */
   initialNow?: number;
+  /** Extra content shown above the featured cafes while nobody is searching (e.g. homepage collections). */
+  idleContent?: React.ReactNode;
 }
 
 function readUrl(): Partial<Filters> {
@@ -54,7 +59,7 @@ function writeUrl(f: Filters) {
   if (url !== `${window.location.pathname}${window.location.search}`) window.history.replaceState(null, "", url);
 }
 
-export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, initialNow }: Props) {
+export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, initialNow, idleContent }: Props) {
   const index = useMemo(() => cafes.map(indexCafe), [cafes]);
   const [filters, setFilters] = useState<Filters>(initialFilters ?? EMPTY_FILTERS);
   const [visible, setVisible] = useState(PAGE);
@@ -147,11 +152,64 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
     return { hits: sorted, distances, unlocated: filtered.length - distances.size };
   }, [filtered, nearMe, origin]);
 
+  // Only options at least one cafe supports are offered (no filters the data can't back up).
+  const supported = useMemo(
+    () =>
+      Object.fromEntries(FACET_GROUP_KEYS.map((g) => [g, FACET_GROUPS[g].facets.filter((fc) => cafes.some((c) => fc.test(c)))])) as Record<
+        FacetGroupKey,
+        (typeof FACET_GROUPS)[FacetGroupKey]["facets"]
+      >,
+    [cafes],
+  );
+  // Live counts per option: everything else applied, this group's own selection ignored.
+  const facetCounts = useMemo(() => {
+    const out = {} as Record<FacetGroupKey, Record<string, number>>;
+    for (const g of FACET_GROUP_KEYS) {
+      const base = applyFilters(index, { ...deferred, [g]: [] }, now).filter((h) => !deferred.venue || h.cafe.venue_type === deferred.venue);
+      out[g] = Object.fromEntries(supported[g].map((fc) => [fc.key, base.filter((h) => fc.test(h.cafe)).length]));
+    }
+    return out;
+  }, [index, deferred, now, supported]);
+  const facetLabel = (g: FacetGroupKey, key: string) => FACET_GROUPS[g].facets.find((fc) => fc.key === key)?.label ?? key;
+
   const update = (patch: Partial<Filters>) => {
     setFilters((f) => ({ ...f, ...patch }));
     setVisible(PAGE);
   };
-  const toggle = (key: "neighbourhoods" | "types", value: string) => {
+
+  // ---- autocomplete ------------------------------------------------------------------
+  const router = useRouter();
+  const [acOpen, setAcOpen] = useState(false);
+  const [acIndex, setAcIndex] = useState(-1);
+  const suggestions = useMemo(() => (acOpen ? suggest(cafes, filters.query) : []), [acOpen, cafes, filters.query]);
+  const pickSuggestion = (sug: Suggestion) => {
+    setAcOpen(false);
+    setAcIndex(-1);
+    if (sug.kind === "cafe") {
+      router.push(`/cafes/${encodeURIComponent(sug.slug)}`);
+      return;
+    }
+    update({ query: sug.label, sort: "relevance" });
+    requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  };
+  const onSearchKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!suggestions.length) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setAcOpen(true);
+      setAcIndex((i) => (i + 1) % suggestions.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setAcIndex((i) => (i <= 0 ? suggestions.length - 1 : i - 1));
+    } else if (e.key === "Enter" && acIndex >= 0) {
+      e.preventDefault();
+      pickSuggestion(suggestions[acIndex]);
+    } else if (e.key === "Escape") {
+      setAcOpen(false);
+      setAcIndex(-1);
+    }
+  };
+  const toggle = (key: "neighbourhoods" | "types" | FacetGroupKey, value: string) => {
     setFilters((f) => {
       const cur = f[key];
       return { ...f, [key]: cur.includes(value) ? cur.filter((v) => v !== value) : [...cur, value] };
@@ -159,8 +217,9 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
     setVisible(PAGE);
   };
 
-  const activeFilterCount = filters.neighbourhoods.length + filters.types.length + (filters.openNow ? 1 : 0);
-  const clearAll = { query: "", neighbourhoods: [], types: [], openNow: false, venue: null };
+  const activeFilterCount =
+    filters.neighbourhoods.length + filters.types.length + (filters.openNow ? 1 : 0) + FACET_GROUP_KEYS.reduce((n, g) => n + filters[g].length, 0);
+  const clearAll = { query: "", neighbourhoods: [], types: [], openNow: false, venue: null, drinks: [], food: [], amenities: [] };
   const idle = !filters.query.trim() && activeFilterCount === 0 && !filters.venue;
   const shown = hits.slice(0, visible);
 
@@ -195,14 +254,61 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
             id="cafe-search"
             name="q"
             type="search"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded={suggestions.length > 0}
+            aria-controls="search-suggestions"
+            aria-activedescendant={acIndex >= 0 ? `sug-${acIndex}` : undefined}
             autoComplete="off"
             autoFocus={autoFocus}
             enterKeyHint="search"
             value={filters.query}
-            onChange={(e) => update({ query: e.target.value })}
-            placeholder="Search coffee shops, matcha, Vietnamese coffee, pastries..."
-            className="h-14 w-full border border-line-strong bg-paper pl-12 pr-12 text-base outline-none transition-colors placeholder:text-[#8f8f8f] hover:border-ink-2 focus:border-ink sm:h-16 sm:text-lg [&::-webkit-search-cancel-button]:hidden"
+            onChange={(e) => {
+              update({ query: e.target.value });
+              setAcOpen(true);
+              setAcIndex(-1);
+            }}
+            onFocus={() => setAcOpen(true)}
+            onBlur={() => setTimeout(() => setAcOpen(false), 150)}
+            onKeyDown={onSearchKey}
+            placeholder="Search cafes, drinks, food or neighbourhoods..."
+            className="h-14 w-full rounded-xl border border-line-strong bg-paper pl-12 pr-12 text-base shadow-[0_1px_2px_rgba(0,0,0,0.04)] outline-none transition-colors placeholder:text-[#8f8f8f] hover:border-ink-2 focus:border-ink sm:h-16 sm:text-lg [&::-webkit-search-cancel-button]:hidden"
           />
+          {suggestions.length > 0 && (
+            <ul
+              id="search-suggestions"
+              role="listbox"
+              aria-label="Suggestions"
+              className="absolute inset-x-0 top-full z-30 mt-2 overflow-hidden rounded-xl border border-line bg-paper py-1 shadow-[0_12px_32px_rgba(0,0,0,0.08)]"
+            >
+              {suggestions.map((sug, i) => (
+                <li
+                  key={`${sug.kind}-${sug.label}`}
+                  id={`sug-${i}`}
+                  role="option"
+                  aria-selected={i === acIndex}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    pickSuggestion(sug);
+                  }}
+                  onMouseEnter={() => setAcIndex(i)}
+                  className={`flex cursor-pointer items-center gap-3 px-4 py-2.5 text-sm ${i === acIndex ? "bg-cream" : ""}`}
+                >
+                  {sug.kind === "cafe" ? (
+                    <Coffee size={15} strokeWidth={1.5} className="shrink-0 text-muted" aria-hidden />
+                  ) : sug.kind === "neighbourhood" ? (
+                    <MapPin size={15} strokeWidth={1.5} className="shrink-0 text-muted" aria-hidden />
+                  ) : (
+                    <Utensils size={15} strokeWidth={1.5} className="shrink-0 text-muted" aria-hidden />
+                  )}
+                  <span className="flex-1 truncate text-ink">{sug.label}</span>
+                  <span className="shrink-0 text-xs text-muted">
+                    {sug.kind === "cafe" ? `Cafe · ${sug.detail}` : sug.kind === "neighbourhood" ? `Area · ${sug.detail}` : sug.detail}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
           {filters.query && (
             <button
               type="button"
@@ -230,8 +336,8 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
                 if (active) update({ query: "" });
                 else runQuickSearch(q);
               }}
-              className={`border px-3 py-1.5 text-sm transition-colors ${
-                active ? "border-ink bg-ink text-paper" : "border-line text-ink-2 hover:border-ink-2"
+              className={`rounded-full border px-3.5 py-1.5 text-sm transition-colors ${
+                active ? "border-ink bg-ink text-paper" : "border-sand bg-cream text-ink-2 hover:border-sand-strong hover:bg-sand"
               }`}
             >
               {q}
@@ -239,6 +345,8 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
           );
         })}
       </nav>
+
+      {idle && idleContent}
 
       {/* ——— Featured (only while browsing) ——— */}
       {idle && featured.length > 0 && (
@@ -315,6 +423,18 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
             <FilterMenu label="Cafe type" count={filters.types.length}>
               <CheckList options={[...CAFE_TYPES]} selected={filters.types} onToggle={(v) => toggle("types", v)} name="type" />
             </FilterMenu>
+            {FACET_GROUP_KEYS.filter((g) => supported[g].length > 0).map((g) => (
+              <FilterMenu key={g} label={FACET_GROUPS[g].label} count={filters[g].length}>
+                <CheckList
+                  options={supported[g].map((fc) => fc.key)}
+                  selected={filters[g]}
+                  onToggle={(v) => toggle(g, v)}
+                  name={`facet-${g}`}
+                  labelFor={(k) => facetLabel(g, k)}
+                  countFor={(k) => facetCounts[g][k]}
+                />
+              </FilterMenu>
+            ))}
             <button
               type="button"
               aria-pressed={filters.openNow}
@@ -362,7 +482,35 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
         )}
 
         {mobileFilters && (
-          <div id="mobile-filters" className="grid gap-6 border-b border-line py-5 md:hidden">
+          <div className="fixed inset-0 z-50 flex flex-col justify-end bg-black/30 md:hidden" onClick={() => setMobileFilters(false)}>
+          <div
+            id="mobile-filters"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Filters"
+            onClick={(e) => e.stopPropagation()}
+            className="grid max-h-[85dvh] gap-6 overflow-y-auto rounded-t-2xl bg-paper px-4 pb-4 pt-3 shadow-[0_-8px_24px_rgba(0,0,0,0.12)]"
+          >
+            <div className="sticky top-0 -mx-4 flex items-center justify-between border-b border-line bg-paper px-4 pb-3">
+              <p className="font-semibold">Filters</p>
+              <button type="button" onClick={() => setMobileFilters(false)} className="p-1 text-muted hover:text-ink" aria-label="Close filters">
+                <X size={18} strokeWidth={1.5} />
+              </button>
+            </div>
+            {FACET_GROUP_KEYS.filter((g) => supported[g].length > 0).map((g) => (
+              <fieldset key={g}>
+                <legend className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-muted">{FACET_GROUPS[g].label}</legend>
+                <CheckList
+                  options={supported[g].map((fc) => fc.key)}
+                  selected={filters[g]}
+                  onToggle={(v) => toggle(g, v)}
+                  name={`m-facet-${g}`}
+                  labelFor={(k) => facetLabel(g, k)}
+                  countFor={(k) => facetCounts[g][k]}
+                  columns
+                />
+              </fieldset>
+            ))}
             <fieldset>
               <legend className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-muted">Neighbourhood</legend>
               <CheckList options={[...FILTER_NEIGHBOURHOODS]} selected={filters.neighbourhoods} onToggle={(v) => toggle("neighbourhoods", v)} name="m-neighbourhood" columns />
@@ -384,9 +532,15 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
                 Open now
               </label>
             </fieldset>
-            <button type="button" onClick={() => setMobileFilters(false)} className="bg-ink py-3 text-sm text-paper">
-              Show {hits.length} {hits.length === 1 ? "place" : "places"}
-            </button>
+            <div className="sticky bottom-0 -mx-4 flex gap-3 border-t border-line bg-paper px-4 pt-3">
+              <button type="button" onClick={() => update(clearAll)} className="rounded-full border border-line px-4 py-3 text-sm">
+                Clear all
+              </button>
+              <button type="button" onClick={() => setMobileFilters(false)} className="flex-1 rounded-full bg-ink py-3 text-sm text-paper">
+                Show {hits.length} {hits.length === 1 ? "place" : "places"}
+              </button>
+            </div>
+          </div>
           </div>
         )}
 
@@ -401,6 +555,7 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
               <Chip key={t} label={t} onRemove={() => toggle("types", t)} />
             ))}
             {filters.openNow && <Chip label="Open now" onRemove={() => update({ openNow: false })} />}
+            {FACET_GROUP_KEYS.flatMap((g) => filters[g].map((k) => <Chip key={`${g}-${k}`} label={facetLabel(g, k)} onRemove={() => toggle(g, k)} />))}
             <button type="button" onClick={() => update(clearAll)} className="link-quiet ml-1 text-muted hover:text-ink">
               Clear all
             </button>
@@ -421,6 +576,11 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
             />
           ) : (
             <>
+              {hits[0]?.partial && (
+                <p role="status" className="mt-6 rounded-lg bg-cream px-4 py-3 text-sm text-ink-2">
+                  No place matches every word of &ldquo;{filters.query.trim()}&rdquo;. Showing the closest matches instead.
+                </p>
+              )}
               <ul className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
                 {shown.map((h, i) => (
                   <li key={h.cafe.id}>

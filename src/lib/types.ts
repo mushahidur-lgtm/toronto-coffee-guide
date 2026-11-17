@@ -70,6 +70,8 @@ export interface SeedCafe {
   is_chain?: boolean;
   /** Primary venue type (slug from lib/venue.ts). Overrides the derived one when set. */
   venue_type?: string;
+  /** Editorial collections this cafe belongs to (e.g. "hidden-gems", "beautiful-cafes"); see lib/collections.ts. */
+  collections?: string[];
 }
 
 /** A row of the `cafes` table (or one entry of data/cafes.seed.json). */
@@ -112,6 +114,8 @@ export interface Cafe {
   is_chain: boolean;
   /** Primary venue type: the editorial override, or derived from categories/tags. */
   venue_type: VenueType;
+  /** Editorial collection slugs (hand-picked lists that can't be derived from data). */
+  collections: string[];
   /** Where the editorial information came from. */
   source: string | null;
   created_at: string;
@@ -130,6 +134,8 @@ export interface LivePlace {
   businessStatus: string | null;
   /** Google's outdoorSeating (Atmosphere field). null = not reported. */
   outdoorSeating: boolean | null;
+  rating: number | null;
+  userRatingCount: number | null;
 }
 
 /** What the UI renders: the stored cafe merged with any live Google data. */
@@ -144,4 +150,7 @@ export interface CafeView extends Cafe {
   google_location: { lat: number; lng: number } | null;
   /** Explorer categories + attributes, computed on the server (editorial data first, then live Google). */
   attributes: CafeAttributes;
+  /** Google rating (1–5) and review count, live from Places; null when not available. Shown with Google attribution. */
+  google_rating: number | null;
+  google_review_count: number | null;
 }

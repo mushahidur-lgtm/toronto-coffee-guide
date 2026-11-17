@@ -10,6 +10,11 @@
   --color-paper: #ffffff;
   --color-wash: #f6f5f3;
   --color-accent: #7a4b2a;
+  /* Warm accents, used sparingly: section bands, chips, hover states */
+  --color-cream: #faf7f2;
+  --color-sand: #efe7dc;
+  --color-sand-strong: #e0d3c2;
+  --color-clay: #b4532a;
 }
 
 :root {

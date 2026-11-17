@@ -64,6 +64,8 @@ export function toView(cafe: Cafe, live: LivePlace | null): CafeView {
     google_data: !!live,
     google_location: live?.latitude != null && live.longitude != null ? { lat: live.latitude, lng: live.longitude } : null,
     attributes: deriveAttributes(cafe, live?.outdoorSeating ?? null),
+    google_rating: live?.rating ?? null,
+    google_review_count: live?.userRatingCount ?? null,
   };
 }
 

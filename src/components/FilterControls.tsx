@@ -41,22 +41,31 @@ export function CheckList({
   onToggle,
   name,
   columns,
+  labelFor,
+  countFor,
 }: {
   options: string[];
   selected: string[];
   onToggle: (v: string) => void;
   name: string;
   columns?: boolean;
+  /** Display label for an option value (defaults to the value). */
+  labelFor?: (o: string) => string;
+  /** Live result count shown next to the option. */
+  countFor?: (o: string) => number | undefined;
 }) {
   return (
     <ul className={columns ? "grid grid-cols-2 gap-x-4" : ""}>
       {options.map((o) => {
         const id = `${name}-${o.replace(/\W+/g, "-")}`;
+        const count = countFor?.(o);
+        const checked = selected.includes(o);
         return (
           <li key={o}>
-            <label htmlFor={id} className="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm">
-              <input id={id} type="checkbox" checked={selected.includes(o)} onChange={() => onToggle(o)} className="h-4 w-4 accent-[#161616]" />
-              {o === "Other" ? "Other neighbourhoods" : o}
+            <label htmlFor={id} className={`flex cursor-pointer items-center gap-2.5 py-1.5 text-sm ${count === 0 && !checked ? "text-[#a3a3a3]" : ""}`}>
+              <input id={id} type="checkbox" checked={checked} onChange={() => onToggle(o)} className="h-4 w-4 accent-[#161616]" />
+              <span className="flex-1">{labelFor ? labelFor(o) : o === "Other" ? "Other neighbourhoods" : o}</span>
+              {count !== undefined && <span className="tabular-nums text-xs text-muted">{count}</span>}
             </label>
           </li>
         );

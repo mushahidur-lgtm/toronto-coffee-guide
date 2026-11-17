@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getCafeViews } from "@/lib/data";
 import { NEIGHBOURHOODS } from "@/lib/neighbourhoods";
 import { SITE } from "@/lib/site";
+import { visibleCollections } from "@/lib/collections";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cafes = await getCafeViews();
@@ -12,6 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE.url}/neighbourhoods`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE.url}/map`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE.url}/about`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE.url}/categories`, changeFrequency: "monthly", priority: 0.7 },
+    ...visibleCollections(cafes).map(({ collection }) => ({
+      url: `${SITE.url}/toronto/${collection.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...NEIGHBOURHOODS.filter((n) => used.has(n.name)).map((n) => ({
       url: `${SITE.url}/neighbourhoods/${n.slug}`,
       changeFrequency: "monthly" as const,

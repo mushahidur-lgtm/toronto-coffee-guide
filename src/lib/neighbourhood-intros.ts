@@ -37,7 +37,7 @@ export const NEIGHBOURHOOD_INTROS: Record<string, string> = {
   "The Annex": "A historic residential neighbourhood beside the University of Toronto, with a lively stretch of Bloor Street West full of cafes and tea shops.",
   Dupont: "The Dupont Street corridor north of the Annex, where converted industrial buildings house some unexpected cafes.",
   Midtown: "Yonge Street from Summerhill up to Eglinton, plus St. Clair, with neighbourhood cafes, bakeries and dessert spots.",
-  "North York": "North of Highway 401 along Yonge Street, including the Yonge and Finch area with its many Korean cafes, dessert shops and tea houses.",
+  "North York": "Toronto's northern district, from Downsview and Don Mills up to Steeles, with a dense strip of Korean, Japanese and Taiwanese cafes, dessert shops and tea houses along Yonge Street.",
   Scarborough: "Toronto's eastern district, home to many of the city's Asian bakeries, dessert cafes and tea houses, often in plazas and malls.",
   Willowdale: "Yonge Street from Sheppard up to Steeles, North York's densest strip, with many Korean, Japanese and Taiwanese cafes, tea shops and dessert spots above and beside the subway.",
   Fairview: "The area around Fairview Mall at Sheppard and Don Mills, including Henry Farm.",

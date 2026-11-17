@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getCafeViews } from "@/lib/data";
-import { NEIGHBOURHOODS } from "@/lib/neighbourhoods";
+import { NEIGHBOURHOODS, REGION_PAGES, regionOf } from "@/lib/neighbourhoods";
 import { SITE } from "@/lib/site";
 import { visibleCollections } from "@/lib/collections";
 
@@ -16,6 +16,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE.url}/categories`, changeFrequency: "monthly", priority: 0.7 },
     ...visibleCollections(cafes).map(({ collection }) => ({
       url: `${SITE.url}/toronto/${collection.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+    ...REGION_PAGES.filter((r) => cafes.some((c) => regionOf(c.neighbourhood) === r.name)).map((r) => ({
+      url: `${SITE.url}/neighbourhoods/${r.slug}`,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),

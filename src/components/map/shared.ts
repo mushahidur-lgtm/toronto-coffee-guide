@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { CafeView } from "@/lib/types";
 import type { Bbox, MapViewState } from "@/lib/map-state";
 import { getNeighbourhood } from "@/lib/neighbourhoods";
-import { isOpenNow, todayHoursText } from "@/lib/hours";
+import { todayStatus, todayStatusText } from "@/lib/hours";
 import { googleMapsDirectionsUrl } from "@/lib/maps";
 import type { LatLng } from "@/lib/geo";
 import { venueInfo } from "@/lib/venue";
@@ -62,14 +62,10 @@ export const cafeHref = (slug: string) => `/cafes/${encodeURIComponent(slug)}`;
 
 /** Concise preview card for a map popup. Every value is escaped; no Google photos. */
 export function popupHtml(c: CafeView, now: Date): string {
-  const hours = todayHoursText(c.opening_hours, now);
-  const open = isOpenNow(c.opening_hours, now);
-  const badge =
-    open === true
-      ? `<span style="background:${INK};color:#fff;padding:1px 6px;font-size:11px;font-weight:600">Open now</span>`
-      : open === false
-        ? `<span style="border:1px solid #cfcfcf;color:#6b6b6b;padding:0 6px;font-size:11px">Closed</span>`
-        : "";
+  const status = todayStatus(c.opening_hours, now);
+  const statusHtml = status
+    ? `<div style="margin-top:7px;color:${status.state === "open" ? "#2f5a24;font-weight:500" : "#3d3d3d"}">${esc(todayStatusText(status))}</div>`
+    : "";
   const types = c.cafe_categories.slice(0, 2).join(" · ");
   const vb = VENUE_BADGE_STYLE[c.venue_type];
   return `<div style="font:13px/1.45 var(--font-inter),system-ui,sans-serif;color:${INK};min-width:190px;max-width:250px;padding:2px 2px 4px">
@@ -77,9 +73,7 @@ export function popupHtml(c: CafeView, now: Date): string {
     <div style="margin-top:3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b6b6b">${esc(c.neighbourhood)}</div>
     <div style="margin-top:5px"><span style="display:inline-block;border:1px solid ${vb.border};background:${vb.bg};color:${vb.fg};padding:0 6px;font-size:11px;font-weight:500;line-height:16px">${esc(venueInfo(c.venue_type).badge)}</span></div>
     ${types ? `<div style="margin-top:3px;color:#3d3d3d">${esc(types)}</div>` : ""}
-    <div style="margin-top:7px;display:flex;gap:6px;align-items:center;flex-wrap:wrap">${badge}<span style="color:#3d3d3d">${
-      hours ? `Today: ${esc(hours)}` : "Hours not listed"
-    }</span></div>
+    ${statusHtml}
     <div style="margin-top:9px;display:flex;gap:14px">
       <a href="${esc(cafeHref(c.slug))}" style="color:${INK}">View cafe</a>
       <a href="${esc(googleMapsDirectionsUrl(c.name, c.address, c.google_place_id))}" target="_blank" rel="noopener noreferrer" style="color:${INK}">Directions ↗</a>

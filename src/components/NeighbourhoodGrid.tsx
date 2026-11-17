@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NEIGHBOURHOODS, REGIONS } from "@/lib/neighbourhoods";
+import { NEIGHBOURHOODS, REGION_PAGES, REGIONS } from "@/lib/neighbourhoods";
 import type { Cafe } from "@/lib/types";
 
 /** Editorial index of neighbourhoods grouped by region, with cafe counts. */
@@ -12,9 +12,20 @@ export function NeighbourhoodGrid({ cafes, compact }: { cafes: Cafe[]; compact?:
       {REGIONS.map((region) => {
         const hoods = NEIGHBOURHOODS.filter((n) => n.region === region && counts.get(n.name));
         if (!hoods.length) return null;
+        const page = REGION_PAGES.find((r) => r.name === region);
+        const total = hoods.reduce((sum, n) => sum + (counts.get(n.name) ?? 0), 0);
         return (
           <div key={region}>
-            <h3 className="border-b border-line pb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-muted">{region}</h3>
+            <h3 className="flex items-baseline justify-between gap-4 border-b border-line pb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
+              {page ? (
+                <Link href={`/neighbourhoods/${page.slug}`} className="text-ink hover:underline hover:underline-offset-4">
+                  {region} guide →
+                </Link>
+              ) : (
+                region
+              )}
+              <span className="tabular-nums tracking-normal">{total}</span>
+            </h3>
             <ul className="mt-2">
               {hoods.map((n) => (
                 <li key={n.slug}>

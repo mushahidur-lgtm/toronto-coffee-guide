@@ -7,6 +7,8 @@ import { CollectionCard } from "@/components/CollectionCard";
 import { NeighbourhoodGrid } from "@/components/NeighbourhoodGrid";
 import { SITE } from "@/lib/site";
 import { serializeJsonLd } from "@/lib/json-ld";
+import { NEIGHBOURHOODS, REGION_PAGES, regionOf } from "@/lib/neighbourhoods";
+import { NEIGHBOURHOOD_INTROS } from "@/lib/neighbourhood-intros";
 
 export const revalidate = 3600;
 
@@ -18,6 +20,16 @@ export default async function HomePage() {
   const cafes = await getCafeViews();
   const featured = cafes.filter((c) => c.featured).slice(0, 6);
   const collections = visibleCollections(cafes);
+
+  // North York and Scarborough guides: counts and areas computed from the same published list.
+  const regions = REGION_PAGES.map((r) => {
+    const inRegion = cafes.filter((c) => regionOf(c.neighbourhood) === r.name);
+    const areas = NEIGHBOURHOODS.filter((n) => n.region === r.name)
+      .map((n) => ({ ...n, count: inRegion.filter((c) => c.neighbourhood === n.name).length }))
+      .filter((n) => n.count > 0)
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+    return { ...r, count: inRegion.length, areas };
+  }).filter((r) => r.count > 0);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -67,6 +79,43 @@ export default async function HomePage() {
 
       <div className="mx-auto -mt-8 max-w-7xl px-4 sm:px-6 lg:px-10">
         <CafeExplorer cafes={cafes} featured={featured} idleContent={collectionsSection} />
+
+        {regions.length > 0 && (
+          <section aria-labelledby="regions-heading" className="mt-28">
+            <div className="flex items-baseline justify-between border-b border-ink pb-3">
+              <h2 id="regions-heading" className="text-xl font-semibold tracking-tight sm:text-2xl">
+                Beyond downtown
+              </h2>
+            </div>
+            <ul className="mt-8 grid gap-6 md:grid-cols-2">
+              {regions.map((r) => (
+                <li key={r.slug} className="rounded-xl border border-line bg-cream p-6">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <Link href={`/neighbourhoods/${r.slug}`} className="text-2xl font-semibold tracking-tight hover:underline hover:underline-offset-4">
+                      {r.name}
+                    </Link>
+                    <span className="text-sm tabular-nums text-muted">
+                      {r.count} {r.count === 1 ? "place" : "places"}
+                    </span>
+                  </div>
+                  {NEIGHBOURHOOD_INTROS[r.name] && <p className="mt-2 text-ink-2">{NEIGHBOURHOOD_INTROS[r.name]}</p>}
+                  <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${r.name} areas`}>
+                    {r.areas.map((a) => (
+                      <li key={a.slug}>
+                        <Link href={`/neighbourhoods/${a.slug}`} className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-3 py-1 text-sm hover:border-ink">
+                          {a.name} <span className="text-muted">{a.count}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={`/neighbourhoods/${r.slug}`} className="link-quiet mt-4 inline-block text-sm">
+                    {r.name} coffee guide
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section aria-labelledby="hoods-heading" className="mt-28">
           <div className="flex items-baseline justify-between border-b border-ink pb-3">

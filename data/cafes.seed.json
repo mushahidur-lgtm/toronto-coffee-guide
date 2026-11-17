@@ -1309,7 +1309,7 @@
   },
   {
     "name": "Cafe Wanoka",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Agincourt",
     "address": "2101 Brimley Rd, Scarborough, ON",
     "description": "A Scarborough cafe for Japanese sweets: mochi, cakes and traditional wagashi.",
     "specialty_drinks": [
@@ -1336,7 +1336,7 @@
   },
   {
     "name": "Soul Cafe",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "23 Drewry Ave, North York, ON",
     "description": "A Korean cafe near Yonge and Finch known for its shaved-ice desserts.",
     "specialty_drinks": [
@@ -1361,7 +1361,7 @@
   },
   {
     "name": "Cafe Kray",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "4850 Yonge St, Floor 2, North York, ON",
     "description": "A second-floor North York cafe serving ethically sourced coffee and tea with Korean desserts.",
     "specialty_drinks": [
@@ -1386,7 +1386,7 @@
   },
   {
     "name": "Cafe Daily",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "5519 Yonge St, North York, ON",
     "description": "A North York Korean cafe for coffee, bingsu and desserts.",
     "specialty_drinks": [
@@ -1412,7 +1412,7 @@
   },
   {
     "name": "The Cups",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "5647 Yonge St, 2nd Floor, North York, ON",
     "description": "A second-floor Korean dessert cafe on Yonge with bingsu, cakes and other sweets.",
     "specialty_drinks": [
@@ -1439,7 +1439,7 @@
   },
   {
     "name": "Dear & Fro",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Milliken",
     "address": "3300 Midland Ave #39, Scarborough, ON",
     "description": "A Scarborough cafe specializing in contemporary Korean desserts.",
     "specialty_drinks": [
@@ -1891,7 +1891,7 @@
   },
   {
     "name": "Phin Cafe Bar",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Milliken",
     "address": null,
     "description": "A Vietnamese coffee shop tucked inside Scarborough's Sky City Shopping Centre, opened in October 2025.",
     "specialty_drinks": [
@@ -2664,7 +2664,7 @@
     "tags": [],
     "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
     "name": "Machi Machi — Fairview Mall",
-    "neighbourhood": "North York",
+    "neighbourhood": "Fairview",
     "description": "Machi Machi’s Taiwanese milk teas and bubble tea at Fairview Mall.",
     "specialty_drinks": [
       "Milk tea",
@@ -2787,7 +2787,7 @@
     "tags": [],
     "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
     "name": "Presotea — Scarborough",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Milliken",
     "description": "A Scarborough location of the Taiwanese tea chain Presotea.",
     "specialty_drinks": [
       "Bubble tea"
@@ -2822,7 +2822,7 @@
     "tags": [],
     "source": "editorial; existence and operating status checked with Google Places (Nov 2026)",
     "name": "Daan Go Cake Lab — Scarborough",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Milliken",
     "description": "Daan Go Cake Lab’s Scarborough bakery for Asian-inspired cakes and pastries.",
     "specialty_drinks": [],
     "food_offerings": [
@@ -3057,7 +3057,7 @@
   },
   {
     "name": "Haven Brews",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "222 Finch Ave W, Unit 101, Toronto, ON",
     "description": "A Finch Avenue West cafe brewing hand-drip and espresso drinks from Brazilian and Ethiopian beans, with fresh pastries, lunch items and oatmeal cookies.",
     "specialty_drinks": [
@@ -3084,7 +3084,7 @@
   },
   {
     "name": "Baretto Caffe",
-    "neighbourhood": "North York",
+    "neighbourhood": "Don Mills",
     "address": "1262 Don Mills Road, Unit 106, Toronto, ON M3B 2W7",
     "description": "A Don Mills Road cafe serving Italian coffee, with Italian dishes on the menu.",
     "specialty_drinks": [
@@ -3107,7 +3107,7 @@
   },
   {
     "name": "Cocoon Coffee",
-    "neighbourhood": "North York",
+    "neighbourhood": "Downsview",
     "address": "855 Wilson Ave, North York, ON M3K 1E2",
     "description": "A cozy, quiet cafe near Dufferin and Wilson with lattes made from Barocco beans and housemade macarons, plus croissants, brownies and tiramisu.",
     "specialty_drinks": [
@@ -3137,7 +3137,7 @@
   },
   {
     "name": "Another Land Coffee",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "4708 Yonge St, Toronto, ON",
     "description": "A Willowdale specialty coffee shop on Yonge Street that brews rotating rare coffees as Chemex pour-overs.",
     "specialty_drinks": [
@@ -3159,7 +3159,7 @@
   },
   {
     "name": "Edill's Coffee House",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Dorset Park",
     "address": "1412 Kennedy Rd, Unit 1A, Scarborough, ON",
     "description": "A Kennedy Road cafe, formerly Royaltea Coffee, with sweet drinks and light snacks, many with East African flavours, such as pistachio mocha and caramel cardamom lattes.",
     "specialty_drinks": [
@@ -3190,7 +3190,7 @@
   },
   {
     "name": "SnapBack Coffee",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "West Hill",
     "address": "4679 Kingston Rd, Unit 10, Scarborough, ON M1E 2P8",
     "description": "A small Kingston Road coffee shop in Scarborough mixing classic and modern drinks, from flat whites to cold foam coffee and matcha.",
     "specialty_drinks": [
@@ -3213,7 +3213,7 @@
   },
   {
     "name": "Craves Bites & Cafe",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Dorset Park",
     "address": "2171 Lawrence Ave E, Scarborough, ON M1P 2P5",
     "description": "A dessert-forward cafe on Lawrence Avenue East, opened in 2025, with creative iced drinks, strawberry cheesecake, molten lava cakes, mini pancakes and halal sandwiches.",
     "specialty_drinks": [
@@ -3241,7 +3241,7 @@
   },
   {
     "name": "Petit Delights",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Rouge",
     "address": "2130 Morningside Ave, Unit 1, Scarborough, ON M1X 2E5",
     "description": "A Morningside Avenue dessert cafe and bakery with Quebec-inspired cakes and pastries, éclairs, cinnamon rolls and crêpes, plus savoury brunch items.",
     "specialty_drinks": [
@@ -3269,7 +3269,7 @@
   },
   {
     "name": "A.M. Coffee Laboratory",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Milliken",
     "address": "3101 Kennedy Rd, Unit C10, Scarborough, ON",
     "description": "A cafe in the Gourmet City plaza off Kennedy Road known for its 86°C latte, served in a pre-chilled glass, plus Americanos and cappuccinos with add-ons like brown sugar boba and salted cheese foam.",
     "specialty_drinks": [
@@ -3290,7 +3290,7 @@
   },
   {
     "name": "Chachee's Chai Cafe",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Golden Mile",
     "address": "69 Lebovic Ave, Scarborough, ON",
     "description": "A Scarborough chai cafe built around its cardamom karak chai, with masala, ginger, rose and pink chai, and Indian street food such as dahi puri alongside wings and a butter chicken panini.",
     "specialty_drinks": [
@@ -3324,7 +3324,7 @@
   },
   {
     "name": "Forest Cafe",
-    "neighbourhood": "North York",
+    "neighbourhood": "Fairview",
     "address": "56 Forest Manor Rd, Unit 5, North York, ON M2J 0E5",
     "description": "A North York cafe on Forest Manor Road pouring De Mello coffee, known for Korean dalgona lattes made with espresso, cold brew and cream-topped croffles.",
     "specialty_drinks": [
@@ -3352,7 +3352,7 @@
   },
   {
     "name": "Saryo Cafe",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "5051 Yonge St, North York, ON",
     "description": "The North York outpost of a Japanese dessert cafe, sharing a space with Konjiki Ramen, with matcha and hojicha soft-serve parfaits, matcha and hojicha lattes and matcha cheesecake.",
     "specialty_drinks": [
@@ -3380,7 +3380,7 @@
   },
   {
     "name": "Dineen Coffee Co. — York Mills",
-    "neighbourhood": "North York",
+    "neighbourhood": "York Mills",
     "address": "311 York Mills Rd, North York, ON",
     "description": "Dineen's uptown location on York Mills Road, with classic espresso drinks plus parfaits, salads, baguette sandwiches and cookies.",
     "specialty_drinks": [
@@ -3403,7 +3403,7 @@
   },
   {
     "name": "Chapayom — North York",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "4909 Yonge St, North York, ON",
     "description": "A Thai tea shop on Yonge Street with Thai tea lattes, rose tea and Thai coffee.",
     "specialty_drinks": [
@@ -3428,7 +3428,7 @@
   },
   {
     "name": "TeaByDo",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "5203 Yonge St, North York, ON",
     "description": "A tea shop on Yonge Street in North York.",
     "specialty_drinks": [
@@ -3446,7 +3446,7 @@
   },
   {
     "name": "Soul Made Cafe",
-    "neighbourhood": "North York",
+    "neighbourhood": "Willowdale",
     "address": "4750 Yonge St, Unit 134, North York, ON",
     "description": "A pastry counter and cafe at The Galleria at Emerald Park, known for hand-held Napoleon pastries.",
     "specialty_drinks": [],
@@ -3464,7 +3464,7 @@
   },
   {
     "name": "Coffee Ronin",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Milliken",
     "address": "3101 Kennedy Rd, Unit A8, Scarborough, ON",
     "description": "A specialty coffee shop in the Gourmet City plaza off Kennedy Road, making restrained drinks with beans from several direct-trade roasters.",
     "specialty_drinks": [
@@ -3484,7 +3484,7 @@
   },
   {
     "name": "Acoffee",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Milliken",
     "address": "3101 Kennedy Rd, Unit A18, Scarborough, ON",
     "description": "A coffee shop that started in Unionville in late 2025 and moved to the Gourmet City plaza on Kennedy Road in 2026.",
     "specialty_drinks": [],
@@ -3500,7 +3500,7 @@
   },
   {
     "name": "Layali El Sharke Coffee House",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Wexford",
     "address": "1883 Lawrence Ave E, Scarborough, ON",
     "description": "An Arabic coffee house on Lawrence Avenue East in Scarborough.",
     "specialty_drinks": [],
@@ -3516,7 +3516,7 @@
   },
   {
     "name": "Shaghf Coffee — Scarborough",
-    "neighbourhood": "Scarborough",
+    "neighbourhood": "Golden Mile",
     "address": "55 Lebovic Ave, Scarborough, ON",
     "description": "The Scarborough branch of a UAE-based coffee chain, with pour-over, AeroPress and syphon coffee alongside frappes, pistachio and Spanish lattes, and karak chai.",
     "specialty_drinks": [

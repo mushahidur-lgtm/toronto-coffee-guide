@@ -10,7 +10,7 @@ import { EXPLORER_CATEGORIES, type ExplorerCategory } from "@/lib/explorer";
 import type { VenueType } from "@/lib/venue";
 import { EMPTY_MAP_STATE, inBbox, mapStateToParams, movedSignificantly, parseMapState, type Bbox, type MapState } from "@/lib/map-state";
 import { googleMapsDirectionsUrl } from "@/lib/maps";
-import { isOpenNow, todayHoursText } from "@/lib/hours";
+import { todayStatus, todayStatusText } from "@/lib/hours";
 import type { LatLng } from "@/lib/geo";
 import { usePopoverDismiss } from "../FilterControls";
 import { QuickFilterBar } from "./QuickFilterBar";
@@ -336,17 +336,14 @@ export function MapExplorer({ cafes, mode }: Props) {
 
 /** Compact selected-cafe header for the mobile sheet. */
 function SelectedSummary({ cafe, now, onClose }: { cafe: CafeView; now: Date; onClose: () => void }) {
-  const open = isOpenNow(cafe.opening_hours, now);
-  const hours = todayHoursText(cafe.opening_hours, now);
+  const status = todayStatus(cafe.opening_hours, now);
   return (
     <div className="flex items-start gap-3" onPointerDown={(e) => e.stopPropagation()}>
       <div className="min-w-0 flex-1">
         <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">{cafe.neighbourhood}</p>
         <p className="truncate font-semibold">{cafe.name}</p>
         <p className="mt-0.5 flex flex-wrap items-center gap-x-2 text-sm">
-          {open === true && <span className="bg-ink px-1.5 text-[11px] font-semibold text-paper">Open now</span>}
-          {open === false && <span className="border border-line-strong px-1.5 text-[11px] text-muted">Closed</span>}
-          <span className="text-ink-2">{hours ?? "Hours not listed"}</span>
+          {status && <span className={status.state === "open" ? "font-medium text-[#2f5a24]" : "text-ink-2"}>{todayStatusText(status)}</span>}
         </p>
         <p className="mt-1.5 flex gap-4 text-sm">
           <Link href={`/cafes/${encodeURIComponent(cafe.slug)}`} className="link-quiet">

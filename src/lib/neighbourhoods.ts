@@ -52,14 +52,45 @@ export const NEIGHBOURHOODS: Neighbourhood[] = [
   { name: "The Annex", slug: "the-annex", region: "Midtown", lat: 43.6703, lng: -79.4048, aliases: ["annex"] },
   { name: "Dupont", slug: "dupont", region: "Midtown", lat: 43.6748, lng: -79.4255, aliases: ["davenport"] },
   { name: "Midtown", slug: "midtown", region: "Midtown", lat: 43.6985, lng: -79.3967, aliases: ["summerhill", "yonge and eglinton", "yonge & st clair", "deer park", "st clair west"] },
-  { name: "North York", slug: "north-york", region: "North York", lat: 43.7678, lng: -79.4132, aliases: ["willowdale", "yonge and finch", "koreatown north"] },
-  { name: "Scarborough", slug: "scarborough", region: "Scarborough", lat: 43.7764, lng: -79.2318 },
+  // North York and Scarborough areas follow Canada Post forward sortation areas (List of postal codes of Canada: M).
+  // Centres are each area's Wikipedia coordinates (Willowdale uses North York City Centre on Yonge, where its cafes
+  // are; Fairview uses Henry Farm, which contains Fairview Mall's postal area M2J).
+  { name: "Willowdale", slug: "willowdale", region: "North York", lat: 43.769, lng: -79.413, aliases: ["yonge and sheppard", "yonge & sheppard", "yonge and finch", "yonge & finch", "north york centre", "newtonbrook", "koreatown north"] },
+  { name: "Fairview", slug: "fairview", region: "North York", lat: 43.77, lng: -79.352, aliases: ["fairview mall", "henry farm", "oriole", "don mills and sheppard"] },
+  { name: "Don Mills", slug: "don-mills", region: "North York", lat: 43.73722, lng: -79.34333, aliases: ["shops at don mills", "flemingdon park"] },
+  { name: "York Mills", slug: "york-mills", region: "North York", lat: 43.74306, lng: -79.40667, aliases: ["silver hills", "york mills west"] },
+  { name: "Downsview", slug: "downsview", region: "North York", lat: 43.73222, lng: -79.49333, aliases: ["wilson heights", "bathurst manor", "dufferin and wilson"] },
+  { name: "Milliken", slug: "milliken", region: "Scarborough", lat: 43.82583, lng: -79.30083, aliases: ["agincourt north", "steeles east", "l'amoreaux", "pacific mall", "gourmet city", "midland and steeles"] },
+  { name: "Agincourt", slug: "agincourt", region: "Scarborough", lat: 43.7925, lng: -79.28389 },
+  { name: "Dorset Park", slug: "dorset-park", region: "Scarborough", lat: 43.76528, lng: -79.28111, aliases: ["wexford heights", "scarborough town centre", "stc", "kennedy and lawrence"] },
+  { name: "Wexford", slug: "wexford", region: "Scarborough", lat: 43.74306, lng: -79.30444, aliases: ["maryvale", "lawrence east"] },
+  { name: "Golden Mile", slug: "golden-mile", region: "Scarborough", lat: 43.72556, lng: -79.29722, aliases: ["clairlea", "oakridge", "eglinton east", "lebovic"] },
+  { name: "West Hill", slug: "west-hill", region: "Scarborough", lat: 43.76833, lng: -79.18611, aliases: ["guildwood", "morningside", "kingston road"] },
+  { name: "Rouge", slug: "rouge", region: "Scarborough", lat: 43.82083, lng: -79.20611, aliases: ["upper rouge", "morningside avenue", "malvern"] },
   { name: "Etobicoke", slug: "etobicoke", region: "Etobicoke", lat: 43.6205, lng: -79.5132, aliases: ["mimico", "lake shore", "long branch"] },
 ];
+
+/**
+ * Regions with their own landing page at /neighbourhoods/<slug>, listing their areas. (The URLs predate the areas:
+ * North York and Scarborough used to be single neighbourhoods.)
+ */
+export const REGION_PAGES: { name: Region; slug: string; lat: number; lng: number }[] = [
+  { name: "North York", slug: "north-york", lat: 43.7678, lng: -79.4132 },
+  { name: "Scarborough", slug: "scarborough", lat: 43.7764, lng: -79.2318 },
+];
+
+export function getRegionPage(slug: string) {
+  return REGION_PAGES.find((r) => r.slug === slug);
+}
+
+const REGION_NAMES = new Set<string>(REGIONS);
+export const isRegion = (v: string): v is Region => REGION_NAMES.has(v);
 
 /** Neighbourhoods that get their own checkbox in the filter panel (spec order). */
 export const FILTER_NEIGHBOURHOODS = [
   "Downtown",
+  "North York",
+  "Scarborough",
   "Queen West",
   "Ossington",
   "Kensington Market",
@@ -95,9 +126,10 @@ export function regionOf(name: string): Region | null {
 /** Does a cafe's neighbourhood satisfy a filter value from FILTER_NEIGHBOURHOODS? */
 export function matchesNeighbourhoodFilter(cafeNeighbourhood: string, filter: string): boolean {
   const n = cafeNeighbourhood.toLowerCase();
-  if (filter === "Downtown") return regionOf(cafeNeighbourhood) === "Downtown";
+  // Region options ("Downtown", "North York", "Scarborough", …) match every neighbourhood in that region.
+  if (isRegion(filter) && !getNeighbourhood(filter)) return regionOf(cafeNeighbourhood) === filter;
   if (filter === "Other") {
-    return !FILTER_NEIGHBOURHOODS.some((f) => f !== "Downtown" && f !== "Other" && f.toLowerCase() === n);
+    return !FILTER_NEIGHBOURHOODS.some((f) => !isRegion(f) && f !== "Other" && f.toLowerCase() === n);
   }
   return filter.toLowerCase() === n;
 }

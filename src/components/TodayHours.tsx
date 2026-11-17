@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { isOpenNow, todayHoursText } from "@/lib/hours";
+import { todayStatus, todayStatusText } from "@/lib/hours";
 
 /**
- * "Open now · Today 8:00 AM – 6:00 PM". Computed in the browser (Toronto time) so statically cached pages never
- * show a stale status; refreshes every minute. Renders a quiet placeholder line until mounted.
+ * "Open until 6:00 PM" / "Opens today at 9:00 AM" / "Closed today · Opens tomorrow at 9:00 AM".
+ * Computed in the browser (Toronto time) so statically cached pages never show a stale status; refreshes every
+ * minute. Renders nothing when there are no readable hours, and an empty line of the same height until mounted
+ * (no placeholder glyph, so text extraction and screen readers never see "…").
  */
 export function TodayHours({ hours, compact = false }: { hours: string[] | null; compact?: boolean }) {
   const [now, setNow] = useState<Date | null>(null);
@@ -15,18 +17,20 @@ export function TodayHours({ hours, compact = false }: { hours: string[] | null;
     return () => clearInterval(t);
   }, []);
 
-  if (!hours?.length) return <p className="text-sm text-muted">Hours not listed</p>;
-  if (!now) return <p className="h-5 text-sm text-transparent" aria-hidden>…</p>;
+  if (!hours?.length) return null;
+  if (!now) return <div className="h-5" aria-hidden />;
 
-  const open = isOpenNow(hours, now);
-  const today = todayHoursText(hours, now);
+  const status = todayStatus(hours, now);
+  if (!status) return null;
+  const open = status.state === "open";
   return (
     <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
-      {open === true && <span className="rounded-full bg-[#e7f1e4] px-2 py-px text-[11px] font-semibold text-[#2f5a24]">Open now</span>}
-      {open === false && <span className="rounded-full bg-wash px-2 py-px text-[11px] font-semibold text-muted">Closed</span>}
-      <span className="text-ink-2">
-        {compact ? "" : "Today: "}
-        {today ?? "hours not listed"}
+      <span
+        aria-hidden
+        className={`inline-block size-2 shrink-0 rounded-full ${open ? "bg-[#3f7a30]" : "bg-line-strong"}`}
+      />
+      <span className={open ? "font-medium text-[#2f5a24]" : "text-ink-2"}>
+        {compact ? todayStatusText(status).replace(/^Closed (today|now) · /, "Closed · ") : todayStatusText(status)}
       </span>
     </p>
   );

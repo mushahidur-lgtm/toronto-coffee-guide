@@ -1,7 +1,7 @@
 /**
  * Tests for the "Open now" hours parser.   npx tsx scripts/test-hours.ts
  */
-import { isOpenNow, parseDayRanges, torontoClock } from "../src/lib/hours";
+import { isOpenNow, parseDayRanges, todayStatus, todayStatusText, torontoClock } from "../src/lib/hours";
 import { normalizeCafe } from "../src/lib/normalize-cafe";
 import { applyFilters, EMPTY_FILTERS, indexCafe } from "../src/lib/search";
 
@@ -44,6 +44,31 @@ check("split shift, 18:00", isOpenNow(split, at(0, 18)), true);
 check("no hours", isOpenNow(null, at(0, 12)), null);
 check("unparseable today", isOpenNow(week("By appointment"), at(0, 12)), null);
 check("DST: Sat 2026-07-04 09:30 EDT", isOpenNow(nineToFive, new Date(Date.UTC(2026, 6, 4, 13, 30))), true);
+
+// "Today" line: Open until / Opens today at / Closed today · Opens <day> at, or nothing.
+const line = (lines: string[] | null, d: Date) => {
+  const st = todayStatus(lines, d);
+  return st ? todayStatusText(st) : null;
+};
+check("today: 9–5 at Mon 12:00", line(nineToFive, at(0, 12)), "Open until 5:00 PM");
+check("today: 9–5 at Mon 07:00", line(nineToFive, at(0, 7)), "Opens today at 9:00 AM");
+check("today: 9–5 at Mon 18:00", line(nineToFive, at(0, 18)), "Closed now · Opens tomorrow at 9:00 AM");
+// Cocoon-style week: closed Mon + Tue, open Wed–Sun 9–4.
+const wedToSun = ["Monday: Closed", "Tuesday: Closed", ...week("9:00 AM – 4:00 PM").slice(2)];
+check("today: closed Mon/Tue, Tue 10:00", line(wedToSun, at(1, 10)), "Closed today · Opens tomorrow at 9:00 AM");
+check("today: closed Mon/Tue, Mon 10:00", line(wedToSun, at(0, 10)), "Closed today · Opens Wednesday at 9:00 AM");
+const oneDay = ["Monday: Closed", "Tuesday: Closed", "Wednesday: Closed", "Thursday: Closed", "Friday: Closed", "Saturday: 10:00 AM – 2:00 PM", "Sunday: Closed"];
+check("today: only Saturdays, Mon 12:00", line(oneDay, at(0, 12)), "Closed today · Opens Saturday at 10:00 AM");
+check("today: only Saturdays, Sat 15:00", line(oneDay, at(5, 15)), "Closed now · Opens next Saturday at 10:00 AM");
+check("today: split shift 15:00", line(split, at(0, 15)), "Opens today at 5:00 PM");
+check("today: split shift 12:00", line(split, at(0, 12)), "Open until 2:00 PM");
+check("today: overnight Mon 23:00", line(lateBar, at(0, 23)), "Open until 2:00 AM");
+check("today: overnight Tue 01:30 (Monday's shift)", line(lateBar, at(1, 1, 30)), "Open until 2:00 AM");
+check("today: closes at midnight", line(week("8:00 AM – 12:00 AM"), at(0, 20)), "Open until 12:00 AM");
+check("today: open 24 hours", line(week("Open 24 hours"), at(0, 3)), "Open 24 hours");
+check("today: no hours", line(null, at(0, 12)), null);
+check("today: unparseable", line(week("By appointment"), at(0, 12)), null);
+check("today: never opens again", line(week("Closed"), at(0, 12)), "Closed today");
 
 // End to end through the search filters: unknown hours are excluded while "Open now" is on.
 const idx = [

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { memo, useEffect, useRef } from "react";
 import { ArrowUpRight, Coffee, Laptop, Sun } from "lucide-react";
 import type { CafeView } from "@/lib/types";
-import { isOpenNow, todayHoursText } from "@/lib/hours";
+import { todayStatus, todayStatusText } from "@/lib/hours";
 import { explorerLabel } from "@/lib/explorer";
 import { VenueBadge } from "../VenueBadge";
 import type { Selection } from "./shared";
@@ -80,8 +80,7 @@ const Row = memo(function Row({
   onSelect: (id: string) => void;
   liRef: (el: HTMLLIElement | null) => void;
 }) {
-  const open = isOpenNow(c.opening_hours, now);
-  const hours = todayHoursText(c.opening_hours, now);
+  const status = todayStatus(c.opening_hours, now);
   const a = c.attributes;
   return (
     <li
@@ -106,9 +105,7 @@ const Row = memo(function Row({
           )}
         </span>
         <span className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
-          {open === true && <span className="bg-ink px-1.5 py-px text-[11px] font-semibold text-paper">Open now</span>}
-          {open === false && <span className="border border-line-strong px-1.5 text-[11px] text-muted">Closed</span>}
-          <span className="text-ink-2">{hours ? hours : "Hours not listed"}</span>
+          {status && <span className={status.state === "open" ? "font-medium text-[#2f5a24]" : "text-ink-2"}>{todayStatusText(status)}</span>}
         </span>
         {(a.laptopFriendly || a.hasPatio || a.roastsInHouse || unplaced) && (
           <span className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted">

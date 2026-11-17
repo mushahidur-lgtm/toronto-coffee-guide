@@ -64,6 +64,12 @@ const cases: { q: string; f?: Partial<Filters>; min: number; mustInclude?: strin
   { q: "", f: { drinks: ["egg-coffee"] }, min: 3, mustExclude: ["Lady Marmalade"] },
   { q: "", f: { drinks: ["matcha"], food: ["japanese-desserts"] }, min: 1, mustInclude: ["Tsujiri"] },
   { q: "", f: { amenities: ["laptop-friendly"] }, min: 3, mustExclude: ["Pilot Coffee Roasters — Yorkville"] },
+  // North York / Scarborough: region filters cover every area; area names and "north york" still search.
+  { q: "", f: { neighbourhoods: ["North York"] }, min: 15, mustInclude: ["Cocoon Coffee", "Haven Brews", "Forest Cafe"], mustExclude: ["Coffee Ronin"] },
+  { q: "", f: { neighbourhoods: ["Scarborough"] }, min: 15, mustInclude: ["Petit Delights", "Coffee Ronin", "Chachee's Chai Cafe"], mustExclude: ["Saryo Cafe"] },
+  { q: "willowdale", min: 5, mustInclude: ["Another Land Coffee", "Saryo Cafe"] },
+  { q: "north york matcha", min: 1, mustInclude: ["Saryo Cafe"] },
+  { q: "milliken", min: 3, mustInclude: ["Coffee Ronin"] },
   { q: "zzzz nothing", min: 0 },
   { q: "", f: { neighbourhoods: ["Kensington Market", "Chinatown"], types: ["Vietnamese Cafe"] }, min: 3, mustExclude: ["Rustle & Still"] },
   { q: "matcha", f: { neighbourhoods: ["Downtown"], types: ["Japanese Cafe"] }, min: 3 },

@@ -12,7 +12,7 @@ export const EXPLORER_CATEGORIES = [
   { slug: "italian-espresso", label: "Italian Espresso Bars", hint: "Classic espresso at the counter, pastries" },
   { slug: "asian-matcha", label: "Asian-Inspired & Matcha", hint: "Kissaten, matcha & hojicha, Vietnamese phin, Korean cafes" },
   { slug: "bakery", label: "Bakery-Cafes", hint: "Sourdough, viennoiserie, pastry-focused" },
-  { slug: "work-study", label: "Work & Study Cafes", hint: "Room to sit, laptop friendly, quiet or late hours" },
+  { slug: "work-study", label: "Work & Study Cafes", hint: "Marked laptop-friendly or work-friendly, or with verified Wi-Fi" },
   { slug: "hybrid", label: "Multi-Concept & Hybrid", hint: "Coffee plus a bar, retail, records or live events" },
   { slug: "grab-and-go", label: "Grab-and-Go", hint: "Walk-up windows, commuter counters" },
   { slug: "chains", label: "Chains", hint: "Tim Hortons, Second Cup, Starbucks…" },
@@ -34,6 +34,16 @@ export interface CafeAttributes {
 
 const has = (list: string[], ...values: string[]) => values.some((v) => list.some((x) => x.toLowerCase() === v));
 
+/**
+ * The one "laptop- / work-friendly" rule, used by the map pill, the Work & Study category, the amenity filter and the
+ * work-friendly collection, so their counts always agree. Editorial `laptop_friendly` wins; otherwise verified Wi-Fi or
+ * an explicit "work friendly" tag. A quiet room or late hours alone don't make a cafe laptop-friendly.
+ */
+export function isWorkFriendly(c: Pick<Cafe, "laptop_friendly" | "has_wifi" | "tags">): boolean | null {
+  if (c.laptop_friendly != null) return c.laptop_friendly;
+  return c.has_wifi === true || has(c.tags, "work friendly") ? true : null;
+}
+
 export function deriveCategories(c: Cafe): ExplorerCategory[] {
   if (c.explorer_categories.length) return c.explorer_categories;
   const cats = c.cafe_categories;
@@ -49,7 +59,7 @@ export function deriveCategories(c: Cafe): ExplorerCategory[] {
     out.add("asian-matcha");
   }
   if (has(cats, "bakery & cafe") || has(c.tags, "sourdough", "viennoiserie", "patisserie")) out.add("bakery");
-  if (c.laptop_friendly === true || c.has_wifi === true || has(c.tags, "work friendly", "quiet", "late night")) out.add("work-study");
+  if (isWorkFriendly(c) === true) out.add("work-study");
   if (has(c.tags, "bar", "wine bar", "listening bar", "live music", "comedy", "bean to bar")) out.add("hybrid");
   if (has(c.tags, "takeaway", "path", "street food", "walk-up")) out.add("grab-and-go");
   if (c.is_chain) out.add("chains");
@@ -63,6 +73,6 @@ export function deriveAttributes(c: Cafe, livePatio: boolean | null = null): Caf
     hasWifi: c.has_wifi,
     hasPatio: c.has_patio ?? (has(c.tags, "patio") ? true : livePatio),
     roastsInHouse: c.roasts_in_house ?? (has(c.cafe_categories, "roastery") || has(c.tags, "roaster", "roasts in house") ? true : null),
-    laptopFriendly: c.laptop_friendly ?? (c.has_wifi === true || has(c.tags, "work friendly", "quiet") ? true : null),
+    laptopFriendly: isWorkFriendly(c),
   };
 }

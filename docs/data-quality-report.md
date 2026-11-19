@@ -33,11 +33,11 @@ Generated 2026-11-19 by `npx tsx scripts/data-quality.ts`. Every count comes fro
 | Neighbourhood not in the neighbourhood list | 0 |
 | No verified amenities (Wi-Fi, patio, laptop) | 137 |
 
-Hours, ratings and exact coordinates come live from Google Maps for cafes with a place ID; they are never stored. Photos come from the curated image manifest (see docs/image-report.md). Amenities are only shown when a source states them, so "unverified" is expected for most cafes.
+Hours and ratings come live from Google Maps; coordinates come from City of Toronto address data (OGL-Toronto) and are stored for cafes with a place ID; they are never stored. Photos come from the curated image manifest (see docs/image-report.md). Amenities are only shown when a source states them, so "unverified" is expected for most cafes.
 
 ## Duplicates
 
-None found (place ID, name or address).
+- Same address `55 bloor st w toronto on`: Pilot Coffee Roasters — Yorkville, Eataly Toronto
 
 ## Hidden as closed
 

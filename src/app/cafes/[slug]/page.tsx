@@ -44,7 +44,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-const googleMapEnabled = !!(process.env.NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY && process.env.NEXT_PUBLIC_GOOGLE_MAP_ID);
 
 export default async function CafePage({ params }: Params) {
   const { slug } = await params;
@@ -86,8 +85,8 @@ export default async function CafePage({ params }: Params) {
       .map((d) => `${DAY_MAP[d.day]} ${d.hours}`),
   };
 
-  const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
-    <section className="border-t border-line py-6">
+  const Section = ({ title, id, children }: { title: string; id?: string; children: React.ReactNode }) => (
+    <section id={id} className="border-t border-line py-6">
       <h2 className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">{title}</h2>
       <div className="mt-3">{children}</div>
     </section>
@@ -199,7 +198,7 @@ export default async function CafePage({ params }: Params) {
         <aside className="lg:sticky lg:top-24 lg:self-start">
           {hasReadableHours(cafe.opening_hours) && (
             <Section title="Today">
-              <TodayHours hours={cafe.opening_hours} />
+              <TodayHours cafe={cafe} linkTo="#hours" />
             </Section>
           )}
           <Section title="Address">
@@ -214,7 +213,7 @@ export default async function CafePage({ params }: Params) {
               Get directions <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden />
             </a>
           </Section>
-          <Section title="Opening hours">
+          <Section title="Opening hours" id="hours">
             <Hours hours={cafe.opening_hours} variant="full" source={cafe.hours_source} today={todayName()} mapsUrl={cafe.google_maps_url} />
           </Section>
           <Section title="Links">
@@ -256,10 +255,8 @@ export default async function CafePage({ params }: Params) {
           <Section title="Location">
             <CafeLocationMap
               name={cafe.name}
-              googleLocation={googleMapEnabled ? cafe.google_location : null}
-              editorialLocation={cafe.latitude != null && cafe.longitude != null ? { lat: cafe.latitude, lng: cafe.longitude } : null}
+              location={cafe.latitude != null && cafe.longitude != null ? { lat: cafe.latitude, lng: cafe.longitude } : null}
               area={hood ? { name: hood.name, lat: hood.lat, lng: hood.lng } : null}
-              useGoogle={googleMapEnabled}
             />
           </Section>
           <p className="border-t border-line pt-6 text-xs leading-relaxed text-muted">
@@ -288,7 +285,7 @@ export default async function CafePage({ params }: Params) {
               More in {cafe.neighbourhood}
             </Link>
           </div>
-          <ul className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {similar.map((c) => (
               <li key={c.id}>
                 <CafeCard cafe={c} />

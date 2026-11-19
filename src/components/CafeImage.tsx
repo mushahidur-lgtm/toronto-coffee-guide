@@ -71,7 +71,7 @@ export function CafeImage({ name, image, category, className = "aspect-video", s
   );
 
   return (
-    <figure className="m-0">
+    <figure className="m-0 min-w-0">
       {href ? (
         <Link href={href} tabIndex={-1} aria-hidden className="block">
           {frame}

@@ -357,7 +357,7 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
             </h2>
             <span className="text-sm text-muted">Editor&rsquo;s picks</span>
           </div>
-          <ul className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((c, i) => (
               <li key={c.id}>
                 <CafeCard cafe={c} priority={i < 3} />
@@ -581,7 +581,7 @@ export function CafeExplorer({ cafes, featured = [], autoFocus, initialFilters, 
                   No place matches every word of &ldquo;{filters.query.trim()}&rdquo;. Showing the closest matches instead.
                 </p>
               )}
-              <ul className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
                 {shown.map((h, i) => (
                   <li key={h.cafe.id}>
                     <CafeCard

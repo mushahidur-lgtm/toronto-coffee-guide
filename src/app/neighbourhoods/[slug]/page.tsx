@@ -152,10 +152,8 @@ export default async function NeighbourhoodPage({ params }: Params) {
         <div className="hidden lg:block">
           <CafeLocationMap
             name={name}
-            googleLocation={null}
-            editorialLocation={null}
+            location={null}
             area={{ name, lat: data.lat, lng: data.lng }}
-            useGoogle={false}
             areaNote={`Approximate ${name} area. Open the map for each cafe.`}
           />
         </div>
@@ -175,7 +173,7 @@ export default async function NeighbourhoodPage({ params }: Params) {
         <h2 id="hood-cafes" className="border-b border-ink pb-3 text-xl font-semibold tracking-tight">
           {kind === "region" ? `All ${cafes.length} places in ${name}` : "Where to go"}
         </h2>
-        <ul className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {cafes.map((c, i) => (
             <li key={c.id}>
               <CafeCard cafe={c} priority={i < 3} />

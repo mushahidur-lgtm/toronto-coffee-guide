@@ -19,10 +19,18 @@ const approved = records.filter((r) => r.approval === "approved");
 const out: string[] = [];
 out.push(`# Image report`, ``, `Generated ${today()} by \`npm run images:report\`. Source of truth: \`data/cafe-images.json\`.`, ``);
 out.push(`## Coverage of ${cafes.length} published cafes`, ``, `| | Cafes |`, `| --- | ---: |`);
+out.push(`| **Total published cafes** | **${cafes.length}** |`);
 out.push(`| Own approved photo (venue) | ${venue.length} |`);
 out.push(`| Labelled illustrative photo | ${illustrative.length} |`);
 out.push(`| Drawn category placeholder | ${none.length} |`);
-out.push(`| With extra gallery photos | ${rows.filter((r) => r.imgs.gallery.length).length} |`, ``);
+out.push(`| With extra gallery photos | ${rows.filter((r) => r.imgs.gallery.length).length} |`);
+out.push(`| **Actual-photo coverage** | **${((venue.length / cafes.length) * 100).toFixed(1)}%** |`, ``);
+
+// How often each illustrative photo is shown, so reuse stays visible.
+const uses = new Map<string, number>();
+for (const r of illustrative) uses.set(r.imgs.primary!.id, (uses.get(r.imgs.primary!.id) ?? 0) + 1);
+const counts = [...uses.values()];
+if (counts.length) out.push(`Illustrative photos in use: ${counts.length}, each shown on ${Math.min(...counts)}–${Math.max(...counts)} cafes (average ${(counts.reduce((a, b) => a + b, 0) / counts.length).toFixed(1)}). Every one is labelled "Illustrative photo" and credited; none is presented as the cafe itself.`, ``);
 
 out.push(`## Approved images`, ``, `| | Count |`, `| --- | ---: |`);
 out.push(`| Venue photos | ${approved.filter((r) => r.scope === "venue").length} |`);

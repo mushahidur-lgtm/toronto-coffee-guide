@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import seed from "@data/cafes.seed.json";
 import type { Cafe, CafeView, LivePlace } from "./types";
 import { httpUrl, normalizeCafe } from "./normalize-cafe";
-import { getPlaceDetails, placesEnabled } from "./google-places";
+import { fetchPlaceDetails, placesEnabled } from "./google-places";
 import { googleMapsSearchUrl } from "./maps";
 import { deriveAttributes } from "./explorer";
 import { resolveCafeImages } from "./images";
@@ -60,10 +60,11 @@ export function toView(cafe: Cafe, live: LivePlace | null): CafeView {
     google_maps_url: httpUrl(live?.mapsUrl) ?? cafe.google_maps_url ?? googleMapsSearchUrl(cafe.name, address, cafe.google_place_id),
     opening_hours: hours ?? null,
     hours_source: live?.hours?.length ? "google" : cafe.opening_hours ? "editorial" : null,
+    current_hours: live?.currentHours?.length ? live.currentHours : null,
+    special_dates: live?.specialDays ?? [],
     image: images.primary,
     image_category: images.placeholderCategory,
     google_data: !!live,
-    google_location: live?.latitude != null && live.longitude != null ? { lat: live.latitude, lng: live.longitude } : null,
     attributes: deriveAttributes(cafe, live?.outdoorSeating ?? null),
     google_rating: live?.rating ?? null,
     google_review_count: live?.userRatingCount ?? null,
@@ -84,11 +85,34 @@ async function mapLimit<T, R>(items: T[], limit: number, fn: (t: T) => Promise<R
   return out;
 }
 
-async function enrich(cafes: Cafe[]): Promise<CafeView[]> {
+/**
+ * When Google does not answer for this many cafes (quota, outage), a page that is being regenerated at runtime fails
+ * instead of publishing a version with no hours, ratings or addresses. Next.js then keeps serving the last good page
+ * and retries on the next request. A production (Vercel) build fails the same way, so the previous deployment stays
+ * live; local and preview builds fall back to the editorial data.
+ */
+const MAX_PLACE_FAILURES = 8;
+const isBuild = () => process.env.NEXT_PHASE === "phase-production-build";
+
+export class PlacesUnavailableError extends Error {}
+
+async function enrich(cafes: Cafe[], strict = true): Promise<CafeView[]> {
   if (!placesEnabled()) return cafes.map((c) => toView(c, null));
-  const views = await mapLimit(cafes, 8, async (c) =>
-    toView(c, c.google_place_id ? await getPlaceDetails(c.google_place_id) : null),
-  );
+  let failures = 0;
+  const views = await mapLimit(cafes, 8, async (c) => {
+    if (!c.google_place_id) return toView(c, null);
+    const { place, failed } = await fetchPlaceDetails(c.google_place_id);
+    if (failed) failures++;
+    return toView(c, place);
+  });
+  if (failures > 0) {
+    const limit = Math.min(MAX_PLACE_FAILURES, Math.max(1, Math.ceil(cafes.length * 0.2)));
+    // Local and preview builds fall back to editorial data; a production build must not ship without live data.
+    if (strict && (!isBuild() || process.env.VERCEL_ENV === "production") && failures >= limit) {
+      throw new PlacesUnavailableError(`Google Places did not answer for ${failures}/${cafes.length} cafes; keeping the last good page`);
+    }
+    console.warn(`[data] Google Places failed for ${failures}/${cafes.length} cafes; showing editorial data for them`);
+  }
   // Hide businesses Google reports as permanently closed.
   return views.filter((v) => v.verification_status !== "closed");
 }
@@ -99,9 +123,9 @@ let closedLogged = false;
  * THE list of cafes the site shows. Every page, count, map and sitemap uses this, so numbers always agree.
  * It drops cafes marked closed in the data and cafes Google reports as CLOSED_PERMANENTLY.
  */
-export const getCafeViews = cache(async (): Promise<CafeView[]> => {
+export const getCafeViews = cache(async (strict: boolean = true): Promise<CafeView[]> => {
   const all = await getAllCafes();
-  const views = await enrich(all);
+  const views = await enrich(all, strict);
   if (!closedLogged && views.length < all.length) {
     closedLogged = true;
     const shown = new Set(views.map((v) => v.id));
@@ -114,6 +138,6 @@ export const getCafeViews = cache(async (): Promise<CafeView[]> => {
 export const getCafeBySlug = cache(async (slug: string): Promise<CafeView | null> => {
   const cafe = (await getAllCafes()).find((c) => c.slug === slug);
   if (!cafe) return null;
-  const [view] = await enrich([cafe]);
+  const [view] = await enrich([cafe], false);
   return view ?? null;
 });

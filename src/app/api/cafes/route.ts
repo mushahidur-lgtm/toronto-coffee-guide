@@ -37,7 +37,8 @@ export async function GET(req: NextRequest) {
   const offset = Math.max(int("offset", 0), 0);
   const sort = p.get("sort");
 
-  const cafes = await getCafeViews();
+  // Never fail a search because Google is unavailable: degrade to editorial data instead of a 500.
+  const cafes = await getCafeViews(false);
   const hits = applyFilters(cafes.map(indexCafe), {
     ...EMPTY_FILTERS,
     query: (p.get("q") ?? "").slice(0, MAX_QUERY),

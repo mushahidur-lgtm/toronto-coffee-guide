@@ -14,6 +14,10 @@
     "places:ids": "node scripts/populate-place-ids.js",
     "places:closed": "node scripts/list-closed-places.js",
     "test:hours": "tsx scripts/test-hours.ts",
+    "test": "npm run test:search && npm run test:hours && npm run test:images && npm run test:data",
+    "test:data": "tsx scripts/test-data.ts",
+    "check:site": "tsx scripts/check-site.ts",
+    "geocode": "tsx scripts/geocode.ts",
     "images:search": "tsx scripts/images/search.ts",
     "images:illustrative": "tsx scripts/images/illustrative.ts",
     "images:sheet": "tsx scripts/images/sheet.ts",
@@ -24,8 +28,6 @@
     "images:blur": "tsx scripts/images/blur.ts"
   },
   "dependencies": {
-    "@googlemaps/js-api-loader": "^2.1.3",
-    "@googlemaps/markerclusterer": "^2.6.2",
     "@supabase/supabase-js": "^2.119.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.73.0",
@@ -36,7 +38,6 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.5",
-    "@types/google.maps": "^3.66.10",
     "@types/leaflet": "^1.9.22",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",

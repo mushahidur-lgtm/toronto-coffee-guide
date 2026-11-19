@@ -15,10 +15,9 @@ export function distanceKm(a: LatLng, b: LatLng): number {
   return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
-/** A cafe's coordinates: editorial latitude/longitude first, then Google's live location. */
-export function cafeLocation(c: Pick<CafeView, "latitude" | "longitude" | "google_location">): LatLng | null {
-  if (c.latitude != null && c.longitude != null) return { lat: c.latitude, lng: c.longitude };
-  return c.google_location ?? null;
+/** A cafe's own coordinates (from the City of Toronto address data), or null when we have no confirmed address. */
+export function cafeLocation(c: Pick<CafeView, "latitude" | "longitude">): LatLng | null {
+  return c.latitude != null && c.longitude != null ? { lat: c.latitude, lng: c.longitude } : null;
 }
 
 export function formatDistance(km: number): string {

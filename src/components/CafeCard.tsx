@@ -29,7 +29,7 @@ export function CafeCard({ cafe, highlights = [], priority, distanceKm }: Props)
   const insta = isInstagramUrl(cafe.website_url);
 
   return (
-    <article className="group flex h-full flex-col">
+    <article className="group flex h-full min-w-0 flex-col">
       <div className="relative overflow-hidden rounded-lg">
         <div className="transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transform-none">
           <CafeImage name={cafe.name} image={cafe.image} category={cafe.image_category} priority={priority} href={href} className="aspect-video" />
@@ -74,7 +74,7 @@ export function CafeCard({ cafe, highlights = [], priority, distanceKm }: Props)
         )}
 
         <div className="mt-4 space-y-1 border-t border-line pt-3">
-          <TodayHours hours={cafe.opening_hours} />
+          <TodayHours cafe={cafe} linkTo={`/cafes/${cafe.slug}#hours`} />
           {cafe.address && (
             <p className="flex items-start gap-1.5 text-sm text-muted">
               <MapPin size={14} strokeWidth={1.5} className="mt-0.5 shrink-0" aria-hidden />

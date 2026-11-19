@@ -31,6 +31,9 @@ const cases: { q: string; f?: Partial<Filters>; min: number; mustInclude?: strin
   { q: "egg coffee", min: 3 },
   { q: "bánh mì", min: 2 },
   { q: "bingsu", min: 5 },
+  { q: "kensington market matcha", min: 1, mustInclude: ["Little Pebbles"] },
+  { q: "japanese desserts", min: 3, mustInclude: ["Tsujiri"] },
+  { q: "vietnamese coffee", min: 8, mustInclude: ["+84 Café"] },
   { q: "matcha kensington", min: 1, mustInclude: ["Little Pebbles"] },
   { q: "PILOT", min: 3 },
   // 1–2 letter words match whole words only ("de" must not match "dessert").

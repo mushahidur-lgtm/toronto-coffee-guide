@@ -20,7 +20,11 @@ With no environment variables, the site runs entirely from `data/cafes.seed.json
 | --- | --- |
 | `npm run dev` / `build` / `start` | Next.js dev server / production build / serve the build |
 | `npm run typecheck` | `tsc --noEmit` |
-| `npm run test:search` | Runs the spec's search examples and combined filters against the seed data (27 cases) |
+| `npm run test:search` | Runs the spec's search examples and combined filters against the seed data (63 cases) |
+| `npm test` | Runs search, hours, image and data-integrity tests (no network) |
+| `npm run test:data` | Canonical list, ids, links, coordinates, hours and image-attribution checks on the seed |
+| `npm run check:site -- [url]` | Cross-view consistency check against a running site: home, directory, map, API, sitemap, every cafe page, direct routes and search examples agree (default http://localhost:3000) |
+| `npm run geocode` | Fills cafe coordinates from City of Toronto address data |
 | `npm run db:seed` | Upserts the seed file into Supabase (matched on `slug`) |
 | `npm run places:sync` | Matches cafes to Google Place IDs, flags permanently closed businesses and stamps `last_verified` |
 | `npm run places:closed` | Read-only report of cafes Google lists as closed (permanently closed ones are hidden on the site) |
@@ -153,7 +157,7 @@ Arrays plus GIN indexes keep categories and specialties flexible without join ta
 2. Set `SUPABASE_URL`, `SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY` in `.env.local`.
 3. Run `npm run db:seed`.
 
-When `SUPABASE_URL` and `SUPABASE_ANON_KEY` are set, the site reads from the database, and falls back to the seed file if the database is unreachable. Pages revalidate hourly (ISR), so new rows appear without a redeploy.
+When `SUPABASE_URL` and `SUPABASE_ANON_KEY` are set, the site reads from the database, and falls back to the seed file if the database is unreachable. Pages revalidate hourly (ISR; Google data is refreshed at most daily), so new rows appear without a redeploy.
 
 ---
 
@@ -230,14 +234,14 @@ Don't add a photo for a cafe that's permanently closed. Mark it `"verification_s
    - runs a Text Search (biased to Toronto) and accepts the result only if the name matches well. Weak matches are listed for manual review.
    - stores **only** `google_place_id` and a `verification_status` (`verified` if `OPERATIONAL`, `closed` if `CLOSED_PERMANENTLY`).
    - writes to Supabase if configured, otherwise back into `data/cafes.seed.json`.
-3. At request time, `src/lib/data.ts` fetches Place Details for each cafe (address, hours, phone, website, Google Maps URL, coordinates, business status, rating; no photos) with a field mask, and caches them for `PLACES_REVALIDATE_SECONDS` (default 3600).
+3. At request time, `src/lib/data.ts` fetches Place Details for each cafe (address, regular and current/holiday hours, phone, website, Google Maps URL, business status, rating; no photos, no coordinates) with a field mask, and caches them for `PLACES_REVALIDATE_SECONDS` (default 86400, i.e. 24 hours, because each refresh is billed). If Google does not answer for a large share of cafes (quota or outage), a page being regenerated fails instead of publishing without hours and ratings, so the last good page keeps being served; the build and `/api/cafes` degrade to editorial data. Production builds fail rather than ship data-less pages.
 4. **Photos are not requested from Google.** They come from the image manifest (see *Cafe images*).
-5. Optional: set `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` (HTTP-referrer restricted, Maps JavaScript API only) so `/map` shows exact pins on a Google map.
+5. There is no Google JavaScript in the browser and no browser key: maps use OpenStreetMap (see *Map explorer*).
 
 **Compliance notes**
 
 - Google content is not persisted beyond the place ID, which Google exempts from its caching restrictions.
-- Google-sourced coordinates are only drawn on a Google map. Without the browser key, `/map` uses Leaflet/OpenStreetMap with neighbourhood-level circles built from our own data.
+- Google data is never drawn on a non-Google map: marker positions come from the City of Toronto address data below, not from Google.
 - No scraping: all data comes from the official API or editorial research.
 - Directions and place links use the documented Google Maps URLs format (`/maps/search/?api=1…`, `/maps/dir/?api=1…`).
 
@@ -268,10 +272,10 @@ A split view on desktop (map on the left, cafe list on the right) and a full-scr
 
 - **Quick filters:** search, Area, Type, plus a scrollable row of pills: *Open now*, *Laptop friendly*, *Patio* and eight Toronto categories (*Third-Wave & Roasters*, *Italian Espresso Bars*, *Asian-Inspired & Matcha*, *Bakery-Cafes*, *Work & Study*, *Multi-Concept & Hybrid*, *Grab-and-Go*, *Chains*).
 - **List ↔ map sync:** hovering a card highlights its pin (or a stand-in pin when it's inside a cluster). Clicking a card pans and zooms to it and opens its card. Clicking a pin opens the card and scrolls the list to it.
-- **Clustering:** `@googlemaps/markerclusterer`; clusters split from zoom 15 or when clicked.
+- **Markers and clustering:** one marker per cafe on Leaflet/OpenStreetMap (no API key, no per-view cost). A small built-in grid clusters nearby cafes by zoom (no clustering dependency); clusters split as you zoom or when clicked, and cafes at the same address stay together until street level. Clicking a marker opens a preview card (photo, status, links). Cafes without a confirmed address are drawn hollow and dashed at their neighbourhood centre and counted as "approximate".
 - **Search this area:** after the user pans or zooms well away from the last searched or fitted area, a pill appears that limits results to the visible map.
 - **URL state:** `?q=&n=&type=&open=1&category=third-wave,bakery&laptop=1&patio=1&bbox=s,w,n,e&selected=<slug>&lat=&lng=&zoom=`. Filters and selection add history entries, so Back and Forward work; map moves replace the current entry. The old `?cafe=<slug>` links still work.
-- **Google vs Leaflet:** with `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` and `NEXT_PUBLIC_GOOGLE_MAP_ID` you get exact pins. Without them, a Leaflet/OSM fallback groups cafes by neighbourhood, because Google coordinates can't go on a non-Google map. In that mode "Search this area" uses neighbourhood centres.
+- **Coordinates:** `npm run geocode` (`scripts/geocode.ts`, `-- --dry-run` / `-- --only <id>`) looks each editorial street address up in the City of Toronto *Address Points* open dataset (Open Government Licence – Toronto, attribution shown on every map) and writes `latitude`, `longitude` and `location_source` to `data/cafes.seed.json`. Matches more than 9 km from the neighbourhood centre, or addresses whose points disagree by more than 150 m, are skipped rather than guessed.
 
 **Categories and attributes** come from `src/lib/explorer.ts`. They're derived from existing data (cafe types, cuisines, tags) and never guessed. To set them by hand, add any of these to a cafe in the seed file or database:
 
@@ -292,7 +296,7 @@ Leave a field out when you don't know it; unknown values never match a filter. *
 - **Headers:** `next.config.ts` sends a Content-Security-Policy plus `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` and `Permissions-Policy` (geolocation is allowed for this site only). The CSP allows Google Maps and OpenStreetMap for `/map`. Cafe photos are served from this site (`/images`), so `img-src` needs no third-party image hosts.
 - **Untrusted data:** JSON-LD is escaped with `serializeJsonLd()`. Map popup HTML escapes names and URL-encodes slugs. `normalizeCafe` accepts only http(s) URLs (plus site-relative image paths) and re-slugifies every slug.
 - **`/api/cafes`:** `q` is capped at 200 characters, `n` and `type` at 20 items, `limit` at 1–200, and `sort` must be a known value.
-- **Google Cloud:** set a daily quota cap and a budget alert on Places API (New). Restrict the server key to Places API (New), and restrict `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` by HTTP referrer to your domains.
+- **Google Cloud:** set a daily quota cap and a budget alert on Places API (New). Restrict the server key to Places API (New), and there is no browser key to restrict.
 
 ## Accessibility & performance
 

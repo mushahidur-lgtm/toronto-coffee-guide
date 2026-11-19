@@ -1,7 +1,7 @@
 /**
  * Tests for the "Open now" hours parser.   npx tsx scripts/test-hours.ts
  */
-import { isOpenNow, parseDayRanges, todayStatus, todayStatusText, torontoClock } from "../src/lib/hours";
+import { hoursInfo, isOpenNow, parseDayRanges, todayStatus, todayStatusText, torontoClock } from "../src/lib/hours";
 import { normalizeCafe } from "../src/lib/normalize-cafe";
 import { applyFilters, EMPTY_FILTERS, indexCafe } from "../src/lib/search";
 
@@ -80,6 +80,19 @@ const names = (d: Date) => applyFilters(idx, { ...EMPTY_FILTERS, openNow: true }
 check("filter Mon 12:00 → Day Cafe only", names(at(0, 12)), ["Day Cafe"]);
 check("filter Mon 20:00 → Night Bar only", names(at(0, 20)), ["Night Bar"]);
 check("filter off → all three", applyFilters(idx, EMPTY_FILTERS, at(0, 12)).length, 3);
+
+// Verification and holidays: only live Google hours count as verified; a listed special day uses the holiday hours.
+const hi = (o: object, d: Date) => {
+  const i = hoursInfo({ opening_hours: nineToFive, ...o }, d);
+  return { text: i.status ? todayStatusText(i.status) : null, verified: i.verified, exceptional: i.exceptional };
+};
+check("hours: editorial is not verified", hi({ hours_source: "editorial" }, at(0, 12)), { text: "Open until 5:00 PM", verified: false, exceptional: false });
+check("hours: google is verified", hi({ hours_source: "google" }, at(0, 12)).verified, true);
+check("hours: no hours gives no status", hoursInfo({ opening_hours: null }, at(0, 12)).status, null);
+const holiday = { hours_source: "google" as const, current_hours: week("Closed"), special_dates: ["2026-11-16"] };
+check("hours: holiday today closes the cafe", hi(holiday, at(0, 12)), { text: "Closed today", verified: true, exceptional: true });
+check("hours: holiday on another day is ignored", hi(holiday, at(1, 12)).exceptional, false);
+check("hours: Toronto date after UTC midnight", hi(holiday, new Date(Date.UTC(2026, 10, 17, 2, 0))).exceptional, true);
 
 console.log(`\n${failed ? `${failed} FAILED` : "all passed"}`);
 process.exit(failed ? 1 : 0);

@@ -220,3 +220,44 @@ export function todayStatusText(s: TodayStatus): string {
   const head = s.closedAllDay ? "Closed today" : "Closed now";
   return s.next ? `${head} · Opens ${s.next.day} at ${s.next.at}` : head;
 }
+
+// ---------------------------------------------------------------------------
+// Verified hours, holidays
+// ---------------------------------------------------------------------------
+
+/** Today's date in Toronto as YYYY-MM-DD. */
+export function torontoDate(now = new Date()): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+}
+
+export interface HoursSource {
+  opening_hours: string[] | null;
+  current_hours?: string[] | null;
+  special_dates?: string[];
+  hours_source?: "google" | "editorial" | null;
+}
+
+export interface HoursInfo {
+  /** Weekly schedule to show (regular hours). */
+  weekly: string[] | null;
+  status: TodayStatus | null;
+  /** true only for hours fetched live from Google; editorial hours are never presented as verified. */
+  verified: boolean;
+  /** Today is a holiday / exceptional day and the status uses the holiday hours. */
+  exceptional: boolean;
+}
+
+/**
+ * One place that decides what "today" means for a cafe: holiday hours (Google's current hours) when today is a
+ * listed special day, otherwise the regular weekly schedule. `status` is null when nothing readable is known.
+ */
+export function hoursInfo(c: HoursSource, now = new Date()): HoursInfo {
+  const exceptional = !!c.current_hours?.length && !!c.special_dates?.includes(torontoDate(now));
+  const lines = exceptional ? c.current_hours! : c.opening_hours;
+  return {
+    weekly: c.opening_hours,
+    status: todayStatus(lines, now),
+    verified: c.hours_source === "google",
+    exceptional,
+  };
+}

@@ -10,35 +10,33 @@ import { EXPLORER_CATEGORIES, type ExplorerCategory } from "@/lib/explorer";
 import type { VenueType } from "@/lib/venue";
 import { EMPTY_MAP_STATE, inBbox, mapStateToParams, movedSignificantly, parseMapState, type Bbox, type MapState } from "@/lib/map-state";
 import { googleMapsDirectionsUrl } from "@/lib/maps";
-import { todayStatus, todayStatusText } from "@/lib/hours";
+import { hoursInfo, todayStatusText } from "@/lib/hours";
 import type { LatLng } from "@/lib/geo";
 import { usePopoverDismiss } from "../FilterControls";
 import { QuickFilterBar } from "./QuickFilterBar";
 import { CafeList } from "./CafeList";
 import { BottomSheet, type Snap } from "./BottomSheet";
-import { positionOf, useMediaQuery, type CanvasProps, type MapCommand, type MapMode, type Selection, type SelectSource, type ViewportReport } from "./shared";
+import { LOCATION_ATTRIBUTION, positionOf, useMediaQuery, type CanvasProps, type MapCommand, type Selection, type SelectSource, type ViewportReport } from "./shared";
 
-const GoogleMapCanvas = dynamic(() => import("./GoogleMapCanvas"), { ssr: false });
 const LeafletMapCanvas = dynamic(() => import("./LeafletMapCanvas"), { ssr: false });
 
 type GeoState = "idle" | "locating" | "denied" | "unavailable";
 
 interface Props {
   cafes: CafeView[];
-  mode: MapMode;
 }
 
 /**
  * /map explorer: quick-filter bar, list ↔ map sync, clustering, "Search this area", URL state with
  * Back/Forward, split view on desktop and a bottom sheet on mobile.
  */
-export function MapExplorer({ cafes, mode }: Props) {
+export function MapExplorer({ cafes }: Props) {
   usePopoverDismiss();
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const index = useMemo(() => cafes.map(indexCafe), [cafes]);
   const byId = useMemo(() => new Map(cafes.map((c) => [c.id, c])), [cafes]);
   const bySlug = useMemo(() => new Map(cafes.map((c) => [c.slug, c])), [cafes]);
-  const positions = useMemo(() => new Map(cafes.map((c) => [c.id, positionOf(c, mode)])), [cafes, mode]);
+  const positions = useMemo(() => new Map(cafes.map((c) => [c.id, positionOf(c)])), [cafes]);
 
   const [state, setState] = useState<MapState>(EMPTY_MAP_STATE);
   const [ready, setReady] = useState(false);
@@ -121,6 +119,8 @@ export function MapExplorer({ cafes, mode }: Props) {
   }, [index, state, now, positions]);
   const visibleIds = useMemo(() => new Set(results.map((c) => c.id)), [results]);
   const unplaced = useMemo(() => new Set(results.filter((c) => !positions.get(c.id)).map((c) => c.id)), [results, positions]);
+  /** Results drawn at their neighbourhood centre because we have no confirmed address for them. */
+  const approximate = useMemo(() => results.filter((c) => positions.get(c.id)?.approximate).length, [results, positions]);
 
   const venueCounts = useMemo(() => {
     const counts: Record<VenueType, number> = { "specialty-cafe": 0, "tea-matcha": 0, "restaurant-coffee": 0 };
@@ -235,6 +235,7 @@ export function MapExplorer({ cafes, mode }: Props) {
     <p className="text-sm text-muted" aria-live="polite">
       <span className="font-medium text-ink">{results.length}</span> {results.length === 1 ? "place" : "places"}
       {unplaced.size > 0 && <> · {unplaced.size} not on the map</>}
+      {approximate > 0 && <> · {approximate} approximate</>}
       {state.bbox && <> · in this area</>}
     </p>
   );
@@ -275,7 +276,7 @@ export function MapExplorer({ cafes, mode }: Props) {
         )}
 
         <div className="relative h-full min-h-0">
-          {mode === "google" ? <GoogleMapCanvas {...canvasProps} /> : <LeafletMapCanvas {...canvasProps} />}
+          <LeafletMapCanvas {...canvasProps} />
 
           {/* Floating controls */}
           {showSearchArea && (
@@ -307,11 +308,9 @@ export function MapExplorer({ cafes, mode }: Props) {
               </button>
             </p>
           )}
-          {mode === "leaflet" && (
-            <p className="pointer-events-none absolute bottom-2 left-2 z-[500] hidden max-w-xs bg-paper/90 px-2 py-1 text-[11px] text-muted md:block">
-              Circles group cafes by neighbourhood. Add a Google Maps key and Map ID for exact pins.
-            </p>
-          )}
+          <p className="pointer-events-none absolute bottom-12 left-2 z-[500] hidden max-w-xs bg-paper/90 px-2 py-1 text-[11px] text-muted md:block">
+            Numbers group nearby cafes; zoom in to split them. Hollow dashed markers sit at the neighbourhood centre because we have no confirmed address.
+          </p>
         </div>
 
         {!isDesktop && (
@@ -336,7 +335,7 @@ export function MapExplorer({ cafes, mode }: Props) {
 
 /** Compact selected-cafe header for the mobile sheet. */
 function SelectedSummary({ cafe, now, onClose }: { cafe: CafeView; now: Date; onClose: () => void }) {
-  const status = todayStatus(cafe.opening_hours, now);
+  const status = hoursInfo(cafe, now).status;
   return (
     <div className="flex items-start gap-3" onPointerDown={(e) => e.stopPropagation()}>
       <div className="min-w-0 flex-1">

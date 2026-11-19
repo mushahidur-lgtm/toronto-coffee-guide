@@ -165,7 +165,7 @@ async function main() {
   out.push(`| Neighbourhood not in the neighbourhood list | ${count(has("unknown neighbourhood"))} |`);
   out.push(`| No verified amenities (Wi-Fi, patio, laptop) | ${count(has("amenities unverified"))} |`);
   out.push(``);
-  out.push(`Hours, ratings and exact coordinates come live from Google Maps for cafes with a place ID; they are never stored. Photos come from the curated image manifest (see docs/image-report.md). Amenities are only shown when a source states them, so "unverified" is expected for most cafes.`, ``);
+  out.push(`Hours and ratings come live from Google Maps; coordinates come from City of Toronto address data (OGL-Toronto) and are stored for cafes with a place ID; they are never stored. Photos come from the curated image manifest (see docs/image-report.md). Amenities are only shown when a source states them, so "unverified" is expected for most cafes.`, ``);
 
   out.push(`## Duplicates`, ``, dupes.length ? dupes.map((d) => `- ${d}`).join("\n") : "None found (place ID, name or address).", ``);
   out.push(`## Hidden as closed`, ``, closed.length ? closed.map(({ cafe, why }) => `- ${cafe.name} (${cafe.neighbourhood}): ${why}`).join("\n") : "None.", ``);

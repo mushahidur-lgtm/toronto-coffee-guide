@@ -25,7 +25,8 @@ export default async function CafesPage({ searchParams }: { searchParams: Search
     return Array.isArray(v) ? v[0] : v;
   };
   const initialFilters = filtersFromParams(first);
-  const cafes = await getCafeViews();
+  // Rendered per request (it reads the URL), so there is no "last good page" to fall back on: degrade, never 500.
+  const cafes = await getCafeViews(false);
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">

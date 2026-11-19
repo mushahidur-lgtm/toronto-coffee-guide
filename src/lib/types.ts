@@ -73,6 +73,8 @@ export interface Cafe {
   neighbourhood: string;
   latitude: number | null;
   longitude: number | null;
+  /** Where latitude/longitude came from (City of Toronto Address Points); null when there are no coordinates. */
+  location_source: string | null;
   website_url: string | null;
   google_maps_url: string | null;
   google_place_id: string | null;
@@ -115,11 +117,13 @@ export interface Cafe {
 export interface LivePlace {
   address: string | null;
   hours: string[] | null;
+  /** The next 7 days as Google has them now (holiday / exceptional hours applied). */
+  currentHours: string[] | null;
+  /** ISO dates (YYYY-MM-DD) in that window on which Google lists special hours. */
+  specialDays: string[];
   website: string | null;
   phone: string | null;
   mapsUrl: string | null;
-  latitude: number | null;
-  longitude: number | null;
   businessStatus: string | null;
   /** Google's outdoorSeating (Atmosphere field). null = not reported. */
   outdoorSeating: boolean | null;
@@ -136,12 +140,14 @@ export interface CafeView extends Cafe {
   image: ResolvedImage | null;
   /** Which generic category suits this cafe's menu (placeholder icon, illustrative photo). */
   image_category: IllustrativeCategory;
-  /** Where the hours came from, for attribution. */
+  /** Where the hours came from, for attribution. Only "google" (fetched live) counts as verified. */
   hours_source: "google" | "editorial" | null;
+  /** Live hours for the next 7 days with holidays applied (Google), or null. Status uses these before the weekly schedule. */
+  current_hours: string[] | null;
+  /** ISO dates in that window with special / holiday hours. */
+  special_dates: string[];
   /** True when any field shown came from Google Places. */
   google_data: boolean;
-  /** Live coordinates from Google — only for use on a Google map. */
-  google_location: { lat: number; lng: number } | null;
   /** Explorer categories + attributes, computed on the server (editorial data first, then live Google). */
   attributes: CafeAttributes;
   /** Google rating (1–5) and review count, live from Places; null when not available. Shown with Google attribution. */

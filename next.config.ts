@@ -7,56 +7,18 @@ const isVercelPreview = process.env.VERCEL_ENV === "preview";
 /**
  * Content-Security-Policy listing only what the site actually loads:
  * - Next.js inline bootstrap scripts ('unsafe-inline': pages are statically generated, so no per-request nonce)
- * - Google Maps JavaScript API on /map, loaded by @googlemaps/js-api-loader (scripts from maps.googleapis.com /
- *   *.googleapis.com / *.gstatic.com, Roboto from fonts.googleapis.com + fonts.gstatic.com, vector tiles and
- *   icons from *.googleapis.com / *.gstatic.com / *.google.com / *.ggpht.com, data:/blob: images and fetches,
- *   blob: workers for Advanced Markers / vector rendering)
- * - Leaflet + OpenStreetMap tiles on /map when no Google browser key is set
+ * - Leaflet + OpenStreetMap tiles on /map and café pages (no Google JavaScript in the browser at all: Place Details
+ *   are fetched on the server, fonts are self-hosted by next/font at build time)
  * - Cafe photos are our own optimised copies under /images (same origin, via /_next/image), so img-src needs no
- *   Flickr/Wikimedia hosts; the Google hosts in img-src are for Maps JS tiles and icons only.
+ *   Flickr/Wikimedia hosts.
  */
 const csp = [
   ["default-src", "'self'"],
-  [
-    "script-src",
-    "'self'",
-    "'unsafe-inline'",
-    ...(isDev ? ["'unsafe-eval'"] : []),
-    "https://maps.googleapis.com",
-    "https://maps.gstatic.com",
-    "https://*.googleapis.com",
-    "https://*.gstatic.com",
-    ...(isVercelPreview ? ["https://vercel.live"] : []),
-  ],
-  ["style-src", "'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-  [
-    "img-src",
-    "'self'",
-    "data:",
-    "blob:",
-    "https://*.tile.openstreetmap.org",
-    "https://maps.googleapis.com",
-    "https://*.googleapis.com",
-    "https://maps.gstatic.com",
-    "https://*.gstatic.com",
-    "https://*.google.com",
-    "https://*.ggpht.com",
-    "https://*.googleusercontent.com",
-    ...(isVercelPreview ? ["https://vercel.live", "https://vercel.com"] : []),
-  ],
-  ["font-src", "'self'", "data:", "https://fonts.gstatic.com", ...(isVercelPreview ? ["https://vercel.live"] : [])],
-  [
-    "connect-src",
-    "'self'",
-    "https://maps.googleapis.com",
-    "https://*.googleapis.com",
-    "https://*.gstatic.com",
-    "https://*.google.com",
-    "data:",
-    "blob:",
-    ...(isDev ? ["ws:", "wss:"] : []),
-    ...(isVercelPreview ? ["https://vercel.live", "wss://ws-us3.pusher.com"] : []),
-  ],
+  ["script-src", "'self'", "'unsafe-inline'", ...(isDev ? ["'unsafe-eval'"] : []), ...(isVercelPreview ? ["https://vercel.live"] : [])],
+  ["style-src", "'self'", "'unsafe-inline'"],
+  ["img-src", "'self'", "data:", "blob:", "https://*.tile.openstreetmap.org", ...(isVercelPreview ? ["https://vercel.live", "https://vercel.com"] : [])],
+  ["font-src", "'self'", "data:", ...(isVercelPreview ? ["https://vercel.live"] : [])],
+  ["connect-src", "'self'", ...(isDev ? ["ws:", "wss:"] : []), ...(isVercelPreview ? ["https://vercel.live", "wss://ws-us3.pusher.com"] : [])],
   ["worker-src", "'self'", "blob:"],
   ["frame-src", ...(isVercelPreview ? ["https://vercel.live"] : ["'none'"])],
   ["object-src", "'none'"],

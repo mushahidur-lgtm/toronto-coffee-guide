@@ -74,6 +74,7 @@ export function normalizeCafe(raw: Record<string, unknown>): Cafe {
     neighbourhood: str(raw.neighbourhood) ?? "Toronto",
     latitude: num(raw.latitude),
     longitude: num(raw.longitude),
+    location_source: str(raw.location_source),
     website_url: httpUrl(raw.website_url),
     google_maps_url: mapsUri ?? googleMapsSearchUrl(name, address, placeId),
     google_place_id: placeId,

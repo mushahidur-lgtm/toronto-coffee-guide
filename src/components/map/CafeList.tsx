@@ -4,7 +4,7 @@ import Link from "next/link";
 import { memo, useEffect, useRef } from "react";
 import { ArrowUpRight, Coffee, Laptop, Sun } from "lucide-react";
 import type { CafeView } from "@/lib/types";
-import { todayStatus, todayStatusText } from "@/lib/hours";
+import { hoursInfo, todayStatusText } from "@/lib/hours";
 import { explorerLabel } from "@/lib/explorer";
 import { VenueBadge } from "../VenueBadge";
 import type { Selection } from "./shared";
@@ -80,7 +80,7 @@ const Row = memo(function Row({
   onSelect: (id: string) => void;
   liRef: (el: HTMLLIElement | null) => void;
 }) {
-  const status = todayStatus(c.opening_hours, now);
+  const status = hoursInfo(c, now).status;
   const a = c.attributes;
   return (
     <li

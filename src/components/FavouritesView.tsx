@@ -59,7 +59,7 @@ export function FavouritesView({ cafes }: { cafes: CafeView[] }) {
           </label>
         )}
       </div>
-      <ul className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((c) => (
           <li key={c.id}>
             <CafeCard cafe={c} />

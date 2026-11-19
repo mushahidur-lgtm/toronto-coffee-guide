@@ -60,7 +60,7 @@ export default async function CollectionPage({ params }: Params) {
         <p className="max-w-xl text-lg leading-relaxed text-ink-2">{collection.intro}</p>
       </header>
 
-      <ul className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
         {cafes.map((c, i) => (
           <li key={c.id}>
             <CafeCard cafe={c} priority={i < 3} />

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { CafeView } from "@/lib/types";
 import type { Bbox, MapViewState } from "@/lib/map-state";
 import { getNeighbourhood } from "@/lib/neighbourhoods";
-import { hoursInfo, todayStatusText } from "@/lib/hours";
+import { hoursSummary } from "@/lib/hours";
 import { googleMapsDirectionsUrl } from "@/lib/maps";
 import type { LatLng } from "@/lib/geo";
 import { venueBadge } from "@/lib/venue";
@@ -71,10 +71,8 @@ const thumb = (src: string) => `/_next/image?url=${encodeURIComponent(src)}&w=38
 
 /** Preview card for a map popup: photo, name, neighbourhood, type, status, links. Every value is escaped. */
 export function popupHtml(c: CafeView, now: Date, approximate = false): string {
-  const status = hoursInfo(c, now).status;
-  const statusHtml = status
-    ? `<div style="margin-top:7px;color:${status.state === "open" ? "#2f5a24;font-weight:500" : "#3d3d3d"}">${esc(todayStatusText(status))}</div>`
-    : `<div style="margin-top:7px;color:#6b6b6b">Hours not verified</div>`;
+  const hs = hoursSummary(c, now);
+  const statusHtml = `<div style="margin-top:7px;color:${hs.open ? "#2f5a24;font-weight:500" : "#3d3d3d"}">${esc(hs.text)}</div>`;
   const types = c.cafe_categories.slice(0, 2).join(" · ");
   const vb = VENUE_BADGE_STYLE[c.venue_type];
   const photo = c.image

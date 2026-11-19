@@ -4,7 +4,7 @@ import Link from "next/link";
 import { memo, useEffect, useRef } from "react";
 import { ArrowUpRight, Coffee, Laptop, Sun } from "lucide-react";
 import type { CafeView } from "@/lib/types";
-import { hoursInfo, todayStatusText } from "@/lib/hours";
+import { hoursSummary } from "@/lib/hours";
 import { explorerLabel } from "@/lib/explorer";
 import { VenueBadge } from "../VenueBadge";
 import type { Selection } from "./shared";
@@ -80,7 +80,7 @@ const Row = memo(function Row({
   onSelect: (id: string) => void;
   liRef: (el: HTMLLIElement | null) => void;
 }) {
-  const status = hoursInfo(c, now).status;
+  const hs = hoursSummary(c, now);
   const a = c.attributes;
   return (
     <li
@@ -105,7 +105,7 @@ const Row = memo(function Row({
           )}
         </span>
         <span className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
-          {status && <span className={status.state === "open" ? "font-medium text-[#2f5a24]" : "text-ink-2"}>{todayStatusText(status)}</span>}
+          <span className={hs.open ? "font-medium text-[#2f5a24]" : "text-ink-2"}>{hs.text}</span>
         </span>
         {(a.laptopFriendly || a.hasPatio || a.roastsInHouse || unplaced) && (
           <span className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted">

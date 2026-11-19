@@ -22,6 +22,14 @@ export function Header() {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // Esc closes the mobile menu.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/") || (href === "/categories" && pathname.startsWith("/toronto/"));
 

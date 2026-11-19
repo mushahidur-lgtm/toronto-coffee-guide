@@ -1,10 +1,13 @@
 /**
  * Cross-view consistency + smoke checks against a running site.   npm run check:site -- [baseUrl]
+ * Pass --expect-live to also require that most cafés carry live Google hours and ratings (use it for production).
  * Default base URL is http://localhost:3000 (npm run start); pass https://toronto-coffee-guide.vercel.app for production.
  * Verifies that the home page, directory, map, API, sitemap and neighbourhood pages all report the same cafes,
  * that every café has a loadable detail page, and that no response is an error.
  */
-const base = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
+const args = process.argv.slice(2);
+const expectLive = args.includes("--expect-live");
+const base = (args.find((a) => !a.startsWith("--")) ?? "http://localhost:3000").replace(/\/$/, "");
 let failed = 0;
 const ok = (label: string, pass: boolean, detail = "") => {
   if (!pass) failed++;
@@ -21,9 +24,16 @@ const num = (text: string, re: RegExp) => {
 const strip = (html: string) => html.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ").replace(/&nbsp;|\s+/g, " ");
 
 async function main() {
-  const api = JSON.parse((await get("/api/cafes?limit=200")).text) as { total: number; results: { slug: string; neighbourhood: string; cafe_categories: string[]; latitude: number | null }[] };
+  const api = JSON.parse((await get("/api/cafes?limit=200")).text) as { total: number; results: { slug: string; neighbourhood: string; cafe_categories: string[]; latitude: number | null; hours_source: string | null; google_rating: number | null }[] };
   const total = api.total;
   ok("API returns every café in one page", api.results.length === total, `${api.results.length}/${total}`);
+  if (expectLive) {
+    // Proves Google data actually shipped (hours and ratings), not just that pages render.
+    const live = api.results.filter((c) => c.hours_source === "google").length;
+    const rated = api.results.filter((c) => c.google_rating != null).length;
+    ok("most cafes have live Google hours", live / total >= 0.85, `${live}/${total}`);
+    ok("most cafes have a live Google rating", rated / total >= 0.85, `${rated}/${total}`);
+  }
   ok("slugs are unique", new Set(api.results.map((c) => c.slug)).size === total);
 
   const home = strip((await get("/")).text);

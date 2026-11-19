@@ -261,3 +261,11 @@ export function hoursInfo(c: HoursSource, now = new Date()): HoursInfo {
     exceptional,
   };
 }
+
+/** One line for lists and popups: status plus "Holiday hours" / "(not verified)" qualifiers, or "Hours not verified". */
+export function hoursSummary(c: HoursSource, now = new Date()): { text: string; open: boolean } {
+  const info = hoursInfo(c, now);
+  if (!info.status) return { text: "Hours not verified", open: false };
+  const text = todayStatusText(info.status) + (info.exceptional ? " · Holiday hours" : "") + (info.verified ? "" : " (not verified)");
+  return { text, open: info.status.state === "open" };
+}

@@ -14,7 +14,7 @@ cp .env.example .env.local   # every variable is optional
 npm run dev                  # http://localhost:3000
 ```
 
-With no environment variables, the site runs entirely from `data/cafes.seed.json` (103 cafes) and shows neutral placeholders where a photo would be.
+With no environment variables, the site runs entirely from `data/cafes.seed.json` and `data/cafe-images.json`, with drawn placeholders where there is no photo.
 
 | Script | What it does |
 | --- | --- |
@@ -51,7 +51,7 @@ src/lib/
   neighbourhood-intros.ts     Short intro paragraph per neighbourhood page
   hours.ts, maps.ts           Hours grouping, Google Maps URL builders
 src/components/               Header, CafeExplorer (search/filters/sort/load more), CafeCard,
-                              CafePhoto (+ attribution), PhotoGallery, CafeLocationMap,
+                              CafeImage + ImageCredit (photos, placeholders, attribution), PhotoGallery, CafeLocationMap,
                               FavouriteButton, Hours, NeighbourhoodGrid, map/
 src/app/
   page.tsx                    Home: hero search, quick searches, collections, results
@@ -59,8 +59,9 @@ src/app/
   cafes/[slug]/               Cafe detail page (+ schema.org CafeOrCoffeeShop JSON-LD)
   neighbourhoods/, map/, about/, categories/, favourites/, toronto/[slug]/
   api/cafes                   JSON search API: ?q=&n=&type=&venue=&sort=&limit=&offset=
-  api/place-photo             Live Google photo(s) + attribution, streamed with no-store (key stays server-side);
-                              ?all=1 returns up to 6 photos for the cafe-page gallery
+public/images/               Optimised copies of approved cafe photos (content-hashed file names)
+data/cafe-images.json         Image manifest: every published photo, its source, licence and approval
+scripts/images/               Curation: search Openverse/Wikimedia, review, approve, check, report
   sitemap.ts, robots.ts
 ```
 
@@ -113,7 +114,7 @@ The synonym table lives at the top of `src/lib/search.ts`. Extend it as the data
   - The menu is grouped into *Coffee*, *Matcha & tea*, *Specialty drinks* and *Food & pastries*.
   - Only verified amenities are shown, and unknown ones are listed as "Not yet verified".
   - Live Google rating and today's hours.
-  - A photo gallery: up to 5 more Google photos, loaded when the section scrolls into view, each credited, with a keyboard-friendly lightbox.
+  - A photo gallery of any extra approved photos of that cafe, each credited, with a keyboard-friendly lightbox.
   - A location map: a Google pin with the browser key, otherwise OpenStreetMap with our own coordinates, or the neighbourhood as an approximate area.
   - "You might also like", scored on neighbourhood, venue type, shared menu specialties and categories.
 - **Neighbourhood pages:**
@@ -130,7 +131,7 @@ The synonym table lives at the top of `src/lib/search.ts`. Extend it as the data
 
 ## Data quality
 
-`npx tsx scripts/data-quality.ts` writes `docs/data-quality-report.md`. It checks for missing descriptions, menu highlights, place IDs and photo sources, invalid URLs, unknown neighbourhoods, duplicate names, addresses and place IDs, and the closed list. It also gives counts by region and neighbourhood. With `--live`, it makes one Place Details request per cafe to check photos, hours, coordinates, websites and business status. That's the same request the site makes every hour, and only counts are written.
+`npx tsx scripts/data-quality.ts` writes `docs/data-quality-report.md`. It checks for missing descriptions, menu highlights, place IDs and photo sources, invalid URLs, unknown neighbourhoods, duplicate names, addresses and place IDs, and the closed list. It also gives counts by region and neighbourhood. With `--live`, it makes one Place Details request per cafe to check hours, coordinates, websites and business status. Photo coverage comes from the image manifest, not from Google. That's the same request the site makes every hour, and only counts are written.
 
 ---
 
@@ -182,22 +183,39 @@ Only `name` and `neighbourhood` are required. `slug`, `id`, timestamps and the G
 
 **With Supabase:** insert a row through the Supabase dashboard or SQL (same fields), or edit the JSON and run `npm run db:seed`. No frontend change is needed either way.
 
-**Data rules:** never invent hours, menus, addresses or websites. Leave unknown fields `null` or `[]`, and the UI shows "Not available". Only use `image_url` for a photo you have the rights to that shows *that* cafe, never a stock photo.
+**Data rules:** never invent hours, menus, addresses or websites. Leave unknown fields `null` or `[]`, and the UI shows "Not available". Photos go through the image manifest (see *Cafe images* below), never straight into a cafe's record.
 
-### Adding your own photo
+### Cafe images
 
-Use this for a cafe with no Google match or no photos on Google Maps. An own photo always takes priority over Google's.
+Photos come from a curated manifest, not from live API calls. `data/cafe-images.json` lists every published photo with its source, creator, licence and approval; the files live in `public/images/`. Cards and pages read the manifest at build time, so viewing the site makes **no** photo requests to Google, Openverse or anyone else.
 
-1. Save a landscape JPG, about 1600px wide and under ~300 KB, as `public/images/cafes/<slug>.jpg`. The slug is the last part of the cafe's URL, e.g. `/cafes/cong-ca-phe-yonge-street` → `public/images/cafes/cong-ca-phe-yonge-street.jpg`.
-2. Add two fields to that cafe in `data/cafes.seed.json`:
-   ```json
-   "image_url": "/images/cafes/cong-ca-phe-yonge-street.jpg",
-   "image_credit": "Your Name"
-   ```
-   `image_credit` appears as "Photo: Your Name" under the image. With Supabase, set the same two columns on the row.
-3. Commit the image and the JSON change, then push. Vercel redeploys automatically.
+**What a cafe shows, in order**
 
-`image_url` may also be a full `https://` link, but the Content-Security-Policy only allows images from this site and Google's hosts. Images hosted anywhere else need their host added to `img-src` in `next.config.ts`, so keeping them in `public/images/cafes/` is simplest.
+1. Its approved photo: official (cafe-provided), submitted, then openly licensed from Openverse, then Wikimedia Commons.
+2. Otherwise a generic **illustrative photo** of its kind of menu (matcha, Vietnamese coffee, pastries, ...), labelled "Illustrative photo" on the image, described in its alt text as *not* a photo of the cafe, and credited. Pexels and Unsplash images are only ever allowed in this slot.
+3. Otherwise a drawn category placeholder.
+
+An illustrative photo is never presented as the cafe. Each cafe is keyed by its permanent `id` in `data/cafes.seed.json` (equal to its slug today, but it doesn't change if the name is edited).
+
+**Licensing.** Only licences that allow commercial use and adaptation: CC BY, CC BY-SA, CC0 and Public Domain Mark (no NonCommercial, no NoDerivatives, since images are cropped and re-encoded). CC BY and CC BY-SA photos must have a creator, licence link and source page, and the site refuses to show a photo that is missing any of them. Every image shows "Photo: Creator · Licence" (full credit on the cafe page) linking to the creator and the licence. Official and submitted photos need written permission from the cafe or photographer, recorded in the record's `notes`.
+
+**Adding photos**
+
+```bash
+npm run images:search                      # candidates from Openverse + Wikimedia (200 requests/day limit; resumable)
+npm run images:sheet -- --venue --out tmp  # contact sheet to look at; prints ids, licences, source pages
+npm run images:approve -- openverse:<id> --cafe <cafe-id> --role primary --category exterior --by "Your name"
+npm run images:approve -- <id> --reject --reason "Different location"
+npm run images:illustrative                # candidates for the generic fallback photos
+npm run images:approve -- <id> --illustrative matcha --by "Your name"
+npm run images:check                       # validate the manifest and files (use -- --online monthly)
+npm run images:report                      # coverage numbers -> docs/image-report.md
+npm run test:images
+```
+
+Nothing from a search is published automatically: a person approves each image after confirming it shows that cafe at that location (signage, the listing text, or the photographer's description). Approving downloads the image, re-encodes it as a 1600px JPEG, makes a blur placeholder, and writes the record. For a cafe-provided photo, copy the file in the same way and add a record with `"source": "official"` (or `"submitted"`), `"license": "permission"`, the photographer in `creator` and the permission in `notes`.
+
+**Performance.** Images go through `next/image`: AVIF/WebP at the width each layout needs, lazy-loaded below the fold (the first cards and the cafe hero are preloaded), fixed 16:9 frames and a blur placeholder so nothing shifts, `onError` falls back to the placeholder, and optimised files are cached by the CDN for a year (`/images/*` is immutable because file names include a content hash).
 
 Don't add a photo for a cafe that's permanently closed. Mark it `"verification_status": "closed"` instead, and the site hides it.
 
@@ -212,15 +230,8 @@ Don't add a photo for a cafe that's permanently closed. Mark it `"verification_s
    - runs a Text Search (biased to Toronto) and accepts the result only if the name matches well. Weak matches are listed for manual review.
    - stores **only** `google_place_id` and a `verification_status` (`verified` if `OPERATIONAL`, `closed` if `CLOSED_PERMANENTLY`).
    - writes to Supabase if configured, otherwise back into `data/cafes.seed.json`.
-3. At request time, `src/lib/data.ts` fetches Place Details for each cafe (address, hours, phone, website, Google Maps URL, coordinates, business status, photos) with a field mask, and caches them for `PLACES_REVALIDATE_SECONDS` (default 3600).
-4. **Photos load live and are never cached.** A cafe card asks `/api/place-photo?placeId=…` for a photo only when it scrolls near the viewport (IntersectionObserver); above-the-fold images load straight away. The route:
-   - only serves place IDs that belong to a listed cafe, so nobody else can spend your quota through it;
-   - calls Place Details with the field mask `photos,googleMapsUri` and returns `{ photo: { imageUrl, authorName, authorUri }, googleMapsUri }`;
-   - streams the image bytes from Google's `…/media` endpoint when `imageUrl` is requested;
-   - sends `Cache-Control: no-store` (plus `CDN-Cache-Control` and `Vercel-CDN-Cache-Control`) on every response and uses `cache: "no-store"` on every Google call, so nothing is stored on the CDN or disk;
-   - returns 429 when Google's quota is reached, 404 for unknown places and 503 without a key. The card then shows the neutral placeholder.
-
-   Every Google photo has "Photo by [author]" (linked to the author's profile) and "Google Maps" (linked to the place) underneath it. An editorial `image_url` always takes priority over Google.
+3. At request time, `src/lib/data.ts` fetches Place Details for each cafe (address, hours, phone, website, Google Maps URL, coordinates, business status, rating; no photos) with a field mask, and caches them for `PLACES_REVALIDATE_SECONDS` (default 3600).
+4. **Photos are not requested from Google.** They come from the image manifest (see *Cafe images*).
 5. Optional: set `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` (HTTP-referrer restricted, Maps JavaScript API only) so `/map` shows exact pins on a Google map.
 
 **Compliance notes**
@@ -230,7 +241,7 @@ Don't add a photo for a cafe that's permanently closed. Mark it `"verification_s
 - No scraping: all data comes from the official API or editorial research.
 - Directions and place links use the documented Google Maps URLs format (`/maps/search/?api=1…`, `/maps/dir/?api=1…`).
 
-**Cost:** one Place Details call per cafe per revalidation window, plus two photo calls (Place Details + media) each time a visitor scrolls a card into view. Photos are deliberately uncached, so every view costs a request. For 100 cafes that's about 2,400 detail calls a day at a 1-hour window. Raise `PLACES_REVALIDATE_SECONDS` to lower it.
+**Cost:** one Place Details call per cafe per revalidation window, and nothing per visitor. Viewing a page or scrolling a card makes no Google request. For 140 cafes that's about 3,400 detail calls a day at a 1-hour window; raise `PLACES_REVALIDATE_SECONDS` to lower it.
 
 ---
 
@@ -277,12 +288,12 @@ Leave a field out when you don't know it; unknown values never match a filter. *
 
 ## Security
 
-- **Photo route:** `/api/place-photo` only serves place IDs from the cafe list, snaps `w` to 400, 800 or 1200, and is rate limited per IP through Upstash Redis (120/min and 2000/day by default; set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`). Without Redis there is no rate limit, so set it up before launch.
-- **Headers:** `next.config.ts` sends a Content-Security-Policy plus `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` and `Permissions-Policy` (geolocation is allowed for this site only). The CSP allows Google Maps and OpenStreetMap for `/map`. If you add an editorial `image_url` hosted somewhere new, add that host to `img-src`, or put the image in `/public`.
+- **Images:** there is no photo API route to abuse or rate-limit. Images are static files under `/images`; the manifest check (`npm run images:check`) rejects anything without an allowed licence and attribution.
+- **Headers:** `next.config.ts` sends a Content-Security-Policy plus `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` and `Permissions-Policy` (geolocation is allowed for this site only). The CSP allows Google Maps and OpenStreetMap for `/map`. Cafe photos are served from this site (`/images`), so `img-src` needs no third-party image hosts.
 - **Untrusted data:** JSON-LD is escaped with `serializeJsonLd()`. Map popup HTML escapes names and URL-encodes slugs. `normalizeCafe` accepts only http(s) URLs (plus site-relative image paths) and re-slugifies every slug.
 - **`/api/cafes`:** `q` is capped at 200 characters, `n` and `type` at 20 items, `limit` at 1–200, and `sort` must be a known value.
 - **Google Cloud:** set a daily quota cap and a budget alert on Places API (New). Restrict the server key to Places API (New), and restrict `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` by HTTP referrer to your domains.
 
 ## Accessibility & performance
 
-Semantic landmarks, a skip link, visible focus rings, keyboard-operable filters (native `<details>`, checkboxes and select; Esc closes popovers), `aria-live` result counts, AA-contrast greys, and reduced-motion support. Pages are statically generated with hourly ISR. Images are lazy-loaded with explicit dimensions, and Google photos are only requested once a card nears the viewport, at the size displayed (800px for cards, 1600px for the hero).
+Semantic landmarks, a skip link, visible focus rings, keyboard-operable filters (native `<details>`, checkboxes and select; Esc closes popovers), `aria-live` result counts, AA-contrast greys, and reduced-motion support. Pages are statically generated with hourly ISR. Images are lazy-loaded in fixed 16:9 frames with a blur placeholder, served as AVIF/WebP at the displayed size, and never fetched from a third party at view time.

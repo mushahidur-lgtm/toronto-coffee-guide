@@ -48,8 +48,15 @@ export default async function AboutPage() {
           </p>
           <p>
             When Google Maps Platform is connected, each cafe is matched to its Google Place ID. Current addresses, opening hours,
-            phone numbers and photos then come live from Google Maps, credited to the photographer, and cafes Google marks as
-            permanently closed are hidden automatically.
+            phone numbers and ratings then come live from Google Maps, and cafes Google marks as permanently closed are hidden
+            automatically.
+          </p>
+          <p>
+            Photos are curated by hand. We use a cafe&rsquo;s own photos when we have permission, and openly licensed photos
+            (Creative Commons) from Openverse and Wikimedia Commons when one clearly shows that cafe, each credited to its
+            photographer with the licence. Where we don&rsquo;t have a photo of a cafe, we show a generic picture of the kind of
+            drink or food it serves, labelled &ldquo;Illustrative photo&rdquo;, or a simple drawn placeholder. An illustrative
+            photo is never a photo of that cafe.
           </p>
           <p>
             Missing a favourite, or spotted something out of date? Cafes are stored as structured data, so adding or correcting one

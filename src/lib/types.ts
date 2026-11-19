@@ -1,3 +1,4 @@
+import type { IllustrativeCategory, ResolvedImage } from "./images";
 import type { CafeAttributes, ExplorerCategory } from "./explorer";
 import type { VenueType } from "./venue";
 
@@ -17,18 +18,6 @@ export const CAFE_TYPES = [
 export type CafeType = (typeof CAFE_TYPES)[number];
 
 export type VerificationStatus = "unverified" | "verified" | "closed";
-
-export interface PhotoAttribution {
-  displayName: string;
-  uri?: string | null;
-}
-
-/** An editorial (own/licensed) photo. Google photos are never stored; they load live via /api/place-photo. */
-export interface CafePhoto {
-  kind: "url";
-  ref: string;
-  attributions: PhotoAttribution[];
-}
 
 /**
  * One entry of data/cafes.seed.json as written by hand / by scripts.
@@ -140,8 +129,13 @@ export interface LivePlace {
 
 /** What the UI renders: the stored cafe merged with any live Google data. */
 export interface CafeView extends Cafe {
-  /** Editorial photo only. When null and google_place_id is set, the UI loads a live Google photo. */
-  photo: CafePhoto | null;
+  /**
+   * The picture for cards and the page hero, from the curated image manifest (src/lib/images.ts): the cafe's own
+   * approved photo, else a labelled illustrative one, else null (the UI draws a category placeholder).
+   */
+  image: ResolvedImage | null;
+  /** Which generic category suits this cafe's menu (placeholder icon, illustrative photo). */
+  image_category: IllustrativeCategory;
   /** Where the hours came from, for attribution. */
   hours_source: "google" | "editorial" | null;
   /** True when any field shown came from Google Places. */

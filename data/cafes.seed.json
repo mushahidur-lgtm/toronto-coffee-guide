@@ -1,5 +1,6 @@
 [
   {
+    "id": "pilot-coffee-roasters-wagstaff-tasting-room",
     "name": "Pilot Coffee Roasters — Wagstaff Tasting Room",
     "neighbourhood": "Leslieville",
     "address": "50 Wagstaff Dr, Toronto, ON",
@@ -30,6 +31,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=359761344204424991&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "pilot-coffee-roasters-yorkville",
     "name": "Pilot Coffee Roasters — Yorkville",
     "neighbourhood": "Yorkville",
     "address": "55 Bloor St W, Toronto, ON",
@@ -53,6 +55,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=5075431249381824387&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "pilot-coffee-roasters-blue-jays-way",
     "name": "Pilot Coffee Roasters — Blue Jays Way",
     "neighbourhood": "Entertainment District",
     "address": "80 Blue Jays Way, Toronto, ON",
@@ -76,6 +79,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=8187226634172465927&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "dineen-coffee-co",
     "name": "Dineen Coffee Co.",
     "neighbourhood": "Financial District",
     "address": "140 Yonge St, Toronto, ON",
@@ -107,6 +111,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=3047301797821169542&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "sam-james-coffee-bar-harbord",
     "name": "Sam James Coffee Bar — Harbord",
     "neighbourhood": "Harbord Village",
     "address": null,
@@ -131,6 +136,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=10650696524061224671&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "sam-james-coffee-bar-path",
     "name": "Sam James Coffee Bar — PATH",
     "neighbourhood": "Financial District",
     "address": null,
@@ -155,6 +161,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=5758559937369245128&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "boxcar-social-summerhill",
     "name": "Boxcar Social — Summerhill",
     "neighbourhood": "Midtown",
     "address": "1208 Yonge St, Toronto, ON",
@@ -181,6 +188,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=13981778200064517169&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "neo-coffee-bar-frederick",
     "name": "Neo Coffee Bar — Frederick",
     "neighbourhood": "St. Lawrence",
     "address": "161 Frederick St, Toronto, ON",
@@ -213,6 +221,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=2772061715353062504&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "neo-coffee-bar-bay-x-college",
     "name": "Neo Coffee Bar — Bay x College",
     "neighbourhood": "Bay & College",
     "address": "770 Bay St, Unit 3, Toronto, ON",
@@ -241,6 +250,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15090493034333801972&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "jimmy-s-coffee-portland",
     "name": "Jimmy's Coffee — Portland",
     "neighbourhood": "Queen West",
     "address": "107 Portland St, Toronto, ON",
@@ -265,6 +275,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=14737835657557929420&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "jimmy-s-coffee-baldwin",
     "name": "Jimmy's Coffee — Baldwin",
     "neighbourhood": "Kensington Market",
     "address": "191 Baldwin St, Toronto, ON",
@@ -291,6 +302,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=1310936245316827796&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "jimmy-s-coffee-lake-shore",
     "name": "Jimmy's Coffee — Lake Shore",
     "neighbourhood": "Etobicoke",
     "address": null,
@@ -314,6 +326,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6718139002447328798&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "fika-cafe",
     "name": "FIKA Cafe",
     "neighbourhood": "Kensington Market",
     "address": "28 Kensington Ave, Toronto, ON",
@@ -344,6 +357,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9807637664318200042&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "balzac-s-coffee-roasters-distillery",
     "name": "Balzac's Coffee Roasters — Distillery",
     "neighbourhood": "Distillery District",
     "address": "1 Trinity St, Toronto, ON",
@@ -372,6 +386,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=430531848628053894&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "balzac-s-coffee-roasters-liberty-village",
     "name": "Balzac's Coffee Roasters — Liberty Village",
     "neighbourhood": "Liberty Village",
     "address": null,
@@ -398,6 +413,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=13697070117660397166&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "found-coffee",
     "name": "Found Coffee",
     "neighbourhood": "Kensington Market",
     "address": null,
@@ -417,6 +433,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9096688518613238827&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "library-coffee",
     "name": "Library Coffee",
     "neighbourhood": "Queen West",
     "address": null,
@@ -441,6 +458,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=4828050380556071920&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "fahrenheit-coffee",
     "name": "Fahrenheit Coffee",
     "neighbourhood": "St. Lawrence",
     "address": "120 Lombard St, Toronto, ON",
@@ -466,6 +484,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15784468381387369305&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "de-mello-coffee-bloor-east",
     "name": "De Mello Coffee — Bloor East",
     "neighbourhood": "St. James Town",
     "address": null,
@@ -491,6 +510,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=7455303984216804191&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "i-deal-coffee",
     "name": "I Deal Coffee",
     "neighbourhood": "Kensington Market",
     "address": "84 Nassau St, Toronto, ON",
@@ -514,6 +534,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=7346715047696106588&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "moonbean-coffee-company",
     "name": "Moonbean Coffee Company",
     "neighbourhood": "Kensington Market",
     "address": "30 St Andrew St, Toronto, ON",
@@ -550,6 +571,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=12219420384397433030&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "quantum-coffee",
     "name": "Quantum Coffee",
     "neighbourhood": "King West",
     "address": "460 King St W, Toronto, ON",
@@ -576,6 +598,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=4917121881939314460&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "rooster-coffee-house-broadview",
     "name": "Rooster Coffee House — Broadview",
     "neighbourhood": "Riverside",
     "address": "479 Broadview Ave, Toronto, ON",
@@ -602,6 +625,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9886904472155382976&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "te-aro",
     "name": "Te Aro",
     "neighbourhood": "Leslieville",
     "address": "983 Queen St E, Toronto, ON",
@@ -627,6 +651,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17443666596604990023&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "tandem-coffee",
     "name": "Tandem Coffee",
     "neighbourhood": "Corktown",
     "address": "368 King St E, Toronto, ON",
@@ -649,6 +674,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "odin-cafe-plus-bar",
     "name": "Odin Cafe + Bar",
     "neighbourhood": "Corktown",
     "address": "514 King St E, Toronto, ON",
@@ -675,6 +701,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "white-squirrel-coffee-shop",
     "name": "White Squirrel Coffee Shop",
     "neighbourhood": "Trinity Bellwoods",
     "address": "907 Queen St W, Toronto, ON",
@@ -698,6 +725,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=16049913549487166372&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "rooms-coffee",
     "name": "Rooms Coffee",
     "neighbourhood": "Ossington",
     "address": null,
@@ -720,6 +748,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=2591412233862016868&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-matcha-tokyo",
     "name": "The Matcha Tokyo",
     "neighbourhood": "Ossington",
     "address": null,
@@ -745,6 +774,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=8021428636807340689&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "ezra-s-pound",
     "name": "Ezra's Pound",
     "neighbourhood": "The Annex",
     "address": "238 Dupont St, Toronto, ON",
@@ -766,6 +796,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6842788629952766355&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "manic-coffee",
     "name": "Manic Coffee",
     "neighbourhood": "Little Italy",
     "address": "426 College St, Toronto, ON",
@@ -786,6 +817,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=2905559742642719574&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "cafe-pamenar",
     "name": "Cafe Pamenar",
     "neighbourhood": "Kensington Market",
     "address": "307 Augusta Ave, Toronto, ON",
@@ -809,6 +841,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=3742981125912628987&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "wanda-s-pie-in-the-sky",
     "name": "Wanda's Pie in the Sky",
     "neighbourhood": "Kensington Market",
     "address": "287 Augusta Ave, Toronto, ON",
@@ -836,6 +869,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17753070563202104151&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "cafe-diplomatico",
     "name": "Café Diplomatico",
     "neighbourhood": "Little Italy",
     "address": "594 College St, Toronto, ON",
@@ -866,6 +900,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=5569401321578393829&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "sicilian-sidewalk-cafe",
     "name": "Sicilian Sidewalk Café",
     "neighbourhood": "Little Italy",
     "address": "712 College St, Toronto, ON",
@@ -894,6 +929,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=10712394303489931267&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "golden-wheat-bakery",
     "name": "Golden Wheat Bakery",
     "neighbourhood": "Little Italy",
     "address": "652 College St, Toronto, ON",
@@ -923,6 +959,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17369848915094902852&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "nova-era-bakery",
     "name": "Nova Era Bakery",
     "neighbourhood": "Little Portugal",
     "address": null,
@@ -951,6 +988,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=7306800655582807589&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "lady-marmalade",
     "name": "Lady Marmalade",
     "neighbourhood": "Riverside",
     "address": "265 Broadview Ave, Toronto, ON",
@@ -978,6 +1016,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=5326548415128976760&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-federal",
     "name": "The Federal",
     "neighbourhood": "Brockton Village",
     "address": null,
@@ -1002,6 +1041,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9030823972239425657&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "saving-grace",
     "name": "Saving Grace",
     "neighbourhood": "Trinity Bellwoods",
     "address": null,
@@ -1026,6 +1066,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "nadege-patisserie",
     "name": "Nadège Patisserie",
     "neighbourhood": "Trinity Bellwoods",
     "address": "780 Queen St W, Toronto, ON",
@@ -1055,6 +1096,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=14751228186517586026&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "sud-forno-queen-west",
     "name": "Sud Forno — Queen West",
     "neighbourhood": "Queen West",
     "address": "716 Queen St W, Toronto, ON",
@@ -1083,6 +1125,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=13430323321409466404&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "forno-cultura",
     "name": "Forno Cultura",
     "neighbourhood": "King West",
     "address": "609 King St W, Toronto, ON",
@@ -1108,6 +1151,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=680022464819478519&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "little-pebbles",
     "name": "Little Pebbles",
     "neighbourhood": "Kensington Market",
     "address": "160 Baldwin St, Toronto, ON",
@@ -1135,6 +1179,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11679416276007277568&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "915-dupont",
     "name": "915 Dupont",
     "neighbourhood": "Dupont",
     "address": "915 Dupont St, Toronto, ON",
@@ -1160,6 +1205,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15810996615279816369&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "tsuchi-cafe",
     "name": "Tsuchi Cafe",
     "neighbourhood": "Little Italy",
     "address": "688 College St, Toronto, ON",
@@ -1188,6 +1234,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=10217762637906112712&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "ohiru-cafe",
     "name": "Ohiru Cafe",
     "neighbourhood": "Harbord Village",
     "address": "370 College St, Toronto, ON",
@@ -1211,6 +1258,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6710045738929605626&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "film-cafe",
     "name": "Film Cafe",
     "neighbourhood": "Kensington Market",
     "address": "230 Augusta Ave, Toronto, ON",
@@ -1238,6 +1286,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=14107505296143547787&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "fuwa-fuwa-dessert-cafe",
     "name": "Fuwa Fuwa Dessert Cafe",
     "neighbourhood": "The Annex",
     "address": "408 Bloor St W, Toronto, ON",
@@ -1263,6 +1312,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17809936117359714074&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "fluffy-fluffy-dessert-cafe",
     "name": "Fluffy Fluffy Dessert Cafe",
     "neighbourhood": "Midtown",
     "address": "2471 Yonge St, Toronto, ON",
@@ -1289,6 +1339,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "lait-night",
     "name": "Lait Night",
     "neighbourhood": "Chinatown",
     "address": "81 Huron St, Main Floor, Toronto, ON",
@@ -1312,6 +1363,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=211970794213829985&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "cafe-wanoka",
     "name": "Cafe Wanoka",
     "neighbourhood": "Agincourt",
     "address": "2101 Brimley Rd, Scarborough, ON",
@@ -1339,6 +1391,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=13928417735358222589&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "soul-cafe",
     "name": "Soul Cafe",
     "neighbourhood": "Willowdale",
     "address": "23 Drewry Ave, North York, ON",
@@ -1364,6 +1417,7 @@
     "source": "https://www.hungry416.com/?p=6805"
   },
   {
+    "id": "cafe-kray",
     "name": "Cafe Kray",
     "neighbourhood": "Willowdale",
     "address": "4850 Yonge St, Floor 2, North York, ON",
@@ -1389,6 +1443,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=5925989818803722903&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "cafe-daily",
     "name": "Cafe Daily",
     "neighbourhood": "Willowdale",
     "address": "5519 Yonge St, North York, ON",
@@ -1415,6 +1470,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=8751887838593113717&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-cups",
     "name": "The Cups",
     "neighbourhood": "Willowdale",
     "address": "5647 Yonge St, 2nd Floor, North York, ON",
@@ -1442,6 +1498,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9084955162504714669&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "dear-and-fro",
     "name": "Dear & Fro",
     "neighbourhood": "Milliken",
     "address": "3300 Midland Ave #39, Scarborough, ON",
@@ -1463,6 +1520,7 @@
     "source": "https://www.hungry416.com/?p=6805"
   },
   {
+    "id": "jjin-toast",
     "name": "JJIN Toast",
     "neighbourhood": "Koreatown",
     "address": "792 Bathurst St, Toronto, ON",
@@ -1488,6 +1546,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15611239166430373437&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "hodo-kwaja",
     "name": "Hodo Kwaja",
     "neighbourhood": "Koreatown",
     "address": "656 Bloor St W, Toronto, ON",
@@ -1514,6 +1573,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=3986217415268364032&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "dessert-fox",
     "name": "Dessert Fox",
     "neighbourhood": "Koreatown",
     "address": "635 Bloor St W, Toronto, ON",
@@ -1540,6 +1600,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11981880071408024901&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "hanbingo",
     "name": "HANBINGO",
     "neighbourhood": "Chinatown",
     "address": "397 Spadina Ave, Toronto, ON",
@@ -1566,6 +1627,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6774534615398606256&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "snowday-bingsu-and-dessert-cafe",
     "name": "Snowday Bingsu & Dessert Cafe",
     "neighbourhood": "Church-Wellesley",
     "address": "449 Church St, Toronto, ON",
@@ -1593,6 +1655,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15343970507599681011&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "hem-social",
     "name": "Hẻm Social",
     "neighbourhood": "Little Portugal",
     "address": null,
@@ -1617,6 +1680,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9057437357872912094&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "coffee-dak-lak",
     "name": "Coffee Dak Lak",
     "neighbourhood": "Kensington Market",
     "address": null,
@@ -1639,6 +1703,7 @@
     "source": "https://www.destinationtoronto.com/leisure-blog/post/vietnamese-coffee-toronto/"
   },
   {
+    "id": "cactus-vietnamese-tea-and-coffee",
     "name": "Cactus Vietnamese Tea and Coffee",
     "neighbourhood": "Koreatown",
     "address": null,
@@ -1666,6 +1731,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "rustle-and-still",
     "name": "Rustle & Still",
     "neighbourhood": "Koreatown",
     "address": null,
@@ -1695,6 +1761,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=12310262718233911209&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-oats-kafe",
     "name": "The Oats Kafé",
     "neighbourhood": "Church-Wellesley",
     "address": null,
@@ -1718,6 +1785,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "playground-cafe",
     "name": "Playground Cafe",
     "neighbourhood": "Cabbagetown",
     "address": null,
@@ -1744,6 +1812,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "plus-84-cafe",
     "name": "+84 Café",
     "neighbourhood": "Little Italy",
     "address": null,
@@ -1769,6 +1838,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=10696812371573429696&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "la-la-bakeshop",
     "name": "LÀ LÁ Bakeshop",
     "neighbourhood": "The Annex",
     "address": null,
@@ -1799,6 +1869,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "cong-ca-phe-annex",
     "name": "Cộng Cà Phê — Annex",
     "neighbourhood": "The Annex",
     "address": null,
@@ -1823,6 +1894,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15183786279789976906&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "cong-ca-phe-yonge-street",
     "name": "Cộng Cà Phê — Yonge Street",
     "neighbourhood": "Downtown Yonge",
     "address": null,
@@ -1847,6 +1919,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=295700722100884238&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "dzo-viet-eatery",
     "name": "Dzô Viet Eatery",
     "neighbourhood": "Chinatown",
     "address": null,
@@ -1874,6 +1947,7 @@
     "venue_type": "restaurant-coffee"
   },
   {
+    "id": "banh-haus",
     "name": "Banh Haus",
     "neighbourhood": "Chinatown",
     "address": null,
@@ -1898,6 +1972,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "phin-cafe-bar",
     "name": "Phin Cafe Bar",
     "neighbourhood": "Milliken",
     "address": null,
@@ -1921,6 +1996,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=12345374600761784180&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "bonjour-brioche",
     "name": "Bonjour Brioche",
     "neighbourhood": "Leslieville",
     "address": "812 Queen St E, Toronto, ON",
@@ -1950,6 +2026,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=18343723727364909692&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "mercury-espresso-bar",
     "name": "Mercury Espresso Bar",
     "neighbourhood": "Leslieville",
     "address": "915 Queen St E, Toronto, ON",
@@ -1974,6 +2051,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=16383381346157449229&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "jet-fuel-coffee",
     "name": "Jet Fuel Coffee",
     "neighbourhood": "Cabbagetown",
     "address": "519 Parliament St, Toronto, ON",
@@ -1998,6 +2076,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6803807458669983954&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "brick-street-bakery",
     "name": "Brick Street Bakery",
     "neighbourhood": "Distillery District",
     "address": "55 Mill St, Toronto, ON",
@@ -2022,6 +2101,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=3780671330765949972&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "arvo-coffee",
     "name": "Arvo Coffee",
     "neighbourhood": "Distillery District",
     "address": null,
@@ -2041,6 +2121,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=3503156207483071852&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "soma-chocolatemaker-distillery",
     "name": "SOMA Chocolatemaker — Distillery",
     "neighbourhood": "Distillery District",
     "address": "32 Tank House Ln, Toronto, ON",
@@ -2068,6 +2149,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17443102457543996943&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "athens-pastries",
     "name": "Athens Pastries",
     "neighbourhood": "Danforth",
     "address": "509 Danforth Ave, Toronto, ON",
@@ -2095,6 +2177,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6374103976599836999&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "serano-bakery",
     "name": "Serano Bakery",
     "neighbourhood": "Danforth",
     "address": "830 Pape Ave, Toronto, ON",
@@ -2121,6 +2204,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=5125940702492635385&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "red-rocket-coffee-danforth",
     "name": "Red Rocket Coffee — Danforth",
     "neighbourhood": "Danforth",
     "address": null,
@@ -2142,6 +2226,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=3652064595882303792&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-remarkable-bean",
     "name": "The Remarkable Bean",
     "neighbourhood": "The Beaches",
     "address": "2242 Queen St E, Toronto, ON",
@@ -2168,6 +2253,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=14457252874333188268&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "crema-coffee-co-junction",
     "name": "Crema Coffee Co. — Junction",
     "neighbourhood": "The Junction",
     "address": null,
@@ -2191,6 +2277,7 @@
     "verification_status": "closed"
   },
   {
+    "id": "cherry-bomb",
     "name": "Cherry Bomb",
     "neighbourhood": "Roncesvalles",
     "address": "79 Roncesvalles Ave, Toronto, ON",
@@ -2214,6 +2301,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11962137036377777496&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "mabel-s-bakery-roncesvalles",
     "name": "Mabel's Bakery — Roncesvalles",
     "neighbourhood": "Roncesvalles",
     "address": "323 Roncesvalles Ave, Toronto, ON",
@@ -2237,6 +2325,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=12691557717498403297&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "terminal-3-roasters",
     "name": "Terminal 3 Roasters",
     "neighbourhood": "Etobicoke",
     "address": "3337 Lake Shore Blvd W, Etobicoke, ON",
@@ -2261,6 +2350,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=2132221778833217142&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "yellow-cup-cafe",
     "name": "Yellow Cup Café",
     "neighbourhood": "Etobicoke",
     "address": "225 The East Mall, Etobicoke, ON",
@@ -2285,6 +2375,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=5563586332964452613&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-sydney-grind",
     "name": "The Sydney Grind",
     "neighbourhood": "Etobicoke",
     "address": null,
@@ -2312,6 +2403,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17037195861274623090&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "aeset-coffee-co",
     "name": "Aesēt Coffee Co.",
     "neighbourhood": "Yorkville",
     "address": null,
@@ -2333,6 +2425,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=12533590520414043310&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "coco-espresso-bar",
     "name": "Coco Espresso Bar",
     "neighbourhood": "Yorkville",
     "address": null,
@@ -2354,6 +2447,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15186546985245814530&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "goldstruck-coffee",
     "name": "Goldstruck Coffee",
     "neighbourhood": "Yorkville",
     "address": null,
@@ -2378,6 +2472,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=831706297177769916&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "jacked-up-coffee",
     "name": "Jacked Up Coffee",
     "neighbourhood": "Yorkville",
     "address": null,
@@ -2397,6 +2492,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=16866192215789118113&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "amadeus-patisserie",
     "name": "Amadeus Patisserie",
     "neighbourhood": "Yorkville",
     "address": null,
@@ -2425,6 +2521,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=18132215130729463222&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "virtu-cafe",
     "name": "Virtu Café",
     "neighbourhood": "Yorkville",
     "address": null,
@@ -2446,6 +2543,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17895974599362448948&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "pain-perdu",
     "name": "Pain Perdu",
     "neighbourhood": "Midtown",
     "address": null,
@@ -2473,6 +2571,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=13316699201773110114&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "blackbird-baking-co",
     "name": "Blackbird Baking Co.",
     "neighbourhood": "Kensington Market",
     "address": "172 Baldwin St, Toronto, ON",
@@ -2497,6 +2596,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=13247932678940218875&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "tsujiri",
     "name": "Tsujiri",
     "neighbourhood": "Downtown Yonge",
     "address": "147 Dundas St W, Toronto, ON",
@@ -2527,6 +2627,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=12924186646661705574&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-brick-room",
     "name": "The Brick Room",
     "neighbourhood": "Financial District",
     "address": "181 Bay St, Toronto, ON",
@@ -2549,6 +2650,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=8182927030181591364&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "matcha-matcha-church-st",
     "name": "Matcha Matcha — Church St",
     "neighbourhood": "Church-Wellesley",
     "address": "407 Church St, Toronto, ON",
@@ -2573,6 +2675,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=12718061841617362281&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "matcha-matcha-dundas",
     "name": "Matcha Matcha — Dundas",
     "neighbourhood": "Chinatown",
     "address": "294 Dundas St W, Toronto, ON",
@@ -2597,6 +2700,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6968803240490394155&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "tao-tea-leaf-yonge-street",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [],
@@ -2618,6 +2722,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9355832095823584579&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "tao-tea-leaf-union-station",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [],
@@ -2640,6 +2745,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=12948841665514333229&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "machi-machi-yonge-and-wellesley",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [
@@ -2662,6 +2768,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=7724374292845937533&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "machi-machi-fairview-mall",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [
@@ -2684,6 +2791,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11609318585877021293&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "icha-tea-spadina",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [],
@@ -2703,6 +2811,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=4636127868795345980&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "cha-miao-dundas",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [],
@@ -2721,6 +2830,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15264206699892130967&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "chatime-bloor-west",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [
@@ -2743,6 +2853,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9858374343951690626&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-alley-bloor-west",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [
@@ -2765,6 +2876,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17450962295935186914&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "kung-fu-tea-danforth",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [],
@@ -2785,6 +2897,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=13903911785295164855&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "presotea-scarborough",
     "address": null,
     "food_offerings": [],
     "cuisine_types": [
@@ -2806,6 +2919,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11042214590476790588&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "daan-go-cake-lab-spadina",
     "address": null,
     "cuisine_types": [],
     "tags": [],
@@ -2826,6 +2940,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11823690700682690739&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "daan-go-cake-lab-scarborough",
     "address": null,
     "cuisine_types": [],
     "tags": [],
@@ -2846,6 +2961,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=561014057312996705&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "terroni-queen-west",
     "address": null,
     "cuisine_types": [
       "Italian"
@@ -2869,6 +2985,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11697006362643596503&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "mildred-s-temple-kitchen",
     "address": null,
     "cuisine_types": [
       "Brunch"
@@ -2895,6 +3012,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=5909538692391402413&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "maha-s-brunch",
     "address": null,
     "cuisine_types": [
       "Egyptian",
@@ -2921,6 +3039,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=7631213988816385036&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "le-select-bistro",
     "address": null,
     "cuisine_types": [
       "French"
@@ -2945,6 +3064,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11628303804680063574&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "eataly-toronto",
     "address": null,
     "cuisine_types": [
       "Italian"
@@ -2973,6 +3093,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=18001458403318634840&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "emmer",
     "address": null,
     "cuisine_types": [],
     "tags": [],
@@ -2994,6 +3115,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=2758521748246651917&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "fran-s-restaurant-college-street",
     "address": null,
     "cuisine_types": [],
     "tags": [
@@ -3016,6 +3138,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=7036570544090730430&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "bobbette-and-belle-leslieville",
     "address": null,
     "cuisine_types": [
       "French"
@@ -3041,6 +3164,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=1441429532217549881&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "thobors-eglinton-west",
     "address": null,
     "cuisine_types": [
       "French"
@@ -3065,6 +3189,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=10098569121152010454&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "haven-brews",
     "name": "Haven Brews",
     "neighbourhood": "Willowdale",
     "address": "222 Finch Ave W, Unit 101, Toronto, ON",
@@ -3092,6 +3217,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6038385671998432422&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "baretto-caffe",
     "name": "Baretto Caffe",
     "neighbourhood": "Don Mills",
     "address": "1262 Don Mills Road, Unit 106, Toronto, ON M3B 2W7",
@@ -3115,6 +3241,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6681882194202527010&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "cocoon-coffee",
     "name": "Cocoon Coffee",
     "neighbourhood": "Downsview",
     "address": "855 Wilson Ave, North York, ON M3K 1E2",
@@ -3145,6 +3272,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=858173665627195201&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "another-land-coffee",
     "name": "Another Land Coffee",
     "neighbourhood": "Willowdale",
     "address": "4708 Yonge St, Toronto, ON",
@@ -3167,6 +3295,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=2428770696834492213&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "edill-s-coffee-house",
     "name": "Edill's Coffee House",
     "neighbourhood": "Dorset Park",
     "address": "1412 Kennedy Rd, Unit 1A, Scarborough, ON",
@@ -3198,6 +3327,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=1239842654460740079&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "snapback-coffee",
     "name": "SnapBack Coffee",
     "neighbourhood": "West Hill",
     "address": "4679 Kingston Rd, Unit 10, Scarborough, ON M1E 2P8",
@@ -3221,6 +3351,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6812758370092495912&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "craves-bites-and-cafe",
     "name": "Craves Bites & Cafe",
     "neighbourhood": "Dorset Park",
     "address": "2171 Lawrence Ave E, Scarborough, ON M1P 2P5",
@@ -3249,6 +3380,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6344765443809703601&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "petit-delights",
     "name": "Petit Delights",
     "neighbourhood": "Rouge",
     "address": "2130 Morningside Ave, Unit 1, Scarborough, ON M1X 2E5",
@@ -3277,6 +3409,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=8028111906946291060&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "a-m-coffee-laboratory",
     "name": "A.M. Coffee Laboratory",
     "neighbourhood": "Milliken",
     "address": "3101 Kennedy Rd, Unit C10, Scarborough, ON",
@@ -3298,6 +3431,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=13079404480352748163&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "chachee-s-chai-cafe",
     "name": "Chachee's Chai Cafe",
     "neighbourhood": "Golden Mile",
     "address": "69 Lebovic Ave, Scarborough, ON",
@@ -3332,6 +3466,7 @@
     "website_url": "https://chacheeschaicafe.com"
   },
   {
+    "id": "forest-cafe",
     "name": "Forest Cafe",
     "neighbourhood": "Fairview",
     "address": "56 Forest Manor Rd, Unit 5, North York, ON M2J 0E5",
@@ -3360,6 +3495,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=11669395280963848515&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "saryo-cafe",
     "name": "Saryo Cafe",
     "neighbourhood": "Willowdale",
     "address": "5051 Yonge St, North York, ON",
@@ -3388,6 +3524,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17547467668015909852&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "dineen-coffee-co-york-mills",
     "name": "Dineen Coffee Co. — York Mills",
     "neighbourhood": "York Mills",
     "address": "311 York Mills Rd, North York, ON",
@@ -3411,6 +3548,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=2773913598837244970&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "chapayom-north-york",
     "name": "Chapayom — North York",
     "neighbourhood": "Willowdale",
     "address": "4909 Yonge St, North York, ON",
@@ -3436,6 +3574,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17522201380804127884&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "teabydo",
     "name": "TeaByDo",
     "neighbourhood": "Willowdale",
     "address": "5203 Yonge St, North York, ON",
@@ -3454,6 +3593,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6259430946760292826&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "soul-made-cafe",
     "name": "Soul Made Cafe",
     "neighbourhood": "Willowdale",
     "address": "4750 Yonge St, Unit 134, North York, ON",
@@ -3472,6 +3612,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=4342479655756867759&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "coffee-ronin",
     "name": "Coffee Ronin",
     "neighbourhood": "Milliken",
     "address": "3101 Kennedy Rd, Unit A8, Scarborough, ON",
@@ -3492,6 +3633,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9727504011674288629&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "acoffee",
     "name": "Acoffee",
     "neighbourhood": "Milliken",
     "address": "3101 Kennedy Rd, Unit A18, Scarborough, ON",
@@ -3508,6 +3650,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=15507251018236325910&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "layali-el-sharke-coffee-house",
     "name": "Layali El Sharke Coffee House",
     "neighbourhood": "Wexford",
     "address": "1883 Lawrence Ave E, Scarborough, ON",
@@ -3524,6 +3667,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=4412554775438687628&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "shaghf-coffee-scarborough",
     "name": "Shaghf Coffee — Scarborough",
     "neighbourhood": "Golden Mile",
     "address": "55 Lebovic Ave, Scarborough, ON",
@@ -3548,6 +3692,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=6064849087271327586&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "pablo-s-coffee-house",
     "specialty_drinks": [
       "Specialty coffee"
     ],
@@ -3568,6 +3713,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=8646382248867578831&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "hoang-viet-bakery-coffee",
     "specialty_drinks": [
       "Phin coffee",
       "Vietnamese iced coffee"
@@ -3594,6 +3740,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9129388641382595230&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "bakery-gateau",
     "specialty_drinks": [
       "Coffee"
     ],
@@ -3618,6 +3765,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=17447396389518946737&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "the-peachy",
     "specialty_drinks": [],
     "food_offerings": [
       "Bingsu",
@@ -3640,6 +3788,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=3357556473969036189&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "lamanna-s-bakery",
     "specialty_drinks": [
       "Espresso"
     ],
@@ -3666,6 +3815,7 @@
     "googleMapsUri": "https://maps.google.com/?cid=9005797313544478754&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"
   },
   {
+    "id": "treats-n-eats-desserts",
     "specialty_drinks": [
       "Milkshakes"
     ],

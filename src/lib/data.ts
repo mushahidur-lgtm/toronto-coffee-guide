@@ -7,6 +7,8 @@ import { httpUrl, normalizeCafe } from "./normalize-cafe";
 import { getPlaceDetails, placesEnabled } from "./google-places";
 import { googleMapsSearchUrl } from "./maps";
 import { deriveAttributes } from "./explorer";
+import { resolveCafeImages } from "./images";
+import { IMAGE_RECORDS } from "./images-manifest";
 
 /**
  * Data access. The frontend only ever calls these functions, so swapping the JSON seed for
@@ -45,9 +47,7 @@ export const getAllCafes = cache(async (): Promise<Cafe[]> => {
 
 /** Merge a stored cafe with live Google data. Editorial values are the fallback. */
 export function toView(cafe: Cafe, live: LivePlace | null): CafeView {
-  const editorialPhoto = cafe.image_url
-    ? { kind: "url" as const, ref: cafe.image_url, attributions: cafe.image_credit ? [{ displayName: cafe.image_credit }] : [] }
-    : null;
+  const images = resolveCafeImages(cafe, IMAGE_RECORDS, { slim: true }); // full credits are resolved on the cafe page
   const hours = live?.hours?.length ? live.hours : cafe.opening_hours;
   const address = live?.address ?? cafe.address;
   return {
@@ -60,7 +60,8 @@ export function toView(cafe: Cafe, live: LivePlace | null): CafeView {
     google_maps_url: httpUrl(live?.mapsUrl) ?? cafe.google_maps_url ?? googleMapsSearchUrl(cafe.name, address, cafe.google_place_id),
     opening_hours: hours ?? null,
     hours_source: live?.hours?.length ? "google" : cafe.opening_hours ? "editorial" : null,
-    photo: editorialPhoto,
+    image: images.primary,
+    image_category: images.placeholderCategory,
     google_data: !!live,
     google_location: live?.latitude != null && live.longitude != null ? { lat: live.latitude, lng: live.longitude } : null,
     attributes: deriveAttributes(cafe, live?.outdoorSeating ?? null),

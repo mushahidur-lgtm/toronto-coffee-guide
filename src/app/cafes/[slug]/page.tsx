@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Check, MapPin } from "lucide-react";
 import { getCafeBySlug, getCafeViews } from "@/lib/data";
-import { CafePhoto } from "@/components/CafePhoto";
 import { CafeCard } from "@/components/CafeCard";
 import { VenueBadge } from "@/components/VenueBadge";
 import { Hours } from "@/components/Hours";
@@ -13,6 +12,9 @@ import { schemaType } from "@/lib/venue";
 import { GoogleRating } from "@/components/GoogleRating";
 import { FavouriteButton } from "@/components/FavouriteButton";
 import { PhotoGallery } from "@/components/PhotoGallery";
+import { CafeImage } from "@/components/CafeImage";
+import { resolveCafeImages } from "@/lib/images";
+import { IMAGE_RECORDS } from "@/lib/images-manifest";
 import { CafeLocationMap } from "@/components/CafeLocationMap";
 import { displayUrl, googleMapsDirectionsUrl, instagramHandle, isInstagramUrl } from "@/lib/maps";
 import { getNeighbourhood, neighbourhoodSlug } from "@/lib/neighbourhoods";
@@ -51,6 +53,7 @@ export default async function CafePage({ params }: Params) {
 
   const all = await getCafeViews();
   const similar = similarCafes(cafe, all, 3);
+  const images = resolveCafeImages(cafe, IMAGE_RECORDS); // full credits (title, source page, provider) for this page
   const menu = menuSections(cafe);
   const hood = getNeighbourhood(cafe.neighbourhood);
   const a = cafe.attributes;
@@ -135,7 +138,7 @@ export default async function CafePage({ params }: Params) {
       </header>
 
       <div className="overflow-hidden rounded-xl">
-        <CafePhoto photo={cafe.photo} placeId={cafe.google_place_id} name={cafe.name} width={1200} className="aspect-[16/9] sm:aspect-[21/9]" priority />
+        <CafeImage name={cafe.name} image={images.primary} category={cafe.image_category} className="aspect-[16/9] sm:aspect-[21/9]" sizes="(min-width: 1280px) 1280px, 100vw" priority credit="full" />
       </div>
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-20">
@@ -273,7 +276,7 @@ export default async function CafePage({ params }: Params) {
         </aside>
       </div>
 
-      {cafe.google_place_id && !cafe.photo && <PhotoGallery placeId={cafe.google_place_id} name={cafe.name} />}
+      <PhotoGallery images={images.gallery} name={cafe.name} />
 
       {similar.length > 0 && (
         <section aria-labelledby="similar" className="mt-24">

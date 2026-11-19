@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import type { CafeView } from "@/lib/types";
-import { CafePhoto } from "./CafePhoto";
+import { CafeImage } from "./CafeImage";
 import { VenueBadge } from "./VenueBadge";
 import { FavouriteButton } from "./FavouriteButton";
 import { GoogleRating } from "./GoogleRating";
@@ -21,7 +21,7 @@ const MAIN_TYPES = new Set([
   "Specialty Coffee", "Matcha Cafe", "Vietnamese Cafe", "Japanese Cafe", "Korean Cafe", "Bakery & Cafe", "Brunch Cafe", "Dessert Cafe", "Tea House", "Restaurant",
 ]);
 
-/** Editorial cafe card: photo + save, name, neighbourhood · category, description, tags, rating, today's hours, links. */
+/** Editorial cafe card: 16:9 photo + save, name, neighbourhood · category, description, tags, rating, today's hours, links. */
 export function CafeCard({ cafe, highlights = [], priority, distanceKm }: Props) {
   const href = `/cafes/${cafe.slug}`;
   const category = cafe.cafe_categories.find((c) => MAIN_TYPES.has(c)) ?? cafe.cafe_categories[0];
@@ -32,7 +32,7 @@ export function CafeCard({ cafe, highlights = [], priority, distanceKm }: Props)
     <article className="group flex h-full flex-col">
       <div className="relative overflow-hidden rounded-lg">
         <div className="transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transform-none">
-          <CafePhoto photo={cafe.photo} placeId={cafe.google_place_id} name={cafe.name} width={800} priority={priority} href={href} />
+          <CafeImage name={cafe.name} image={cafe.image} category={cafe.image_category} priority={priority} href={href} className="aspect-video" />
         </div>
         <div className="absolute right-3 top-3">
           <FavouriteButton slug={cafe.slug} name={cafe.name} />

@@ -20,7 +20,7 @@ export function Footer() {
           </ul>
         </nav>
         <p className="text-muted md:text-right">
-          Listings are editorial. Hours and photos, where shown, come from Google Maps and can change, so check before you go.
+          Listings are editorial. Hours and ratings, where shown, come from Google Maps and can change, so check before you go. Photos are credited to their creators and labelled when they are illustrative.
         </p>
       </div>
     </footer>

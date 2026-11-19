@@ -1,6 +1,6 @@
 # Data quality report
 
-Generated 2026-11-17 by `npx tsx scripts/data-quality.ts --live`. Every count comes from `data/cafes.seed.json`, the same list the site reads.
+Generated 2026-11-19 by `npx tsx scripts/data-quality.ts`. Every count comes from `data/cafes.seed.json`, the same list the site reads.
 
 ## Totals
 
@@ -26,18 +26,14 @@ Generated 2026-11-17 by `npx tsx scripts/data-quality.ts --live`. Every count co
 | No menu highlights | 2 |
 | Food but no drinks listed | 4 |
 | No Google place ID | 3 |
-| No photo source at all | 3 |
-| No photo on Google | 0 |
-| No opening hours | 1 |
-| No coordinates | 0 |
-| Google status not OPERATIONAL | 0 |
-| **Have a genuine photo** (editorial or Google) | **137** |
-| **Have a website** (editorial or Google) | **128** |
+| Own approved photo | 10 |
+| Only an illustrative photo | 130 |
+| No photo at all (drawn placeholder) | 0 |
 | Invalid website or Instagram URL | 0 |
 | Neighbourhood not in the neighbourhood list | 0 |
 | No verified amenities (Wi-Fi, patio, laptop) | 137 |
 
-Photos, hours and exact coordinates come live from Google Maps for cafes with a place ID; they are never stored. Amenities are only shown when a source states them, so "unverified" is expected for most cafes.
+Hours, ratings and exact coordinates come live from Google Maps for cafes with a place ID; they are never stored. Photos come from the curated image manifest (see docs/image-report.md). Amenities are only shown when a source states them, so "unverified" is expected for most cafes.
 
 ## Duplicates
 
@@ -104,20 +100,19 @@ None found (place ID, name or address).
 | Wexford | Scarborough | 1 |
 | York Mills | North York | 1 |
 
-## Listings needing work (11)
+## Listings needing work (10)
 
-Amenities-only gaps are left out of this list.
+Amenity and photo gaps are counted above and left out of this list (photos: docs/image-report.md).
 
 | Cafe | Neighbourhood | Issues |
 | --- | --- | --- |
 | Acoffee | Milliken | no menu highlights |
-| Coffee Dak Lak | Kensington Market | no address; no Google place ID (no live hours, photos or exact location); no photo source |
+| Coffee Dak Lak | Kensington Market | no address; no Google place ID (no live hours, rating or exact location) |
 | Daan Go Cake Lab — Scarborough | Milliken | no drinks listed |
 | Daan Go Cake Lab — Spadina | Chinatown | no drinks listed |
-| Dear & Fro | Milliken | no Google place ID (no live hours, photos or exact location); no photo source |
+| Dear & Fro | Milliken | no Google place ID (no live hours, rating or exact location) |
 | Emmer | Harbord Village | short description |
 | Layali El Sharke Coffee House | Wexford | no menu highlights |
-| Soul Cafe | Willowdale | no Google place ID (no live hours, photos or exact location); no photo source |
+| Soul Cafe | Willowdale | no Google place ID (no live hours, rating or exact location) |
 | Soul Made Cafe | Willowdale | no drinks listed |
 | The Peachy | Willowdale | no drinks listed |
-| The Remarkable Bean | The Beaches | no opening hours |

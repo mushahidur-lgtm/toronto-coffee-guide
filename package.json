@@ -13,14 +13,20 @@
     "places:sync": "tsx scripts/sync-google-places.ts",
     "places:ids": "node scripts/populate-place-ids.js",
     "places:closed": "node scripts/list-closed-places.js",
-    "test:hours": "tsx scripts/test-hours.ts"
+    "test:hours": "tsx scripts/test-hours.ts",
+    "images:search": "tsx scripts/images/search.ts",
+    "images:illustrative": "tsx scripts/images/illustrative.ts",
+    "images:sheet": "tsx scripts/images/sheet.ts",
+    "images:approve": "tsx scripts/images/approve.ts",
+    "images:check": "tsx scripts/images/check.ts",
+    "images:report": "tsx scripts/images/report.ts",
+    "test:images": "tsx scripts/test-images.ts",
+    "images:blur": "tsx scripts/images/blur.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.1.3",
     "@googlemaps/markerclusterer": "^2.6.2",
     "@supabase/supabase-js": "^2.119.0",
-    "@upstash/ratelimit": "^2.2.1",
-    "@upstash/redis": "^1.41.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.73.0",
     "next": "^15.5.29",
@@ -37,6 +43,7 @@
     "@types/react-dom": "^19.3.0",
     "dotenv": "^18.0.10",
     "postcss": "^8.5.33",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
     "typescript": "^5.9.3"

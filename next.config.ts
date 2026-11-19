@@ -12,8 +12,8 @@ const isVercelPreview = process.env.VERCEL_ENV === "preview";
  *   icons from *.googleapis.com / *.gstatic.com / *.google.com / *.ggpht.com, data:/blob: images and fetches,
  *   blob: workers for Advanced Markers / vector rendering)
  * - Leaflet + OpenStreetMap tiles on /map when no Google browser key is set
- * - Cafe photos come from our own /api/place-photo (same origin); Google photo hosts are listed for Maps JS.
- * Editorial image_url values on other hosts must be added to img-src (or put in /public).
+ * - Cafe photos are our own optimised copies under /images (same origin, via /_next/image), so img-src needs no
+ *   Flickr/Wikimedia hosts; the Google hosts in img-src are for Maps JS tiles and icons only.
  */
 const csp = [
   ["default-src", "'self'"],
@@ -79,8 +79,19 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Cafe photos: next/image serves AVIF/WebP at the sizes each layout asks for and the CDN keeps them for a year.
+  // Files under /images carry a content hash in their name (see scripts/images/approve.ts), so they can be immutable.
+  images: {
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 1080, 1600],
+    imageSizes: [384],
+    minimumCacheTTL: 31536000,
+  },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      { source: "/images/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
+    ];
   },
   // Old cafe URLs that changed when a listing was corrected. Permanent (308) so links and search results follow.
   async redirects() {

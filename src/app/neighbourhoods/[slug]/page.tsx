@@ -8,7 +8,7 @@ import { NEIGHBOURHOOD_INTROS } from "@/lib/neighbourhood-intros";
 import { DRINK_FACETS, FOOD_FACETS, FACET_GROUPS } from "@/lib/facets";
 import type { CafeView } from "@/lib/types";
 import { CafeCard } from "@/components/CafeCard";
-import { CafePhoto } from "@/components/CafePhoto";
+import { CafeImage } from "@/components/CafeImage";
 import { CafeLocationMap } from "@/components/CafeLocationMap";
 
 export const revalidate = 3600;
@@ -74,7 +74,8 @@ export default async function NeighbourhoodPage({ params }: Params) {
     .slice(0, 8);
 
   const filterParam = encodeURIComponent(name);
-  const photos = cafes.filter((c) => c.photo || c.google_place_id).slice(0, 3);
+  // Real photos of cafes here only (never illustrative ones), so this strip appears only when there are three.
+  const photos = cafes.filter((c) => c.image?.scope === "venue").slice(0, 3);
 
   const counts = new Map<string, number>();
   for (const c of all) counts.set(c.neighbourhood, (counts.get(c.neighbourhood) ?? 0) + 1);
@@ -163,7 +164,9 @@ export default async function NeighbourhoodPage({ params }: Params) {
       {photos.length >= 3 && (
         <section aria-label={`Photos from cafes in ${name}`} className="mt-10 hidden gap-3 sm:grid sm:grid-cols-3">
           {photos.map((c) => (
-            <CafePhoto key={c.id} name={c.name} photo={c.photo} placeId={c.google_place_id} width={600} href={`/cafes/${c.slug}`} className="aspect-[4/3] overflow-hidden rounded-lg" />
+            <div key={c.id} className="overflow-hidden rounded-lg">
+              <CafeImage name={c.name} image={c.image} category={c.image_category} href={`/cafes/${c.slug}`} className="aspect-[4/3]" sizes="(min-width: 640px) 33vw, 100vw" />
+            </div>
           ))}
         </section>
       )}
